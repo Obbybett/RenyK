@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RenyK - Security</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Alpine.js for interactivity -->
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        [x-cloak] { display: none !important; }
+    </style>
+</head>
+<body class="bg-white">
+
+    <div x-data="{ mobileMenuOpen: false }">
+        <!-- Header -->
+        <header @scroll.window="document.querySelector('header').classList.toggle('bg-white/80', window.scrollY > 50); document.querySelector('header').classList.toggle('shadow-md', window.scrollY > 50); document.querySelector('header').classList.toggle('backdrop-blur-lg', window.scrollY > 50);" class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
+            <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
+                <div class="flex lg:flex-1">
+                    <a href="index.html" class="text-2xl font-bold text-teal-600">RenyK</a>
+                </div>
+                <div class="flex lg:hidden">
+                    <button type="button" @click="mobileMenuOpen = true" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
+                        <span class="sr-only">Open main menu</span>
+                        <i data-lucide="menu" class="h-6 w-6"></i>
+                    </button>
+                </div>
+                 <div class="hidden lg:flex lg:gap-x-12">
+                    <a href="features.html" class="text-sm font-semibold leading-6 text-gray-900 transition-colors hover:text-teal-600">Features</a>
+                    <a href="tenants.html" class="text-sm font-semibold leading-6 text-gray-900 transition-colors hover:text-teal-600">For Tenants</a>
+                    <a href="landlords.html" class="text-sm font-semibold leading-6 text-gray-900 transition-colors hover:text-teal-600">For Landlords</a>
+                    <a href="pricing.html" class="text-sm font-semibold leading-6 text-gray-900 transition-colors hover:text-teal-600">Pricing</a>
+                    <a href="about.html" class="text-sm font-semibold leading-6 text-gray-900 transition-colors hover:text-teal-600">About</a>
+                    <a href="contact.html" class="text-sm font-semibold leading-6 text-gray-900 transition-colors hover:text-teal-600">Contact</a>
+                </div>
+                <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+                    <a href="login.html" class="rounded-md bg-teal-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-teal-500 transition-transform hover:scale-105">Get Started</a>
+                </div>
+            </nav>
+            <!-- Mobile menu -->
+            <div x-show="mobileMenuOpen" x-cloak class="lg:hidden" role="dialog" aria-modal="true">
+                <!-- Mobile menu content -->
+            </div>
+        </header>
+
+        <main class="isolate pt-24 sm:pt-32">
+            <!-- Hero Section -->
+            <div class="bg-gray-900">
+                <div class="relative isolate overflow-hidden pt-14">
+                    <img src="https://images.unsplash.com/photo-1555949963-ff98c872d422?q=80&w=2970&auto=format&fit=crop" alt="Abstract digital security background" class="absolute inset-0 -z-10 h-full w-full object-cover">
+                    <div class="absolute inset-0 bg-gray-900/70 mix-blend-multiply"></div>
+                    <div class="mx-auto max-w-7xl px-6 py-24 text-center lg:px-8">
+                        <h1 class="text-4xl font-bold tracking-tight text-white sm:text-6xl">Your Security is Our Priority</h1>
+                        <p class="mt-6 text-lg leading-8 text-gray-300">We are committed to protecting your data and your privacy with industry-leading security practices.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Security Features Section -->
+            <div class="bg-white py-24 sm:py-32">
+                <div class="mx-auto max-w-7xl px-6 lg:px-8">
+                    <div class="mx-auto max-w-2xl lg:text-center">
+                        <h2 class="text-base font-semibold leading-7 text-teal-600">Our Commitment</h2>
+                        <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">A fortress for your data</p>
+                        <p class="mt-6 text-lg leading-8 text-gray-600">From the moment you sign up, every piece of information you share with RenyK is protected by multiple layers of security.</p>
+                    </div>
+                    <div class="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
+                        <dl class="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
+                            <div class="relative pl-16">
+                                <dt class="text-base font-semibold leading-7 text-gray-900">
+                                    <div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-teal-600">
+                                        <i data-lucide="lock" class="h-6 w-6 text-white"></i>
+                                    </div>
+                                    Data Encryption
+                                </dt>
+                                <dd class="mt-2 text-base leading-7 text-gray-600">All data transmitted between your device and our servers is encrypted using industry-standard TLS (Transport Layer Security). Your sensitive information, like passwords, is hashed to ensure it can never be read by anyone.</dd>
+                            </div>
+                            <div class="relative pl-16">
+                                <dt class="text-base font-semibold leading-7 text-gray-900">
+                                    <div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-teal-600">
+                                        <i data-lucide="shield-check" class="h-6 w-6 text-white"></i>
+                                    </div>
+                                    Secure M-Pesa & Card Payments
+                                </dt>
+                                <dd class="mt-2 text-base leading-7 text-gray-600">We partner with trusted, PCI-compliant payment gateways to process all transactions. Your financial details are never stored on our servers, ensuring the highest level of security for every payment.</dd>
+                            </div>
+                            <div class="relative pl-16">
+                                <dt class="text-base font-semibold leading-7 text-gray-900">
+                                    <div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-teal-600">
+                                        <i data-lucide="database" class="h-6 w-6 text-white"></i>
+                                    </div>
+                                    Secure Infrastructure
+                                </dt>
+                                <dd class="mt-2 text-base leading-7 text-gray-600">Our servers are hosted in secure, state-of-the-art data centers with 24/7 monitoring, firewalls, and regular security audits to protect against unauthorized access and potential threats.</dd>
+                            </div>
+                            <div class="relative pl-16">
+                                <dt class="text-base font-semibold leading-7 text-gray-900">
+                                    <div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-teal-600">
+                                        <i data-lucide="user-check" class="h-6 w-6 text-white"></i>
+                                    </div>
+                                    Privacy and Data Protection
+                                </dt>
+                                <dd class="mt-2 text-base leading-7 text-gray-600">We are committed to protecting your privacy. We will never share your personal information with third parties without your consent. Our policies are designed to comply with data protection regulations.</dd>
+                            </div>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA Section -->
+            <div class="bg-gray-100 py-24 sm:py-32">
+                 <div class="mx-auto max-w-7xl px-6 lg:px-8 text-center">
+                    <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Have a security question?</h2>
+                    <p class="mt-4 text-lg leading-8 text-gray-600">Our team is here to help. Reach out to us if you have any concerns about your data and privacy.</p>
+                    <div class="mt-10 flex items-center justify-center gap-x-6">
+                        <a href="contact.html" class="rounded-md bg-teal-600 px-5 py-3 text-sm font-semibold text-white shadow-lg hover:bg-teal-500 transition-transform hover:scale-105">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-gray-900">
+             <!-- Footer content from other pages -->
+        </footer>
+    </div>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
