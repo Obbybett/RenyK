@@ -3,191 +3,172 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RenyK - Landlord Finances</title>
-    
+    <title>RenyK - Finances</title>
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    
-    <!-- Chart.js for data visualization -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Alpine.js for interactivity -->
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     <style>
         body {
             font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
-        /* Custom scrollbar for webkit browsers */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #d1d5db;
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #9ca3af;
+        [x-cloak] { display: none !important; }
+        .sidebar-link-active {
+            background-color: #f0fdfa;
+            color: #0d9488;
+            border-right: 3px solid #0d9488;
         }
     </style>
 </head>
 <body class="bg-gray-100">
 
-    <div class="flex h-screen bg-gray-100">
+    <div x-data="{ isModalOpen: false }" class="flex h-screen bg-gray-100">
         <!-- Sidebar -->
-        <div id="sidebar" class="w-64 bg-white shadow-lg flex flex-col transition-all duration-300 fixed lg:static inset-y-0 left-0 transform -translate-x-full lg:translate-x-0 z-30">
-            <div class="p-6 flex items-center justify-between">
-                 <a href="index.html" class="text-2xl font-bold text-teal-600">RenyK</a>
-                 <button id="close-sidebar-btn" class="lg:hidden text-gray-600 hover:text-gray-900">
-                    <i data-lucide="x" class="w-6 h-6"></i>
-                 </button>
+        <aside class="w-64 flex-shrink-0 bg-white shadow-md hidden lg:block">
+            <div class="flex items-center justify-center h-20 border-b">
+                <a href="index.html" class="text-2xl font-bold text-teal-600">RenyK</a>
             </div>
-            <nav class="flex-1 px-4 space-y-2">
-                <a href="landlord-dashboard.html" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-200 rounded-lg">
-                    <i data-lucide="layout-dashboard" class="w-5 h-5 mr-3"></i>
-                    Dashboard
+            <nav class="mt-6">
+                <a href="landlord-dashboard.html" class="flex items-center px-6 py-3 text-gray-700 hover:bg-gray-100 transition-colors">
+                    <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+                    <span class="mx-4 font-medium">Dashboard</span>
                 </a>
-                <a href="landlord-properties.html" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-200 rounded-lg">
-                    <i data-lucide="building-2" class="w-5 h-5 mr-3"></i>
-                    Properties
+                <a href="landlord-properties.html" class="flex items-center px-6 py-3 text-gray-700 hover:bg-gray-100 transition-colors">
+                    <i data-lucide="building-2" class="w-5 h-5"></i>
+                    <span class="mx-4 font-medium">Properties</span>
                 </a>
-                 <a href="landlord-tenants.html" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-200 rounded-lg">
-                    <i data-lucide="users" class="w-5 h-5 mr-3"></i>
-                    Tenants
+                <a href="landlord-tenants.html" class="flex items-center px-6 py-3 text-gray-700 hover:bg-gray-100 transition-colors">
+                    <i data-lucide="users" class="w-5 h-5"></i>
+                    <span class="mx-4 font-medium">Tenants</span>
                 </a>
-                 <a href="#" class="flex items-center px-4 py-3 text-white bg-teal-600 rounded-lg font-semibold">
-                    <i data-lucide="landmark" class="w-5 h-5 mr-3"></i>
-                    Finances
+                <a href="landlord-finances.html" class="sidebar-link-active flex items-center px-6 py-3 text-gray-700 font-bold">
+                    <i data-lucide="trending-up" class="w-5 h-5"></i>
+                    <span class="mx-4 font-medium">Finances</span>
                 </a>
-                 <a href="#" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-200 rounded-lg">
-                    <i data-lucide="wrench" class="w-5 h-5 mr-3"></i>
-                    Maintenance
+                <a href="landlord-maintenance.html" class="flex items-center px-6 py-3 text-gray-700 hover:bg-gray-100 transition-colors">
+                    <i data-lucide="wrench" class="w-5 h-5"></i>
+                    <span class="mx-4 font-medium">Maintenance</span>
                 </a>
-                 <a href="messages.html" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-200 rounded-lg">
-                    <i data-lucide="message-square" class="w-5 h-5 mr-3"></i>
-                    Messages
+                <a href="landlord-documents.html" class="flex items-center px-6 py-3 text-gray-700 hover:bg-gray-100 transition-colors">
+                    <i data-lucide="file-text" class="w-5 h-5"></i>
+                    <span class="mx-4 font-medium">Documents</span>
+                </a>
+                 <a href="landlord-reports.html" class="flex items-center px-6 py-3 text-gray-700 hover:bg-gray-100 transition-colors">
+                    <i data-lucide="bar-chart-3" class="w-5 h-5"></i>
+                    <span class="mx-4 font-medium">Reports</span>
+                </a>
+                <a href="landlord-settings.html" class="flex items-center px-6 py-3 text-gray-700 hover:bg-gray-100 transition-colors">
+                    <i data-lucide="settings" class="w-5 h-5"></i>
+                    <span class="mx-4 font-medium">Settings</span>
                 </a>
             </nav>
-            <div class="p-4 border-t">
-                 <a href="#" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-200 rounded-lg">
-                    <i data-lucide="user-circle" class="w-5 h-5 mr-3"></i>
-                    Profile
-                </a>
-                 <a href="login.html" class="flex items-center px-4 py-3 text-red-500 hover:bg-red-100 rounded-lg">
-                    <i data-lucide="log-out" class="w-5 h-5 mr-3"></i>
-                    Logout
-                </a>
-            </div>
-        </div>
+        </aside>
 
-        <!-- Main content -->
+        <!-- Main Content -->
         <div class="flex-1 flex flex-col overflow-hidden">
             <!-- Header -->
-            <header class="bg-white shadow-sm flex justify-between items-center p-4">
-                 <button id="open-sidebar-btn" class="lg:hidden text-gray-600 hover:text-gray-900">
-                    <i data-lucide="menu" class="w-6 h-6"></i>
-                </button>
-                <h1 class="text-xl font-semibold text-gray-800">Financial Overview</h1>
+            <header class="flex justify-between items-center p-6 bg-white border-b">
                 <div class="flex items-center">
-                    <img src="https://placehold.co/40x40/E2E8F0/4A5568?text=JM" alt="User" class="w-10 h-10 rounded-full">
+                    <button class="text-gray-600 focus:outline-none lg:hidden">
+                        <i data-lucide="menu" class="h-6 w-6"></i>
+                    </button>
+                    <h1 class="text-2xl font-semibold text-gray-800 ml-4">Finances</h1>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div x-data="{ dropdownOpen: false }" class="relative">
+                        <button @click="dropdownOpen = !dropdownOpen" class="flex items-center space-x-2">
+                            <img src="https://placehold.co/40x40/313131/FFFFFF?text=JO" alt="User Avatar" class="h-10 w-10 rounded-full object-cover">
+                            <span class="hidden md:block font-medium">John O.</span>
+                            <i data-lucide="chevron-down" class="h-4 w-4"></i>
+                        </button>
+                        <div x-show="dropdownOpen" @click.away="dropdownOpen = false" x-cloak class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-20">
+                            <a href="landlord-settings.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
+                            <a href="index.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
+                        </div>
+                    </div>
                 </div>
             </header>
 
-            <!-- Content Area -->
+            <!-- Page Content -->
             <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 p-6">
                 <div class="container mx-auto">
-                    <!-- Stat Cards -->
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-                        <div class="bg-white p-6 rounded-2xl shadow-lg">
-                            <div class="flex items-center">
-                                <div class="p-3 rounded-full bg-green-100 text-green-600"><i data-lucide="arrow-down-left" class="w-6 h-6"></i></div>
-                                <div class="ml-4">
-                                    <p class="text-gray-500">Total Revenue (YTD)</p>
-                                    <p class="text-2xl font-bold text-gray-800">KES 2,850,000</p>
-                                </div>
-                            </div>
+                    <!-- Stats Cards -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+                        <div class="bg-white rounded-lg shadow p-6">
+                            <p class="text-sm font-medium text-gray-500">Total Income (Oct)</p>
+                            <p class="mt-2 text-3xl font-bold text-green-600">Ksh 450,000</p>
                         </div>
-                        <div class="bg-white p-6 rounded-2xl shadow-lg">
-                            <div class="flex items-center">
-                                <div class="p-3 rounded-full bg-red-100 text-red-600"><i data-lucide="arrow-up-right" class="w-6 h-6"></i></div>
-                                <div class="ml-4">
-                                    <p class="text-gray-500">Total Expenses (YTD)</p>
-                                    <p class="text-2xl font-bold text-gray-800">KES 320,500</p>
-                                </div>
-                            </div>
+                        <div class="bg-white rounded-lg shadow p-6">
+                            <p class="text-sm font-medium text-gray-500">Total Expenses (Oct)</p>
+                            <p class="mt-2 text-3xl font-bold text-red-600">Ksh 35,000</p>
                         </div>
-                        <div class="bg-white p-6 rounded-2xl shadow-lg">
-                            <div class="flex items-center">
-                                <div class="p-3 rounded-full bg-blue-100 text-blue-600"><i data-lucide="scale" class="w-6 h-6"></i></div>
-                                <div class="ml-4">
-                                    <p class="text-gray-500">Net Profit (YTD)</p>
-                                    <p class="text-2xl font-bold text-gray-800">KES 2,529,500</p>
-                                </div>
-                            </div>
+                        <div class="bg-white rounded-lg shadow p-6">
+                           <p class="text-sm font-medium text-gray-500">Net Profit (Oct)</p>
+                            <p class="mt-2 text-3xl font-bold text-gray-900">Ksh 415,000</p>
                         </div>
-                    </div>
-                    
-                    <!-- Financial Chart -->
-                    <div class="bg-white p-6 rounded-2xl shadow-lg mb-6">
-                        <h3 class="text-xl font-bold text-gray-800 mb-4">Income vs Expense</h3>
-                        <canvas id="financialChart" height="120"></canvas>
+                         <div class="bg-white rounded-lg shadow p-6">
+                           <p class="text-sm font-medium text-gray-500">Overdue Rent</p>
+                            <p class="mt-2 text-3xl font-bold text-amber-600">Ksh 85,000</p>
+                        </div>
                     </div>
 
-                    <!-- Transactions Table -->
-                    <div class="bg-white p-6 rounded-2xl shadow-lg">
-                        <div class="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
-                            <h3 class="text-xl font-bold text-gray-800">Transaction History</h3>
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <div class="flex flex-col sm:flex-row justify-between sm:items-center mb-6 gap-4">
+                            <h2 class="text-xl font-semibold text-gray-800">Transaction History</h2>
                             <div class="flex items-center gap-4">
-                                <button class="text-gray-600 hover:text-gray-900 flex items-center gap-2 border px-4 py-2 rounded-lg">
-                                    <i data-lucide="filter" class="w-4 h-4"></i> Filter
-                                </button>
-                                <button class="text-gray-600 hover:text-gray-900 flex items-center gap-2 border px-4 py-2 rounded-lg">
-                                    <i data-lucide="download" class="w-4 h-4"></i> Export
+                                 <select class="block w-full sm:w-auto rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm">
+                                    <option>All Properties</option>
+                                    <option>Lavington Heights</option>
+                                    <option>Kilimani Towers</option>
+                                </select>
+                                <input type="month" value="2025-10" class="block w-full sm:w-auto rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm">
+                                <button @click="isModalOpen = true" class="rounded-md bg-teal-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-teal-500 flex items-center flex-shrink-0">
+                                    <i data-lucide="plus" class="h-4 w-4 mr-2"></i> Add Expense
                                 </button>
                             </div>
                         </div>
-                         <div class="overflow-x-auto">
+                        <div class="overflow-x-auto">
                             <table class="w-full text-left">
-                                <thead>
-                                    <tr class="bg-gray-50 border-b">
-                                        <th class="p-4 font-semibold text-gray-600">Date</th>
-                                        <th class="p-4 font-semibold text-gray-600">Description</th>
-                                        <th class="p-4 font-semibold text-gray-600">Category</th>
-                                        <th class="p-4 font-semibold text-gray-600">Amount (KES)</th>
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                                        <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                                        <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Property/Unit</th>
+                                        <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
+                                        <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr class="border-b hover:bg-gray-50">
-                                        <td class="p-4">15 Oct 2024</td>
-                                        <td class="p-4 font-medium text-gray-800">Rent Payment - G. Wanjiru (Apt 3B)</td>
-                                        <td class="p-4">Income</td>
-                                        <td class="p-4 text-green-600 font-semibold">+ 50,000</td>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Oct 5, 2025</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Plumbing Repairs</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Kilimani Towers / C3</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Maintenance</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-red-600">- Ksh 15,000</td>
                                     </tr>
-                                     <tr class="border-b hover:bg-gray-50">
-                                        <td class="p-4">14 Oct 2024</td>
-                                        <td class="p-4 font-medium text-gray-800">Plumbing Repairs - Apt 1A</td>
-                                        <td class="p-4">Expense</td>
-                                        <td class="p-4 text-red-600 font-semibold">- 12,500</td>
+                                     <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Oct 1, 2025</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Rent Payment from Mary W.</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Lavington Heights / A5</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Income</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-green-600">+ Ksh 45,000</td>
                                     </tr>
-                                    <tr class="border-b hover:bg-gray-50">
-                                        <td class="p-4">12 Oct 2024</td>
-                                        <td class="p-4 font-medium text-gray-800">Rent Payment - D. Kimani (Unit 5)</td>
-                                        <td class="p-4">Income</td>
-                                        <td class="p-4 text-green-600 font-semibold">+ 75,000</td>
-                                    </tr>
-                                    <tr class="hover:bg-gray-50">
-                                        <td class="p-4">10 Oct 2024</td>
-                                        <td class="p-4 font-medium text-gray-800">County Land Rates</td>
-                                        <td class="p-4">Expense</td>
-                                        <td class="p-4 text-red-600 font-semibold">- 8,000</td>
+                                     <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Oct 1, 2025</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Rent Payment from Peter K.</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Kilimani Towers / C3</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Income</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-green-600">+ Ksh 60,000</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -196,87 +177,71 @@
                 </div>
             </main>
         </div>
+
+         <!-- Add Expense Modal -->
+        <div x-show="isModalOpen" x-cloak class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+            <div class="flex items-end justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+                <div x-show="isModalOpen" @click="isModalOpen = false" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="ease-in duration-200" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+                <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+                <div x-show="isModalOpen" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" x-transition:leave="ease-in duration-200" x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                    <form>
+                        <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                            <div class="sm:flex sm:items-start">
+                                <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-teal-100 sm:mx-0 sm:h-10 sm:w-10">
+                                    <i data-lucide="plus" class="h-6 w-6 text-teal-600"></i>
+                                </div>
+                                <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
+                                    <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">Add an Expense</h3>
+                                    <div class="mt-4 space-y-4">
+                                        <div>
+                                            <label for="expense-desc" class="block text-sm font-medium text-gray-700">Description</label>
+                                            <input type="text" id="expense-desc" placeholder="e.g., Plumbing repairs" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm">
+                                        </div>
+                                        <div>
+                                            <label for="expense-amount" class="block text-sm font-medium text-gray-700">Amount (Ksh)</label>
+                                            <input type="number" id="expense-amount" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm">
+                                        </div>
+                                         <div>
+                                            <label for="expense-date" class="block text-sm font-medium text-gray-700">Date</label>
+                                            <input type="date" id="expense-date" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm">
+                                        </div>
+                                        <div>
+                                            <label for="expense-prop" class="block text-sm font-medium text-gray-700">Property</label>
+                                            <select id="expense-prop" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm">
+                                                <option>Kilimani Towers</option>
+                                                <option>Lavington Heights</option>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <label for="expense-cat" class="block text-sm font-medium text-gray-700">Category</label>
+                                            <select id="expense-cat" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm">
+                                                <option>Maintenance</option>
+                                                <option>Utilities</option>
+                                                <option>Management Fees</option>
+                                                <option>Other</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                            <button type="submit" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-teal-600 text-base font-medium text-white hover:bg-teal-700 sm:ml-3 sm:w-auto sm:text-sm">Add Expense</button>
+                            <button @click="isModalOpen = false" type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 sm:mt-0 sm:w-auto sm:text-sm">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
     <script>
-        // Initialize Lucide icons
-        lucide.createIcons();
-
-        // Sidebar toggle
-        const sidebar = document.getElementById('sidebar');
-        const openSidebarBtn = document.getElementById('open-sidebar-btn');
-        const closeSidebarBtn = document.getElementById('close-sidebar-btn');
-        
-        openSidebarBtn.addEventListener('click', () => {
-            sidebar.classList.remove('-translate-x-full');
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
         });
-
-        closeSidebarBtn.addEventListener('click', () => {
-            sidebar.classList.add('-translate-x-full');
-        });
-        
-        document.addEventListener('click', function(event) {
-            const isClickInside = sidebar.contains(event.target) || openSidebarBtn.contains(event.target);
-            if (!isClickInside && window.innerWidth < 1024) {
-                 sidebar.classList.add('-translate-x-full');
-            }
-        });
-        
-        // Chart.js implementation
-        const ctx = document.getElementById('financialChart').getContext('2d');
-        const financialChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
-                datasets: [{
-                    label: 'Income',
-                    data: [450, 460, 500, 480, 520, 510, 530, 550, 540, 475],
-                    backgroundColor: 'rgba(13, 148, 136, 0.6)',
-                    borderColor: 'rgba(13, 148, 136, 1)',
-                    borderWidth: 1,
-                    borderRadius: 5,
-                }, {
-                    label: 'Expense',
-                    data: [30, 40, 25, 50, 35, 45, 60, 55, 40, 32.5],
-                    backgroundColor: 'rgba(239, 68, 68, 0.6)',
-                    borderColor: 'rgba(239, 68, 68, 1)',
-                    borderWidth: 1,
-                    borderRadius: 5,
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        ticks: {
-                            callback: function(value, index, values) {
-                                return 'KES ' + value/1000 + 'k';
-                            }
-                        }
-                    }
-                },
-                plugins: {
-                    tooltip: {
-                        callbacks: {
-                            label: function(context) {
-                                let label = context.dataset.label || '';
-                                if (label) {
-                                    label += ': ';
-                                }
-                                if (context.parsed.y !== null) {
-                                    label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'KES' }).format(context.parsed.y * 1000);
-                                }
-                                return label;
-                            }
-                        }
-                    }
-                },
-                responsive: true,
-                maintainAspectRatio: true
-            }
-        });
-
     </script>
-
 </body>
 </html>
+
