@@ -4,35 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RenyK - Tenant Dashboard</title>
-    
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Alpine.js for interactivity -->
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     <style>
         body {
             font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
-        /* Custom scrollbar for webkit browsers */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #d1d5db;
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #9ca3af;
+        [x-cloak] { display: none !important; }
+        .sidebar-link-active {
+            background-color: #f0fdfa;
+            color: #0d9488;
+            border-right: 3px solid #0d9488;
         }
     </style>
 </head>
@@ -40,190 +34,169 @@
 
     <div class="flex h-screen bg-gray-100">
         <!-- Sidebar -->
-        <div id="sidebar" class="w-64 bg-white shadow-lg flex flex-col transition-all duration-300 fixed lg:static inset-y-0 left-0 transform -translate-x-full lg:translate-x-0 z-30">
-            <div class="p-6 flex items-center justify-between">
-                 <a href="index.html" class="text-2xl font-bold text-teal-600">RenyK</a>
-                 <button id="close-sidebar-btn" class="lg:hidden text-gray-600 hover:text-gray-900">
-                    <i data-lucide="x" class="w-6 h-6"></i>
-                 </button>
+        <aside class="w-64 flex-shrink-0 bg-white shadow-md hidden lg:block">
+            <div class="flex items-center justify-center h-20 border-b">
+                <a href="index.html" class="text-2xl font-bold text-teal-600">RenyK</a>
             </div>
-            <nav class="flex-1 px-4 space-y-2">
-                <a href="#" class="flex items-center px-4 py-3 text-white bg-teal-600 rounded-lg font-semibold">
-                    <i data-lucide="layout-dashboard" class="w-5 h-5 mr-3"></i>
-                    Dashboard
+            <nav class="mt-6">
+                <a href="dashboard.html" class="sidebar-link-active flex items-center px-6 py-3 text-gray-700 font-bold">
+                    <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+                    <span class="mx-4 font-medium">Dashboard</span>
                 </a>
-                <a href="#" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-200 rounded-lg">
-                    <i data-lucide="landmark" class="w-5 h-5 mr-3"></i>
-                    Payments
+                <a href="payments.html" class="flex items-center px-6 py-3 text-gray-700 hover:bg-gray-100 transition-colors">
+                    <i data-lucide="credit-card" class="w-5 h-5"></i>
+                    <span class="mx-4 font-medium">Payments</span>
                 </a>
-                 <a href="#" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-200 rounded-lg">
-                    <i data-lucide="wrench" class="w-5 h-5 mr-3"></i>
-                    Maintenance
+                <a href="maintenance.html" class="flex items-center px-6 py-3 text-gray-700 hover:bg-gray-100 transition-colors">
+                    <i data-lucide="wrench" class="w-5 h-5"></i>
+                    <span class="mx-4 font-medium">Maintenance</span>
                 </a>
-                 <a href="#" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-200 rounded-lg">
-                    <i data-lucide="message-square" class="w-5 h-5 mr-3"></i>
-                    Messages
+                 <a href="documents.html" class="flex items-center px-6 py-3 text-gray-700 hover:bg-gray-100 transition-colors">
+                    <i data-lucide="file-text" class="w-5 h-5"></i>
+                    <span class="mx-4 font-medium">Documents</span>
                 </a>
-                 <a href="#" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-200 rounded-lg">
-                    <i data-lucide="file-text" class="w-5 h-5 mr-3"></i>
-                    Documents
+                <a href="messages.html" class="flex items-center px-6 py-3 text-gray-700 hover:bg-gray-100 transition-colors">
+                    <i data-lucide="message-square" class="w-5 h-5"></i>
+                    <span class="mx-4 font-medium">Messages</span>
+                </a>
+                 <a href="profile-settings.html" class="flex items-center px-6 py-3 text-gray-700 hover:bg-gray-100 transition-colors">
+                    <i data-lucide="user" class="w-5 h-5"></i>
+                    <span class="mx-4 font-medium">Profile</span>
                 </a>
             </nav>
-            <div class="p-4 border-t">
-                 <a href="#" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-200 rounded-lg">
-                    <i data-lucide="user-circle" class="w-5 h-5 mr-3"></i>
-                    Profile
-                </a>
-                 <a href="login.html" class="flex items-center px-4 py-3 text-red-500 hover:bg-red-100 rounded-lg">
-                    <i data-lucide="log-out" class="w-5 h-5 mr-3"></i>
-                    Logout
-                </a>
-            </div>
-        </div>
+        </aside>
 
-        <!-- Main content -->
+        <!-- Main Content -->
         <div class="flex-1 flex flex-col overflow-hidden">
             <!-- Header -->
-            <header class="bg-white shadow-sm flex justify-between items-center p-4">
-                 <button id="open-sidebar-btn" class="lg:hidden text-gray-600 hover:text-gray-900">
-                    <i data-lucide="menu" class="w-6 h-6"></i>
-                </button>
-                <h1 class="text-xl font-semibold text-gray-800 hidden md:block">Welcome, Grace!</h1>
-                <div class="flex items-center space-x-4">
-                    <button class="text-gray-600 hover:text-gray-900">
-                        <i data-lucide="bell" class="w-6 h-6"></i>
+            <header class="flex justify-between items-center p-6 bg-white border-b">
+                <div class="flex items-center">
+                    <button class="text-gray-600 focus:outline-none lg:hidden">
+                        <i data-lucide="menu" class="h-6 w-6"></i>
                     </button>
-                    <div class="flex items-center">
-                        <img src="https://placehold.co/40x40/E2E8F0/4A5568?text=GW" alt="User" class="w-10 h-10 rounded-full">
-                        <div class="ml-3 hidden md:block">
-                            <p class="font-semibold text-gray-800">Grace Wanjiru</p>
-                            <p class="text-sm text-gray-500">Tenant</p>
+                    <h1 class="text-2xl font-semibold text-gray-800 ml-4">Dashboard</h1>
+                </div>
+
+                <div class="flex items-center space-x-4">
+                    <button class="relative text-gray-600 hover:text-gray-800">
+                        <i data-lucide="bell" class="h-6 w-6"></i>
+                        <span class="absolute -top-1 -right-1 h-2 w-2 rounded-full bg-red-500"></span>
+                    </button>
+                    <div x-data="{ dropdownOpen: false }" class="relative">
+                        <button @click="dropdownOpen = !dropdownOpen" class="flex items-center space-x-2">
+                            <img src="https://placehold.co/40x40/313131/FFFFFF?text=MW" alt="User Avatar" class="h-10 w-10 rounded-full object-cover">
+                            <span class="hidden md:block font-medium">Mary W.</span>
+                            <i data-lucide="chevron-down" class="h-4 w-4"></i>
+                        </button>
+                        <div x-show="dropdownOpen" @click.away="dropdownOpen = false" x-cloak class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-20">
+                            <a href="profile-settings.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
+                            <a href="index.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
                         </div>
                     </div>
                 </div>
             </header>
 
-            <!-- Content Area -->
+            <!-- Page Content -->
             <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 p-6">
                 <div class="container mx-auto">
-                    <!-- Rent Status Card -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
-                        <div class="lg:col-span-2 bg-teal-600 text-white p-8 rounded-2xl shadow-lg">
-                            <h2 class="text-2xl font-bold mb-1">Rent Due: KES 25,000</h2>
-                            <p class="text-teal-100 mb-6">Due on 1st November, 2025</p>
-                            <div class="flex space-x-4">
-                               <button class="bg-white text-teal-600 font-semibold px-6 py-3 rounded-lg hover:bg-gray-100 transition duration-300">Pay Now</button>
-                               <button class="border border-teal-400 text-white font-semibold px-6 py-3 rounded-lg hover:bg-teal-500 transition duration-300">View History</button>
-                            </div>
-                        </div>
-                        <div class="bg-white p-6 rounded-2xl shadow-lg flex flex-col justify-center">
-                           <h3 class="font-semibold text-gray-700 mb-2">My Landlord</h3>
-                           <div class="flex items-center">
-                                <img src="https://placehold.co/48x48/E2E8F0/4A5568?text=JM" alt="Landlord" class="w-12 h-12 rounded-full">
-                                <div class="ml-4">
-                                    <p class="font-bold text-gray-900">John Mwangi</p>
-                                    <button class="text-sm text-teal-600 font-semibold hover:underline">Send Message</button>
-                                </div>
-                           </div>
-                        </div>
+                    <!-- Welcome Banner -->
+                    <div class="bg-teal-600 text-white rounded-lg shadow-md p-6 mb-6">
+                        <h2 class="text-2xl font-bold">Welcome back, Mary!</h2>
+                        <p class="mt-2">Here's a summary of your account today.</p>
                     </div>
-                    
-                    <!-- Recent Activity -->
+
+                    <!-- Main Dashboard Grid -->
                     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                        <!-- Recent Payments -->
-                        <div class="lg:col-span-2 bg-white p-6 rounded-2xl shadow-lg">
-                            <h3 class="text-xl font-bold text-gray-800 mb-4">Recent Payments</h3>
-                            <div class="space-y-4">
-                                <!-- Payment Item -->
-                                <div class="flex justify-between items-center">
-                                    <div class="flex items-center">
-                                        <div class="p-3 rounded-full bg-green-100 text-green-600"><i data-lucide="check-circle"></i></div>
-                                        <div class="ml-4">
-                                            <p class="font-semibold">October Rent</p>
-                                            <p class="text-sm text-gray-500">Paid on Oct 1, 2025</p>
-                                        </div>
-                                    </div>
-                                    <p class="font-bold text-green-600">KES 25,000</p>
+                        <!-- Left Column -->
+                        <div class="lg:col-span-2 space-y-6">
+                            <!-- Rent Status Card -->
+                            <div class="bg-white rounded-lg shadow-md p-6">
+                                <h3 class="text-lg font-semibold text-gray-800 mb-4">Rent Status</h3>
+                                <div class="p-4 bg-green-50 border border-green-200 rounded-lg text-center">
+                                    <p class="text-sm text-green-700">Your rent is fully paid for this month.</p>
+                                    <p class="text-3xl font-bold text-green-800 mt-2">Ksh 45,000</p>
+                                    <p class="text-sm text-gray-500 mt-1">Paid on Oct 1, 2025</p>
                                 </div>
-                                 <!-- Payment Item -->
-                                <div class="flex justify-between items-center">
-                                    <div class="flex items-center">
-                                        <div class="p-3 rounded-full bg-green-100 text-green-600"><i data-lucide="check-circle"></i></div>
-                                        <div class="ml-4">
-                                            <p class="font-semibold">September Rent</p>
-                                            <p class="text-sm text-gray-500">Paid on Sep 1, 2025</p>
-                                        </div>
-                                    </div>
-                                    <p class="font-bold text-green-600">KES 25,000</p>
-                                </div>
-                                 <!-- Payment Item -->
-                                <div class="flex justify-between items-center">
-                                    <div class="flex items-center">
-                                        <div class="p-3 rounded-full bg-green-100 text-green-600"><i data-lucide="check-circle"></i></div>
-                                        <div class="ml-4">
-                                            <p class="font-semibold">August Rent</p>
-                                            <p class="text-sm text-gray-500">Paid on Aug 1, 2025</p>
-                                        </div>
-                                    </div>
-                                    <p class="font-bold text-green-600">KES 25,000</p>
+                                <div class="mt-4 text-center">
+                                    <button class="rounded-md bg-teal-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-teal-500">Make a Payment</button>
                                 </div>
                             </div>
+
+                            <!-- Recent Payments -->
+                            <div class="bg-white rounded-lg shadow-md p-6">
+                                <div class="flex justify-between items-center mb-4">
+                                    <h3 class="text-lg font-semibold text-gray-800">Recent Payments</h3>
+                                    <a href="payments.html" class="text-sm font-medium text-teal-600 hover:text-teal-800">View All</a>
+                                </div>
+                                <ul class="divide-y divide-gray-200">
+                                    <li class="py-3 flex justify-between items-center">
+                                        <div>
+                                            <p class="font-medium text-gray-800">Rent Payment - October</p>
+                                            <p class="text-sm text-gray-500">Oct 1, 2025</p>
+                                        </div>
+                                        <p class="font-semibold text-green-600">Ksh 45,000</p>
+                                    </li>
+                                    <li class="py-3 flex justify-between items-center">
+                                        <div>
+                                            <p class="font-medium text-gray-800">Rent Payment - September</p>
+                                            <p class="text-sm text-gray-500">Sep 1, 2025</p>
+                                        </div>
+                                        <p class="font-semibold text-green-600">Ksh 45,000</p>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                        
-                        <!-- Maintenance Requests -->
-                        <div class="bg-white p-6 rounded-2xl shadow-lg">
-                             <h3 class="text-xl font-bold text-gray-800 mb-4">Maintenance Requests</h3>
-                             <div class="space-y-4">
-                                <!-- Request Item -->
-                                <div class="flex items-start">
-                                    <div class="p-3 rounded-full bg-yellow-100 text-yellow-600 mt-1"><i data-lucide="tool"></i></div>
-                                    <div class="ml-4">
-                                        <p class="font-semibold">Leaking Kitchen Sink</p>
-                                        <p class="text-sm text-gray-500">Status: <span class="font-medium text-yellow-600">In Progress</span></p>
+
+                        <!-- Right Column -->
+                        <div class="space-y-6">
+                             <!-- Maintenance Requests -->
+                             <div class="bg-white rounded-lg shadow-md p-6">
+                                <div class="flex justify-between items-center mb-4">
+                                    <h3 class="text-lg font-semibold text-gray-800">Maintenance</h3>
+                                    <a href="maintenance.html" class="text-sm font-medium text-teal-600 hover:text-teal-800">View All</a>
+                                </div>
+                                <ul class="space-y-4">
+                                    <li>
+                                        <p class="font-medium text-gray-800">Leaking Kitchen Sink</p>
+                                        <div class="flex items-center text-sm text-gray-500 mt-1">
+                                            <span class="inline-block h-2 w-2 rounded-full bg-green-500 mr-2"></span>
+                                            Completed
+                                        </div>
+                                    </li>
+                                </ul>
+                                 <button class="mt-4 w-full rounded-md border border-gray-300 px-5 py-2.5 text-sm font-semibold text-gray-700 shadow-sm hover:bg-gray-50">Report an Issue</button>
+                            </div>
+                            
+                            <!-- Messages -->
+                            <div class="bg-white rounded-lg shadow-md p-6">
+                                <div class="flex justify-between items-center mb-4">
+                                    <h3 class="text-lg font-semibold text-gray-800">Recent Messages</h3>
+                                    <a href="messages.html" class="text-sm font-medium text-teal-600 hover:text-teal-800">View All</a>
+                                </div>
+                                <div class="space-y-3">
+                                    <div class="flex items-start space-x-3">
+                                        <img src="https://placehold.co/40x40/313131/FFFFFF?text=JO" alt="Landlord Avatar" class="h-10 w-10 rounded-full object-cover">
+                                        <div>
+                                            <p class="font-semibold text-gray-900">John O. (Landlord)</p>
+                                            <p class="text-sm text-gray-600 truncate">Hi Mary, just confirming the plumber will be there...</p>
+                                        </div>
                                     </div>
                                 </div>
-                                <!-- Request Item -->
-                                <div class="flex items-start">
-                                    <div class="p-3 rounded-full bg-green-100 text-green-600 mt-1"><i data-lucide="tool"></i></div>
-                                    <div class="ml-4">
-                                        <p class="font-semibold">Broken Window Latch</p>
-                                        <p class="text-sm text-gray-500">Status: <span class="font-medium text-green-600">Completed</span></p>
-                                    </div>
-                                </div>
-                             </div>
-                             <button class="mt-6 w-full bg-teal-100 text-teal-700 font-semibold py-3 rounded-lg hover:bg-teal-200 transition duration-300">New Request</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </main>
         </div>
     </div>
-    
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
     <script>
-        // Initialize Lucide icons
-        lucide.createIcons();
-
-        // Sidebar toggle
-        const sidebar = document.getElementById('sidebar');
-        const openSidebarBtn = document.getElementById('open-sidebar-btn');
-        const closeSidebarBtn = document.getElementById('close-sidebar-btn');
-        
-        openSidebarBtn.addEventListener('click', () => {
-            sidebar.classList.remove('-translate-x-full');
-        });
-
-        closeSidebarBtn.addEventListener('click', () => {
-            sidebar.classList.add('-translate-x-full');
-        });
-        
-        // Close sidebar on click outside on mobile
-        document.addEventListener('click', function(event) {
-            const isClickInside = sidebar.contains(event.target) || openSidebarBtn.contains(event.target);
-            if (!isClickInside && window.innerWidth < 1024) {
-                 sidebar.classList.add('-translate-x-full');
-            }
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
         });
     </script>
-
 </body>
 </html>
+
