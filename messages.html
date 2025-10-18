@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RenyK - Messages</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom scrollbar for webkit browsers */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d1d5db;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #9ca3af;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <div class="flex h-screen bg-gray-100">
+        <!-- Sidebar -->
+        <div id="sidebar" class="w-64 bg-white shadow-lg flex-col transition-all duration-300 fixed lg:static inset-y-0 left-0 transform -translate-x-full lg:translate-x-0 z-30 hidden lg:flex">
+            <div class="p-6 flex items-center justify-between">
+                 <a href="index.html" class="text-2xl font-bold text-teal-600">RenyK</a>
+                 <button id="close-sidebar-btn" class="lg:hidden text-gray-600 hover:text-gray-900">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                 </button>
+            </div>
+            <nav class="flex-1 px-4 space-y-2">
+                <a href="dashboard.html" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-200 rounded-lg">
+                    <i data-lucide="layout-dashboard" class="w-5 h-5 mr-3"></i>
+                    Dashboard
+                </a>
+                <a href="payments.html" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-200 rounded-lg">
+                    <i data-lucide="landmark" class="w-5 h-5 mr-3"></i>
+                    Payments
+                </a>
+                 <a href="maintenance.html" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-200 rounded-lg">
+                    <i data-lucide="wrench" class="w-5 h-5 mr-3"></i>
+                    Maintenance
+                </a>
+                 <a href="#" class="flex items-center px-4 py-3 text-white bg-teal-600 rounded-lg font-semibold">
+                    <i data-lucide="message-square" class="w-5 h-5 mr-3"></i>
+                    Messages
+                </a>
+                 <a href="#" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-200 rounded-lg">
+                    <i data-lucide="file-text" class="w-5 h-5 mr-3"></i>
+                    Documents
+                </a>
+            </nav>
+            <div class="p-4 border-t">
+                 <a href="#" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-200 rounded-lg">
+                    <i data-lucide="user-circle" class="w-5 h-5 mr-3"></i>
+                    Profile
+                </a>
+                 <a href="login.html" class="flex items-center px-4 py-3 text-red-500 hover:bg-red-100 rounded-lg">
+                    <i data-lucide="log-out" class="w-5 h-5 mr-3"></i>
+                    Logout
+                </a>
+            </div>
+        </div>
+
+        <!-- Main content -->
+        <div class="flex-1 flex flex-col overflow-hidden">
+            <!-- Header -->
+            <header class="bg-white shadow-sm flex justify-between items-center p-4">
+                 <button id="open-sidebar-btn" class="lg:hidden text-gray-600 hover:text-gray-900">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+                <h1 class="text-xl font-semibold text-gray-800">Messages</h1>
+                 <div class="flex items-center">
+                    <img src="https://placehold.co/40x40/E2E8F0/4A5568?text=GW" alt="User" class="w-10 h-10 rounded-full">
+                </div>
+            </header>
+
+            <!-- Chat Interface -->
+            <div class="flex-1 flex overflow-hidden">
+                <!-- Conversation List -->
+                <div class="w-full md:w-1/3 lg:w-1/4 bg-white border-r overflow-y-auto">
+                    <div class="p-4 border-b">
+                        <input type="text" placeholder="Search..." class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-1 focus:ring-teal-500">
+                    </div>
+                    <div>
+                        <!-- Active Conversation -->
+                        <div class="p-4 flex items-center bg-teal-50 border-r-4 border-teal-500 cursor-pointer">
+                            <img src="https://placehold.co/48x48/E2E8F0/4A5568?text=JM" alt="Landlord" class="w-12 h-12 rounded-full">
+                            <div class="ml-4 flex-1">
+                                <p class="font-bold text-gray-800">John Mwangi</p>
+                                <p class="text-sm text-gray-600 truncate">Okay, I will send someone to check it...</p>
+                            </div>
+                            <span class="text-xs text-gray-500">11:10 AM</span>
+                        </div>
+                         <!-- Inactive Conversation -->
+                        <div class="p-4 flex items-center border-b hover:bg-gray-50 cursor-pointer">
+                            <div class="w-12 h-12 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold text-xl">
+                                S
+                            </div>
+                            <div class="ml-4 flex-1">
+                                <p class="font-semibold text-gray-700">System Notifications</p>
+                                <p class="text-sm text-gray-500 truncate">Your rent for November is due soon.</p>
+                            </div>
+                             <span class="text-xs text-gray-500">Yesterday</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Chat Window -->
+                <div class="flex-1 flex flex-col">
+                    <!-- Chat Header -->
+                    <div class="bg-white p-4 border-b flex items-center">
+                        <img src="https://placehold.co/40x40/E2E8F0/4A5568?text=JM" alt="Landlord" class="w-10 h-10 rounded-full">
+                        <div class="ml-3">
+                            <p class="font-semibold text-gray-800">John Mwangi</p>
+                            <p class="text-sm text-gray-500 flex items-center"><span class="w-2 h-2 bg-green-500 rounded-full mr-2"></span>Online</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Messages -->
+                    <div class="flex-1 p-6 overflow-y-auto bg-gray-50">
+                        <div class="space-y-6">
+                            <!-- Received Message -->
+                            <div class="flex items-start">
+                                <img src="https://placehold.co/40x40/E2E8F0/4A5568?text=JM" alt="Landlord" class="w-10 h-10 rounded-full">
+                                <div class="ml-3">
+                                    <div class="bg-white p-4 rounded-r-lg rounded-bl-lg max-w-md">
+                                        <p class="text-gray-800">Hi Grace, I saw your maintenance request about the leaking sink. Is it a major leak?</p>
+                                    </div>
+                                    <p class="text-xs text-gray-500 mt-1">11:05 AM</p>
+                                </div>
+                            </div>
+                             <!-- Sent Message -->
+                            <div class="flex items-start justify-end">
+                                <div class="mr-3 text-right">
+                                     <div class="bg-teal-500 text-white p-4 rounded-l-lg rounded-br-lg max-w-md">
+                                        <p>Hi John, not major, but it's a steady drip. I've put a bucket under it for now.</p>
+                                    </div>
+                                    <p class="text-xs text-gray-500 mt-1">11:08 AM</p>
+                                </div>
+                                <img src="https://placehold.co/40x40/E2E8F0/4A5568?text=GW" alt="User" class="w-10 h-10 rounded-full">
+                            </div>
+                             <!-- Received Message -->
+                            <div class="flex items-start">
+                                <img src="https://placehold.co/40x40/E2E8F0/4A5568?text=JM" alt="Landlord" class="w-10 h-10 rounded-full">
+                                <div class="ml-3">
+                                    <div class="bg-white p-4 rounded-r-lg rounded-bl-lg max-w-md">
+                                        <p>Okay, I will send someone to check it out this afternoon. Should I let you know when they are on their way?</p>
+                                    </div>
+                                    <p class="text-xs text-gray-500 mt-1">11:10 AM</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Message Input -->
+                    <div class="bg-white p-4 border-t">
+                        <div class="flex items-center">
+                            <input type="text" placeholder="Type your message..." class="flex-1 px-4 py-3 border rounded-full focus:outline-none focus:ring-2 focus:ring-teal-500">
+                            <button class="ml-4 bg-teal-600 text-white p-3 rounded-full hover:bg-teal-700 transition duration-300">
+                                <i data-lucide="send" class="w-6 h-6"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Sidebar toggle
+        const sidebar = document.getElementById('sidebar');
+        const openSidebarBtn = document.getElementById('open-sidebar-btn');
+        const closeSidebarBtn = document.getElementById('close-sidebar-btn');
+        
+        openSidebarBtn.addEventListener('click', () => {
+            sidebar.classList.remove('hidden');
+            sidebar.classList.add('flex');
+            sidebar.classList.remove('-translate-x-full');
+        });
+
+        closeSidebarBtn.addEventListener('click', () => {
+            sidebar.classList.add('-translate-x-full');
+            setTimeout(() => {
+                sidebar.classList.add('hidden');
+                sidebar.classList.remove('flex');
+            }, 300);
+        });
+        
+        document.addEventListener('click', function(event) {
+            const isClickInside = sidebar.contains(event.target) || openSidebarBtn.contains(event.target);
+            if (!isClickInside && window.innerWidth < 1024) {
+                 sidebar.classList.add('-translate-x-full');
+                 setTimeout(() => {
+                    sidebar.classList.add('hidden');
+                    sidebar.classList.remove('flex');
+                }, 300);
+            }
+        });
+    </script>
+
+</body>
+</html>
