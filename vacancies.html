@@ -13,9 +13,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    
     <!-- Alpine.js for interactivity -->
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
@@ -33,31 +30,50 @@
     <div x-data="{ mobileMenuOpen: false }">
         <!-- Header -->
         <header @scroll.window="document.querySelector('header').classList.toggle('bg-white/80', window.scrollY > 50); document.querySelector('header').classList.toggle('shadow-md', window.scrollY > 50); document.querySelector('header').classList.toggle('backdrop-blur-lg', window.scrollY > 50);" class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
-            <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
+            <nav class="flex items-center justify-between p-6 lg:px-8 max-w-7xl mx-auto" aria-label="Global">
                 <div class="flex lg:flex-1">
                     <a href="index.html" class="text-2xl font-bold text-teal-600">RenyK</a>
                 </div>
                 <div class="flex lg:hidden">
                     <button type="button" @click="mobileMenuOpen = true" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
                         <span class="sr-only">Open main menu</span>
-                        <i data-lucide="menu" class="h-6 w-6"></i>
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /></svg>
                     </button>
                 </div>
                 <div class="hidden lg:flex lg:gap-x-12">
-                    <a href="features.html" class="text-sm font-semibold leading-6 text-gray-900 transition-colors hover:text-teal-600">Features</a>
-                    <a href="tenants.html" class="text-sm font-semibold leading-6 text-gray-900 transition-colors hover:text-teal-600">For Tenants</a>
-                    <a href="landlords.html" class="text-sm font-semibold leading-6 text-gray-900 transition-colors hover:text-teal-600">For Landlords</a>
+                    <a href="vacancies.html" class="text-sm font-semibold leading-6 text-teal-600">Find a Rental</a>
+                    <div x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false" class="relative">
+                        <button class="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900 focus:outline-none transition-colors hover:text-teal-600">
+                            Solutions
+                            <svg class="h-5 w-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" /></svg>
+                        </button>
+                        <div x-show="open" x-transition x-cloak class="absolute -left-8 top-full z-10 mt-3 w-56 rounded-xl bg-white p-2 shadow-lg ring-1 ring-gray-900/5">
+                            <a href="tenants.html" class="block rounded-lg px-3 py-2 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-50">For Tenants</a>
+                            <a href="landlords.html" class="block rounded-lg px-3 py-2 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-50">For Landlords</a>
+                        </div>
+                    </div>
                     <a href="pricing.html" class="text-sm font-semibold leading-6 text-gray-900 transition-colors hover:text-teal-600">Pricing</a>
-                    <a href="about.html" class="text-sm font-semibold leading-6 text-gray-900 transition-colors hover:text-teal-600">About</a>
-                    <a href="contact.html" class="text-sm font-semibold leading-6 text-gray-900 transition-colors hover:text-teal-600">Contact</a>
+                     <div x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false" class="relative">
+                        <button class="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900 focus:outline-none transition-colors hover:text-teal-600">
+                            Resources
+                            <svg class="h-5 w-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" /></svg>
+                        </button>
+                        <div x-show="open" x-transition x-cloak class="absolute -left-8 top-full z-10 mt-3 w-56 rounded-xl bg-white p-2 shadow-lg ring-1 ring-gray-900/5">
+                            <a href="blog.html" class="block rounded-lg px-3 py-2 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-50">Blog</a>
+                            <a href="about.html" class="block rounded-lg px-3 py-2 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-50">About Us</a>
+                            <a href="contact.html" class="block rounded-lg px-3 py-2 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-50">Contact Us</a>
+                             <a href="security.html" class="block rounded-lg px-3 py-2 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-50">Security</a>
+                        </div>
+                    </div>
                 </div>
                 <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-                    <a href="login.html" class="rounded-md bg-teal-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-teal-500 transition-transform hover:scale-105">Log In / Sign Up</a>
+                    <a href="login.html" class="text-sm font-semibold leading-6 text-gray-900 mr-6 transition-colors hover:text-teal-600">Log in</a>
+                    <a href="login.html" class="rounded-md bg-teal-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-teal-500 transition-transform hover:scale-105">Get Started</a>
                 </div>
             </nav>
             <!-- Mobile menu -->
             <div x-show="mobileMenuOpen" x-cloak class="lg:hidden" role="dialog" aria-modal="true">
-                <!-- ... mobile menu code from other pages ... -->
+                <!-- Mobile menu content here -->
             </div>
         </header>
 
@@ -70,7 +86,7 @@
             </div>
 
             <!-- Search and Filter Section -->
-            <div class="bg-white py-12">
+            <div class="bg-white py-12 sticky top-[72px] z-40 shadow-sm">
                 <div class="mx-auto max-w-7xl px-6 lg:px-8">
                     <div class="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
                         <div>
@@ -82,7 +98,7 @@
                         <div>
                             <label for="bedrooms" class="block text-sm font-medium leading-6 text-gray-900">Bedrooms</label>
                             <div class="mt-2">
-                                <select id="bedrooms" name="bedrooms" class="block w-full rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-teal-600 sm:text-sm sm:leading-6">
+                                <select id="bedrooms" name="bedrooms" class="block w-full rounded-md border-0 py-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-teal-600 sm:text-sm sm:leading-6">
                                     <option>Any</option>
                                     <option>1 Bedroom</option>
                                     <option>2 Bedrooms</option>
@@ -94,7 +110,7 @@
                         <div>
                             <label for="price-range" class="block text-sm font-medium leading-6 text-gray-900">Price Range (Ksh)</label>
                             <div class="mt-2">
-                                <select id="price-range" name="price-range" class="block w-full rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-teal-600 sm:text-sm sm:leading-6">
+                                <select id="price-range" name="price-range" class="block w-full rounded-md border-0 py-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-teal-600 sm:text-sm sm:leading-6">
                                     <option>Any</option>
                                     <option>0 - 30,000</option>
                                     <option>30,001 - 60,000</option>
@@ -104,7 +120,7 @@
                             </div>
                         </div>
                         <div class="flex items-end">
-                            <button type="button" class="w-full rounded-md bg-teal-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-teal-500 transition-transform hover:scale-105">Search</button>
+                            <button type="button" class="w-full rounded-md bg-teal-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-teal-500 transition-transform hover:scale-105">Search</button>
                         </div>
                     </div>
                 </div>
@@ -118,7 +134,7 @@
                     <!-- Sample Property Card 1 -->
                     <div class="group relative">
                         <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
-                            <img src="https://placehold.co/800x600/0d9488/ffffff?text=Modern+Apartment" alt="Modern apartment building exterior" class="h-full w-full object-cover object-center lg:h-full lg:w-full">
+                            <img src="https://images.unsplash.com/photo-1572120360610-d971b9d7767c?q=80&w=2970&auto=format&fit=crop" alt="Modern apartment building exterior" class="h-full w-full object-cover object-center lg:h-full lg:w-full">
                         </div>
                         <div class="mt-4 flex justify-between">
                             <div>
@@ -136,7 +152,7 @@
                     <!-- Sample Property Card 2 -->
                     <div class="group relative">
                         <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
-                            <img src="https://placehold.co/800x600/f59e0b/ffffff?text=Cozy+Studio" alt="Cozy studio apartment interior" class="h-full w-full object-cover object-center lg:h-full lg:w-full">
+                            <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=2970&auto=format&fit=crop" alt="Cozy studio apartment interior" class="h-full w-full object-cover object-center lg:h-full lg:w-full">
                         </div>
                         <div class="mt-4 flex justify-between">
                             <div>
@@ -154,7 +170,7 @@
                      <!-- Sample Property Card 3 -->
                     <div class="group relative">
                         <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
-                            <img src="https://placehold.co/800x600/3b82f6/ffffff?text=Family+Home" alt="Suburban family home with a small garden" class="h-full w-full object-cover object-center lg:h-full lg:w-full">
+                            <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=2874&auto=format&fit=crop" alt="Suburban family home with a small garden" class="h-full w-full object-cover object-center lg:h-full lg:w-full">
                         </div>
                         <div class="mt-4 flex justify-between">
                             <div>
@@ -177,11 +193,17 @@
 
         <!-- Footer -->
         <footer class="bg-gray-900">
-            <!-- ... footer code from other pages ... -->
+            <!-- Footer content from index.html -->
         </footer>
     </div>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
     <script>
-        lucide.createIcons();
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+        });
     </script>
 </body>
 </html>
+
