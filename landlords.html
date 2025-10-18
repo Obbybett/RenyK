@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RenyK - For Landlords</title>
-    
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -25,13 +25,10 @@
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
-        .gradient-bg {
-            background: linear-gradient(120deg, #f0fdfa, #e0f2f1, #ffffff);
-        }
         [x-cloak] { display: none !important; }
     </style>
 </head>
-<body class="bg-white">
+<body class="bg-gray-50">
 
     <div x-data="{ mobileMenuOpen: false }">
         <!-- Header -->
@@ -47,13 +44,15 @@
                     </button>
                 </div>
                 <div class="hidden lg:flex lg:gap-x-12">
-                    <a href="features.html" class="text-sm font-semibold leading-6 text-gray-900">Features</a>
-                    <a href="tenants.html" class="text-sm font-semibold leading-6 text-gray-900">For Tenants</a>
+                    <a href="features.html" class="text-sm font-semibold leading-6 text-gray-900 transition-colors hover:text-teal-600">Features</a>
+                    <a href="tenants.html" class="text-sm font-semibold leading-6 text-gray-900 transition-colors hover:text-teal-600">For Tenants</a>
                     <a href="landlords.html" class="text-sm font-semibold leading-6 text-teal-600">For Landlords</a>
-                    <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Pricing</a>
+                    <a href="pricing.html" class="text-sm font-semibold leading-6 text-gray-900 transition-colors hover:text-teal-600">Pricing</a>
+                    <a href="about.html" class="text-sm font-semibold leading-6 text-gray-900 transition-colors hover:text-teal-600">About</a>
+                    <a href="contact.html" class="text-sm font-semibold leading-6 text-gray-900 transition-colors hover:text-teal-600">Contact</a>
                 </div>
                 <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-                    <a href="login.html" class="rounded-md bg-teal-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-teal-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-600">Get Started</a>
+                    <a href="login.html" class="rounded-md bg-teal-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-teal-500 transition-transform hover:scale-105">Get Started</a>
                 </div>
             </nav>
             <!-- Mobile menu -->
@@ -72,8 +71,10 @@
                             <div class="space-y-2 py-6">
                                 <a href="features.html" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Features</a>
                                 <a href="tenants.html" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">For Tenants</a>
-                                <a href="landlords.html" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-teal-600 hover:bg-gray-50">For Landlords</a>
-                                <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Pricing</a>
+                                <a href="landlords.html" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">For Landlords</a>
+                                <a href="pricing.html" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Pricing</a>
+                                <a href="about.html" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">About</a>
+                                <a href="contact.html" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Contact</a>
                             </div>
                             <div class="py-6">
                                 <a href="login.html" class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Log in</a>
@@ -84,128 +85,113 @@
             </div>
         </header>
 
-        <main>
+        <main class="isolate pt-24 sm:pt-32">
             <!-- Hero Section -->
-            <div class="relative isolate pt-32 pb-24 sm:pt-48 sm:pb-32 gradient-bg">
-                <div class="mx-auto max-w-7xl px-6 lg:px-8">
-                    <div class="mx-auto max-w-3xl text-center">
-                        <h1 class="text-4xl font-black tracking-tight text-gray-900 sm:text-6xl">Effortless Property Management Starts Here.</h1>
-                        <p class="mt-6 text-lg leading-8 text-gray-700">Automate rent collection, track finances, and manage tenants from one powerful dashboard. RenyK helps you run a smarter, more profitable rental business.</p>
-                         <div class="mt-10 flex items-center justify-center gap-x-6">
-                            <a href="login.html" class="rounded-md bg-teal-600 px-5 py-3 text-sm font-semibold text-white shadow-lg hover:bg-teal-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-600">Start for Free</a>
+            <div class="relative">
+                <div class="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:flex lg:items-center lg:gap-x-10 lg:px-8">
+                    <div class="mx-auto max-w-2xl lg:mx-0 lg:flex-auto">
+                        <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">Manage Your Properties, Not Your Paperwork</h1>
+                        <p class="mt-6 text-lg leading-8 text-gray-600">RenyK is the all-in-one platform designed for Kenyan landlords. Save time, reduce vacancies, and grow your rental income with our powerful, easy-to-use tools.</p>
+                        <div class="mt-10 flex items-center gap-x-6">
+                            <a href="pricing.html" class="rounded-md bg-teal-600 px-5 py-3 text-sm font-semibold text-white shadow-lg hover:bg-teal-500 transition-transform hover:scale-105">View Pricing Plans</a>
                         </div>
+                    </div>
+                    <div class="mt-16 sm:mt-24 lg:mt-0 lg:flex-shrink-0 lg:flex-grow">
+                        <img src="https://images.unsplash.com/photo-1582407947304-fd86f028f716?q=80&w=2796&auto=format&fit=crop" alt="Exterior of a modern residential property" class="mx-auto w-[42rem] max-w-full rounded-2xl shadow-xl">
                     </div>
                 </div>
             </div>
 
-            <!-- "How it works" section -->
-            <div class="bg-white py-24 sm:py-32">
+            <!-- "How It Works" Section -->
+            <div class="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
+                <div class="mx-auto max-w-2xl text-center">
+                    <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Effortless Property Management</h2>
+                    <p class="mt-4 text-lg text-gray-600">Streamline your entire workflow from listing to lease.</p>
+                </div>
+                <div class="mt-20 grid grid-cols-1 gap-y-12 md:grid-cols-3 md:gap-x-8">
+                    <div class="text-center">
+                        <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-teal-100 text-teal-600">
+                            <i data-lucide="building" class="h-8 w-8"></i>
+                        </div>
+                        <h3 class="mt-6 text-lg font-semibold text-gray-900">1. List Your Properties</h3>
+                        <p class="mt-2 text-base text-gray-600">Easily add all your properties and units to the platform in minutes.</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-teal-100 text-teal-600">
+                            <i data-lucide="users" class="h-8 w-8"></i>
+                        </div>
+                        <h3 class="mt-6 text-lg font-semibold text-gray-900">2. Onboard Your Tenants</h3>
+                        <p class="mt-2 text-base text-gray-600">Invite your tenants to the platform to start managing payments and communication digitally.</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-teal-100 text-teal-600">
+                            <i data-lucide="pie-chart" class="h-8 w-8"></i>
+                        </div>
+                        <h3 class="mt-6 text-lg font-semibold text-gray-900">3. Automate & Grow</h3>
+                        <p class="mt-2 text-base text-gray-600">Automate rent collection, track finances, and focus on growing your investment.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Key Benefits Section -->
+            <div class="bg-gray-100 py-24 sm:py-32">
                 <div class="mx-auto max-w-7xl px-6 lg:px-8">
                     <div class="mx-auto max-w-2xl lg:text-center">
-                        <h2 class="text-base font-semibold leading-7 text-teal-600">A Simpler Workflow</h2>
-                        <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Manage Your Properties in 3 Simple Steps</p>
+                        <h2 class="text-lg font-semibold leading-8 tracking-tight text-teal-600">Built for Landlords</h2>
+                        <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Your Business, Supercharged</p>
                     </div>
                     <div class="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
-                        <dl class="grid grid-cols-1 gap-x-8 gap-y-16 text-center lg:grid-cols-3">
-                            <div class="flex flex-col items-center">
-                                <div class="flex h-16 w-16 items-center justify-center rounded-full bg-teal-100 text-teal-600 ring-8 ring-gray-50">
-                                    <i data-lucide="user-plus" class="h-8 w-8"></i>
-                                </div>
-                                <dt class="mt-4 text-xl font-semibold text-gray-900">1. Create Your Account</dt>
-                                <dd class="mt-2 text-base leading-7 text-gray-600">Get set up as a landlord in just a few minutes.</dd>
+                        <dl class="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
+                            <div class="flex flex-col">
+                                <dt class="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900"><i data-lucide="dollar-sign" class="h-5 w-5 flex-none text-teal-600"></i>Never Chase Rent Again</dt>
+                                <dd class="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600"><p class="flex-auto">Receive rent payments on time with automated reminders and a clear dashboard of payment statuses.</p></dd>
                             </div>
-                            <div class="flex flex-col items-center">
-                                <div class="flex h-16 w-16 items-center justify-center rounded-full bg-teal-100 text-teal-600 ring-8 ring-gray-50">
-                                    <i data-lucide="building" class="h-8 w-8"></i>
-                                </div>
-                                <dt class="mt-4 text-xl font-semibold text-gray-900">2. List Your Properties</dt>
-                                <dd class="mt-2 text-base leading-7 text-gray-600">Add your units and easily invite your tenants to join the platform.</dd>
+                            <div class="flex flex-col">
+                                <dt class="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900"><i data-lucide="bar-chart-2" class="h-5 w-5 flex-none text-teal-600"></i>Actionable Financial Insights</dt>
+                                <dd class="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600"><p class="flex-auto">Generate powerful income and expense reports to understand your profitability and make smarter decisions.</p></dd>
                             </div>
-                            <div class="flex flex-col items-center">
-                                <div class="flex h-16 w-16 items-center justify-center rounded-full bg-teal-100 text-teal-600 ring-8 ring-gray-50">
-                                    <i data-lucide="area-chart" class="h-8 w-8"></i>
-                                </div>
-                                <dt class="mt-4 text-xl font-semibold text-gray-900">3. Manage with Ease</dt>
-                                <dd class="mt-2 text-base leading-7 text-gray-600">Track payments, handle requests, and watch your business grow.</dd>
+                            <div class="flex flex-col">
+                                <dt class="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900"><i data-lucide="messages-square" class="h-5 w-5 flex-none text-teal-600"></i>Streamlined Communication</dt>
+                                <dd class="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600"><p class="flex-auto">Keep all tenant communication organized, documented, and accessible in one central inbox.</p></dd>
                             </div>
                         </dl>
                     </div>
                 </div>
             </div>
 
-            <!-- Feature Section with Image -->
-            <div class="overflow-hidden bg-gray-50 py-24 sm:py-32">
-                <div class="mx-auto max-w-7xl px-6 lg:px-8">
-                    <div class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2 lg:items-center">
-                         <div class="lg:pl-8 lg:pt-4 lg:order-last">
-                            <div class="lg:max-w-lg">
-                                <h2 class="text-base font-semibold leading-7 text-teal-600">Maximum Efficiency</h2>
-                                <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Your Business, Supercharged</p>
-                                <p class="mt-6 text-lg leading-8 text-gray-600">RenyK gives you the tools to automate tedious tasks so you can focus on what matters most—growing your investment.</p>
-                                <dl class="mt-10 max-w-xl space-y-8 text-base leading-7 text-gray-600 lg:max-w-none">
-                                    <div class="relative pl-9">
-                                        <dt class="inline font-semibold text-gray-900">
-                                            <i data-lucide="sparkles" class="absolute left-1 top-1 h-5 w-5 text-teal-600"></i>
-                                            Automated Rent Tracking.
-                                        </dt>
-                                        <dd class="inline"> Say goodbye to spreadsheets. See who has paid and who is late, all in real-time.</dd>
-                                    </div>
-                                    <div class="relative pl-9">
-                                        <dt class="inline font-semibold text-gray-900">
-                                            <i data-lucide="pie-chart" class="absolute left-1 top-1 h-5 w-5 text-teal-600"></i>
-                                            Financial Reports.
-                                        </dt>
-                                        <dd class="inline"> Generate income statements and expense reports with one click to simplify your accounting.</dd>
-                                    </div>
-                                    <div class="relative pl-9">
-                                        <dt class="inline font-semibold text-gray-900">
-                                            <i data-lucide="shield-check" class="absolute left-1 top-1 h-5 w-5 text-teal-600"></i>
-                                            Streamlined Maintenance.
-                                        </dt>
-                                        <dd class="inline"> Receive, manage, and track all tenant maintenance requests in one organized place.</dd>
-                                    </div>
-                                </dl>
-                            </div>
-                        </div>
-                        <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=2670&auto=format&fit=crop" onerror="this.onerror=null;this.src='https://placehold.co/800x600/e2e8f0/4a5568?text=Landlord+Dashboard';" alt="Landlord reviewing property documents" class="w-[48rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem] md:-ml-4 lg:-ml-0" width="2432" height="1442">
-                    </div>
-                </div>
-            </div>
-
-            <!-- CTA Section -->
+             <!-- CTA Section -->
             <div class="bg-gray-900">
                 <div class="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8 text-center">
-                    <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Ready to Take Control of Your Properties?</h2>
-                    <p class="mt-4 text-lg leading-8 text-gray-300">Join RenyK today and discover a simpler way to manage your rental business.</p>
+                    <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Ready to Become a More Efficient Landlord?</h2>
+                    <p class="mx-auto mt-6 max-w-xl text-lg leading-8 text-gray-300">Start managing your properties the smart way. See our plans and get started today.</p>
                     <div class="mt-10 flex items-center justify-center gap-x-6">
-                        <a href="login.html" class="rounded-md bg-teal-500 px-5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-teal-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-500">Sign Up as a Landlord</a>
+                        <a href="pricing.html" class="rounded-md bg-teal-500 px-5 py-3 text-sm font-semibold text-white shadow-lg hover:bg-teal-400 transition-transform hover:scale-105">See Plans & Pricing</a>
                     </div>
                 </div>
             </div>
         </main>
-    
+
         <!-- Footer -->
         <footer class="bg-gray-900">
             <div class="mx-auto max-w-7xl overflow-hidden px-6 py-20 sm:py-24 lg:px-8">
                 <nav class="-mb-6 columns-2 sm:flex sm:justify-center sm:space-x-12" aria-label="Footer">
                     <div class="pb-6"><a href="features.html" class="text-sm leading-6 text-gray-300 hover:text-white">Features</a></div>
-                    <div class="pb-6"><a href="#" class="text-sm leading-6 text-gray-300 hover:text-white">Pricing</a></div>
-                    <div class="pb-6"><a href="#" class="text-sm leading-6 text-gray-300 hover:text-white">About</a></div>
-                    <div class="pb-6"><a href="#" class="text-sm leading-6 text-gray-300 hover:text-white">Contact</a></div>
+                    <div class="pb-6"><a href="pricing.html" class="text-sm leading-6 text-gray-300 hover:text-white">Pricing</a></div>
+                    <div class="pb-6"><a href="about.html" class="text-sm leading-6 text-gray-300 hover:text-white">About</a></div>
+                    <div class="pb-6"><a href="contact.html" class="text-sm leading-6 text-gray-300 hover:text-white">Contact</a></div>
                 </nav>
                  <div class="mt-10 flex justify-center space-x-10">
-                    <a href="#" class="text-gray-400 hover:text-gray-300"><span class="sr-only">Facebook</span><i data-lucide="facebook"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-gray-300"><span class="sr-only">Twitter</span><i data-lucide="twitter"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-gray-300"><span class="sr-only">Instagram</span><i data-lucide="instagram"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-gray-300 transition-colors"><span class="sr-only">Facebook</span><i data-lucide="facebook"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-gray-300 transition-colors"><span class="sr-only">Twitter</span><i data-lucide="twitter"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-gray-300 transition-colors"><span class="sr-only">Instagram</span><i data-lucide="instagram"></i></a>
                 </div>
                 <p class="mt-10 text-center text-xs leading-5 text-gray-400">&copy; 2024 RenyK. All rights reserved.</p>
             </div>
         </footer>
     </div>
-
     <script>
-        // Initialize Lucide icons
         lucide.createIcons();
     </script>
 </body>
 </html>
+
