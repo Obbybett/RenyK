@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RenyK - Login & Sign Up</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .auth-bg {
+            background-image: url('https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4-0-3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <div class="min-h-screen flex items-center justify-center p-4">
+        <div class="grid lg:grid-cols-2 max-w-4xl w-full bg-white shadow-2xl rounded-2xl overflow-hidden">
+            <!-- Left Side - Form -->
+            <div class="p-8 md:p-12">
+                <a href="index.html" class="text-2xl font-bold text-teal-600 mb-8 inline-block">RenyK</a>
+                
+                <!-- Tab Buttons -->
+                <div class="flex border-b mb-8">
+                    <button id="login-tab-btn" class="flex-1 py-3 font-semibold border-b-2 border-teal-600 text-teal-600 focus:outline-none">Log In</button>
+                    <button id="register-tab-btn" class="flex-1 py-3 font-semibold text-gray-500 focus:outline-none">Create Account</button>
+                </div>
+
+                <!-- Login Form -->
+                <div id="login-form">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-2">Welcome Back!</h2>
+                    <p class="text-gray-500 mb-8">Please enter your details to sign in.</p>
+                    <form action="#" method="POST" class="space-y-6">
+                        <div>
+                            <label for="login-email" class="block text-sm font-medium text-gray-700">Email Address</label>
+                            <input type="email" id="login-email" name="email" class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500" required>
+                        </div>
+                        <div>
+                            <div class="flex justify-between items-center">
+                                <label for="login-password" class="block text-sm font-medium text-gray-700">Password</label>
+                                <a href="#" class="text-sm text-teal-600 hover:underline">Forgot password?</a>
+                            </div>
+                            <input type="password" id="login-password" name="password" class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500" required>
+                        </div>
+                        <div>
+                            <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 font-medium">Log In</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Register Form -->
+                <div id="register-form" class="hidden">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-2">Get Started with RenyK</h2>
+                    <p class="text-gray-500 mb-8">Create an account to continue.</p>
+                    <form action="#" method="POST" class="space-y-5">
+                        <div>
+                            <label for="register-name" class="block text-sm font-medium text-gray-700">Full Name</label>
+                            <input type="text" id="register-name" name="name" class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500" required>
+                        </div>
+                         <div>
+                            <label for="register-email" class="block text-sm font-medium text-gray-700">Email Address</label>
+                            <input type="email" id="register-email" name="email" class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500" required>
+                        </div>
+                        <div>
+                            <label for="register-password" class="block text-sm font-medium text-gray-700">Password</label>
+                            <input type="password" id="register-password" name="password" class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500" required>
+                        </div>
+                         <div>
+                            <label for="userType" class="block text-sm font-medium text-gray-700">I am a:</label>
+                            <select id="userType" name="userType" class="mt-1 block w-full px-4 py-3 border border-gray-300 bg-white rounded-lg shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500">
+                                <option value="tenant">Tenant</option>
+                                <option value="landlord">Landlord</option>
+                            </select>
+                        </div>
+                        <div>
+                            <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 font-medium">Create Account</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+            <!-- Right Side - Image -->
+            <div class="hidden lg:block auth-bg">
+                <div class="w-full h-full bg-teal-900 bg-opacity-50 p-12 text-white flex flex-col justify-end">
+                    <h2 class="text-4xl font-bold leading-tight mb-4">A Simpler, Smarter Way to Rent.</h2>
+                    <p class="text-teal-100">Join a community of forward-thinking landlords and tenants in Kenya.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        const loginTabBtn = document.getElementById('login-tab-btn');
+        const registerTabBtn = document.getElementById('register-tab-btn');
+        const loginForm = document.getElementById('login-form');
+        const registerForm = document.getElementById('register-form');
+
+        loginTabBtn.addEventListener('click', () => {
+            // Show login form
+            loginForm.classList.remove('hidden');
+            registerForm.classList.add('hidden');
+
+            // Style tabs
+            loginTabBtn.classList.add('border-teal-600', 'text-teal-600');
+            loginTabBtn.classList.remove('text-gray-500');
+            registerTabBtn.classList.remove('border-teal-600', 'text-teal-600');
+            registerTabBtn.classList.add('text-gray-500');
+
+        });
+
+        registerTabBtn.addEventListener('click', () => {
+            // Show register form
+            loginForm.classList.add('hidden');
+            registerForm.classList.remove('hidden');
+
+            // Style tabs
+            registerTabBtn.classList.add('border-teal-600', 'text-teal-600');
+            registerTabBtn.classList.remove('text-gray-500');
+            loginTabBtn.classList.remove('border-teal-600', 'text-teal-600');
+            loginTabBtn.classList.add('text-gray-500');
+        });
+    </script>
+
+</body>
+</html>
