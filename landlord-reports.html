@@ -28,13 +28,25 @@
             color: #0d9488;
             border-right: 3px solid #0d9488;
         }
+        @media print {
+            body {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .no-print {
+                display: none !important;
+            }
+            main {
+                padding: 0;
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-100">
 
     <div class="flex h-screen bg-gray-100">
         <!-- Sidebar -->
-        <aside class="w-64 flex-shrink-0 bg-white shadow-md hidden lg:block">
+        <aside class="w-64 flex-shrink-0 bg-white shadow-md hidden lg:block no-print">
             <div class="flex items-center justify-center h-20 border-b">
                 <a href="index.html" class="text-2xl font-bold text-teal-600">RenyK</a>
             </div>
@@ -67,13 +79,17 @@
                     <i data-lucide="bar-chart-3" class="w-5 h-5"></i>
                     <span class="mx-4 font-medium">Reports</span>
                 </a>
+                <a href="landlord-settings.html" class="flex items-center px-6 py-3 text-gray-700 hover:bg-gray-100 transition-colors">
+                    <i data-lucide="settings" class="w-5 h-5"></i>
+                    <span class="mx-4 font-medium">Settings</span>
+                </a>
             </nav>
         </aside>
 
         <!-- Main Content -->
         <div class="flex-1 flex flex-col overflow-hidden">
             <!-- Header -->
-            <header class="flex justify-between items-center p-6 bg-white border-b">
+            <header class="flex justify-between items-center p-6 bg-white border-b no-print">
                 <div class="flex items-center">
                     <button class="text-gray-600 focus:outline-none lg:hidden">
                         <i data-lucide="menu" class="h-6 w-6"></i>
@@ -81,7 +97,6 @@
                     <h1 class="text-2xl font-semibold text-gray-800 ml-4">Reports & Analytics</h1>
                 </div>
                 <div class="flex items-center space-x-4">
-                    <!-- Header icons -->
                     <div x-data="{ dropdownOpen: false }" class="relative">
                         <button @click="dropdownOpen = !dropdownOpen" class="flex items-center space-x-2">
                             <img src="https://placehold.co/40x40/313131/FFFFFF?text=JO" alt="User Avatar" class="h-10 w-10 rounded-full object-cover">
@@ -100,47 +115,52 @@
             <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 p-6">
                 <div class="container mx-auto">
                     <!-- Filters -->
-                    <div class="mb-6">
-                        <div class="bg-white rounded-lg shadow p-4 flex items-center space-x-4">
-                            <label for="property-filter" class="block text-sm font-medium text-gray-700">Filter by Property:</label>
-                            <select id="property-filter" class="block w-full max-w-xs rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm">
-                                <option>All Properties</option>
-                                <option>Lavington Heights</option>
-                                <option>Kilimani Towers</option>
-                                <option>Karen Homes</option>
-                            </select>
+                    <div class="mb-6 no-print">
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-wrap items-center gap-4">
+                            <div class="flex items-center space-x-2">
+                                <label for="property-filter" class="block text-sm font-medium text-gray-700">Property:</label>
+                                <select id="property-filter" class="block w-full max-w-xs rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm">
+                                    <option>All Properties</option>
+                                    <option>Lavington Heights</option>
+                                    <option>Kilimani Towers</option>
+                                    <option>Karen Homes</option>
+                                </select>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <label for="date-filter" class="block text-sm font-medium text-gray-700">Date Range:</label>
+                                <input type="date" class="block rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm">
+                            </div>
+                             <button @click="window.print()" class="ml-auto rounded-md bg-teal-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-teal-500 flex items-center justify-center">
+                                <i data-lucide="printer" class="h-4 w-4 mr-2"></i> Print Report
+                            </button>
                         </div>
                     </div>
                     
                     <!-- Stats Cards -->
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
                         <div class="bg-white rounded-lg shadow p-6">
-                            <div class="flex items-center justify-between">
-                                <p class="text-sm font-medium text-gray-500">Total Income (YTD)</p>
-                                <i data-lucide="trending-up" class="h-6 w-6 text-teal-500"></i>
-                            </div>
+                            <p class="text-sm font-medium text-gray-500">Total Income (YTD)</p>
                             <p class="mt-2 text-3xl font-bold text-gray-900">Ksh 1,850,000</p>
                         </div>
                         <div class="bg-white rounded-lg shadow p-6">
-                            <div class="flex items-center justify-between">
-                                <p class="text-sm font-medium text-gray-500">Net Profit (YTD)</p>
-                                <i data-lucide="dollar-sign" class="h-6 w-6 text-green-500"></i>
-                            </div>
-                            <p class="mt-2 text-3xl font-bold text-gray-900">Ksh 1,420,000</p>
+                            <p class="text-sm font-medium text-gray-500">Total Expenses (YTD)</p>
+                            <p class="mt-2 text-3xl font-bold text-gray-900">Ksh 430,000</p>
                         </div>
                         <div class="bg-white rounded-lg shadow p-6">
-                            <div class="flex items-center justify-between">
-                                <p class="text-sm font-medium text-gray-500">Occupancy Rate</p>
-                                <i data-lucide="building" class="h-6 w-6 text-blue-500"></i>
-                            </div>
+                           <p class="text-sm font-medium text-gray-500">Net Profit (YTD)</p>
+                            <p class="mt-2 text-3xl font-bold text-green-600">Ksh 1,420,000</p>
+                        </div>
+                        <div class="bg-white rounded-lg shadow p-6">
+                            <p class="text-sm font-medium text-gray-500">Occupancy Rate</p>
                             <p class="mt-2 text-3xl font-bold text-gray-900">95%</p>
                         </div>
                         <div class="bg-white rounded-lg shadow p-6">
-                            <div class="flex items-center justify-between">
-                                <p class="text-sm font-medium text-gray-500">Overdue Rent</p>
-                                <i data-lucide="alert-circle" class="h-6 w-6 text-red-500"></i>
-                            </div>
+                             <p class="text-sm font-medium text-gray-500">Overdue Rent</p>
                             <p class="mt-2 text-3xl font-bold text-red-600">Ksh 85,000</p>
+                        </div>
+                        <div class="bg-white rounded-lg shadow p-6">
+                           <p class="text-sm font-medium text-gray-500">Average Rent</p>
+                            <p class="mt-2 text-3xl font-bold text-gray-900">Ksh 52,500</p>
                         </div>
                     </div>
 
@@ -151,8 +171,8 @@
                             <img src="https://placehold.co/600x400/CCCCCC/FFFFFF?text=Income+vs+Expense+Chart" alt="Bar chart showing income vs expenses" class="w-full h-auto rounded-md">
                         </div>
                         <div class="bg-white rounded-lg shadow p-6">
-                            <h3 class="font-semibold text-gray-800 mb-4">Maintenance Request Status</h3>
-                             <img src="https://placehold.co/600x400/CCCCCC/FFFFFF?text=Maintenance+Status+Pie+Chart" alt="Pie chart showing maintenance request statuses" class="w-full h-auto rounded-md">
+                            <h3 class="font-semibold text-gray-800 mb-4">Vacancy Rate Over Time</h3>
+                             <img src="https://placehold.co/600x400/CCCCCC/FFFFFF?text=Vacancy+Rate+Line+Chart" alt="Line chart showing vacancy rate trends" class="w-full h-auto rounded-md">
                         </div>
                     </div>
                     
@@ -166,7 +186,7 @@
                                         <th class="px-4 py-2 text-xs font-medium text-gray-500 uppercase">Tenant</th>
                                         <th class="px-4 py-2 text-xs font-medium text-gray-500 uppercase">Property / Unit</th>
                                         <th class="px-4 py-2 text-xs font-medium text-gray-500 uppercase">Amount Due</th>
-                                        <th class="px-4 py-2 text-xs font-medium text-gray-500 uppercase">Days Overdue</th>
+                                        <th class="px-4 py-2 text-xs font-medium text-gray-500 uppercase">Last Contacted</th>
                                         <th class="px-4 py-2 text-xs font-medium text-gray-500 uppercase">Actions</th>
                                     </tr>
                                 </thead>
@@ -175,15 +195,15 @@
                                         <td class="px-4 py-3 text-sm text-gray-900">James Peters</td>
                                         <td class="px-4 py-3 text-sm text-gray-500">Kilimani Towers / B2</td>
                                         <td class="px-4 py-3 text-sm font-medium text-red-600">Ksh 45,000</td>
-                                        <td class="px-4 py-3 text-sm text-gray-500">15 Days</td>
-                                        <td class="px-4 py-3 text-sm"><a href="#" class="text-teal-600 hover:text-teal-900">Send Reminder</a></td>
+                                        <td class="px-4 py-3 text-sm text-gray-500">3 days ago</td>
+                                        <td class="px-4 py-3 text-sm space-x-2"><a href="#" class="text-teal-600 hover:text-teal-900">Send Reminder</a> <a href="#" class="text-blue-600 hover:text-blue-900">Log Call</a></td>
                                     </tr>
                                     <tr>
                                         <td class="px-4 py-3 text-sm text-gray-900">Grace Adhiambo</td>
                                         <td class="px-4 py-3 text-sm text-gray-500">Lavington Heights / C1</td>
                                         <td class="px-4 py-3 text-sm font-medium text-red-600">Ksh 40,000</td>
-                                        <td class="px-4 py-3 text-sm text-gray-500">12 Days</td>
-                                        <td class="px-4 py-3 text-sm"><a href="#" class="text-teal-600 hover:text-teal-900">Send Reminder</a></td>
+                                        <td class="px-4 py-3 text-sm text-gray-500">Never</td>
+                                        <td class="px-4 py-3 text-sm space-x-2"><a href="#" class="text-teal-600 hover:text-teal-900">Send Reminder</a> <a href="#" class="text-blue-600 hover:text-blue-900">Log Call</a></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -192,7 +212,7 @@
 
 
                     <!-- Report Generation Section -->
-                    <div class="bg-white rounded-lg shadow p-6">
+                    <div class="bg-white rounded-lg shadow p-6 no-print">
                         <h3 class="font-semibold text-gray-800 mb-4">Generate & Download Reports</h3>
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                             <div>
@@ -206,8 +226,8 @@
                                 </select>
                             </div>
                              <div>
-                                <label for="date-range" class="block text-sm font-medium text-gray-700">Date Range</label>
-                                <input type="date" id="date-range" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm">
+                                <label for="date-range-download" class="block text-sm font-medium text-gray-700">Date Range</label>
+                                <input type="date" id="date-range-download" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm">
                             </div>
                              <div class="flex items-end">
                                 <button class="w-full rounded-md bg-teal-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-teal-500 flex items-center justify-center">
@@ -225,7 +245,9 @@
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>
-        lucide.createIcons();
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+        });
     </script>
 </body>
 </html>
