@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RenyK - Landlord Maintenance</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom scrollbar for webkit browsers */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d1d5db;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #9ca3af;
+        }
+        .modal-backdrop {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <div class="flex h-screen bg-gray-100">
+        <!-- Sidebar -->
+        <div id="sidebar" class="w-64 bg-white shadow-lg flex flex-col transition-all duration-300 fixed lg:static inset-y-0 left-0 transform -translate-x-full lg:translate-x-0 z-30">
+            <div class="p-6 flex items-center justify-between">
+                 <a href="index.html" class="text-2xl font-bold text-teal-600">RenyK</a>
+                 <button id="close-sidebar-btn" class="lg:hidden text-gray-600 hover:text-gray-900">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                 </button>
+            </div>
+            <nav class="flex-1 px-4 space-y-2">
+                <a href="landlord-dashboard.html" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-200 rounded-lg">
+                    <i data-lucide="layout-dashboard" class="w-5 h-5 mr-3"></i>
+                    Dashboard
+                </a>
+                <a href="landlord-properties.html" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-200 rounded-lg">
+                    <i data-lucide="building-2" class="w-5 h-5 mr-3"></i>
+                    Properties
+                </a>
+                 <a href="landlord-tenants.html" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-200 rounded-lg">
+                    <i data-lucide="users" class="w-5 h-5 mr-3"></i>
+                    Tenants
+                </a>
+                 <a href="landlord-finances.html" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-200 rounded-lg">
+                    <i data-lucide="landmark" class="w-5 h-5 mr-3"></i>
+                    Finances
+                </a>
+                 <a href="#" class="flex items-center px-4 py-3 text-white bg-teal-600 rounded-lg font-semibold">
+                    <i data-lucide="wrench" class="w-5 h-5 mr-3"></i>
+                    Maintenance
+                </a>
+                 <a href="messages.html" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-200 rounded-lg">
+                    <i data-lucide="message-square" class="w-5 h-5 mr-3"></i>
+                    Messages
+                </a>
+            </nav>
+            <div class="p-4 border-t">
+                 <a href="#" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-200 rounded-lg">
+                    <i data-lucide="user-circle" class="w-5 h-5 mr-3"></i>
+                    Profile
+                </a>
+                 <a href="login.html" class="flex items-center px-4 py-3 text-red-500 hover:bg-red-100 rounded-lg">
+                    <i data-lucide="log-out" class="w-5 h-5 mr-3"></i>
+                    Logout
+                </a>
+            </div>
+        </div>
+
+        <!-- Main content -->
+        <div class="flex-1 flex flex-col overflow-hidden">
+            <!-- Header -->
+            <header class="bg-white shadow-sm flex justify-between items-center p-4">
+                 <button id="open-sidebar-btn" class="lg:hidden text-gray-600 hover:text-gray-900">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+                <h1 class="text-xl font-semibold text-gray-800">Maintenance Requests</h1>
+                <div class="flex items-center">
+                    <img src="https://placehold.co/40x40/E2E8F0/4A5568?text=JM" alt="User" class="w-10 h-10 rounded-full">
+                </div>
+            </header>
+
+            <!-- Content Area -->
+            <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 p-6">
+                <div class="container mx-auto">
+                    <div class="bg-white p-6 rounded-2xl shadow-lg">
+                        <div class="border-b border-gray-200 mb-4">
+                             <nav class="-mb-px flex space-x-8" aria-label="Tabs">
+                                <a href="#" class="border-teal-500 text-teal-600 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">All Requests</a>
+                                <a href="#" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">Pending</a>
+                                <a href="#" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">In Progress</a>
+                                <a href="#" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">Completed</a>
+                            </nav>
+                        </div>
+                    
+                        <!-- Maintenance Requests Table -->
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left">
+                                <thead>
+                                    <tr class="bg-gray-50 border-b">
+                                        <th class="p-4 font-semibold text-gray-600">Tenant</th>
+                                        <th class="p-4 font-semibold text-gray-600">Property</th>
+                                        <th class="p-4 font-semibold text-gray-600">Issue</th>
+                                        <th class="p-4 font-semibold text-gray-600">Date Reported</th>
+                                        <th class="p-4 font-semibold text-gray-600">Status</th>
+                                        <th class="p-4 font-semibold text-gray-600">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="border-b hover:bg-gray-50">
+                                        <td class="p-4 font-medium text-gray-800">David Kimani</td>
+                                        <td class="p-4">Riverside Drive, Unit 5</td>
+                                        <td class="p-4">Leaky Kitchen Sink</td>
+                                        <td class="p-4">18 Oct 2024</td>
+                                        <td class="p-4"><span class="px-3 py-1 text-sm font-semibold text-red-800 bg-red-100 rounded-full">Pending</span></td>
+                                        <td class="p-4">
+                                            <button class="view-details-btn text-teal-600 hover:text-teal-800 font-semibold">View Details</button>
+                                        </td>
+                                    </tr>
+                                    <tr class="border-b hover:bg-gray-50">
+                                        <td class="p-4 font-medium text-gray-800">Grace Wanjiru</td>
+                                        <td class="p-4">Kilimani Heights, Apt 3B</td>
+                                        <td class="p-4">Broken Window Latch</td>
+                                        <td class="p-4">15 Oct 2024</td>
+                                        <td class="p-4"><span class="px-3 py-1 text-sm font-semibold text-blue-800 bg-blue-100 rounded-full">In Progress</span></td>
+                                        <td class="p-4">
+                                             <button class="view-details-btn text-teal-600 hover:text-teal-800 font-semibold">View Details</button>
+                                        </td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="p-4 font-medium text-gray-800">Brenda Cheptoo</td>
+                                        <td class="p-4">Lavington Gardens, Apt 12</td>
+                                        <td class="p-4">Faulty Light Switch</td>
+                                        <td class="p-4">05 Oct 2024</td>
+                                        <td class="p-4"><span class="px-3 py-1 text-sm font-semibold text-green-800 bg-green-100 rounded-full">Completed</span></td>
+                                        <td class="p-4">
+                                             <button class="view-details-btn text-teal-600 hover:text-teal-800 font-semibold">View Details</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    
+    <!-- Maintenance Details Modal -->
+    <div id="maintenance-modal" class="fixed inset-0 z-40 flex items-center justify-center p-4 modal-backdrop hidden">
+        <div class="bg-white w-full max-w-lg p-8 rounded-2xl shadow-2xl transform transition-all">
+             <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-800">Maintenance Details</h2>
+                <button id="close-modal-btn" class="text-gray-500 hover:text-gray-800">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+            <div class="space-y-4">
+                <div>
+                    <h3 class="font-semibold text-gray-800">Leaky Kitchen Sink</h3>
+                    <p class="text-sm text-gray-500">Reported by David Kimani on 18 Oct 2024</p>
+                    <p class="text-sm text-gray-500">Property: Riverside Drive, Unit 5</p>
+                </div>
+                <div class="border-t pt-4">
+                    <p class="font-medium text-gray-700">Description:</p>
+                    <p class="text-gray-600">The faucet in the kitchen sink has a constant drip, even when turned off completely. It's wasting water and the dripping sound is disturbing.</p>
+                </div>
+                 <div>
+                    <p class="font-medium text-gray-700">Photo from Tenant:</p>
+                    <img src="https://images.unsplash.com/photo-1616064799811-da3a41285517?q=80&w=2574&auto=format&fit=crop" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/4A5568?text=Issue+Image';" alt="Leaky Sink" class="mt-2 rounded-lg w-full h-auto max-h-64 object-cover">
+                </div>
+                <div>
+                    <label for="status" class="block text-sm font-medium text-gray-700">Update Status</label>
+                     <select id="status" name="status" class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500">
+                        <option value="pending">Pending</option>
+                        <option value="in_progress">In Progress</option>
+                        <option value="completed">Completed</option>
+                    </select>
+                </div>
+                <div>
+                    <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-white bg-teal-600 hover:bg-teal-700 font-medium">Update Request</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Sidebar toggle
+        const sidebar = document.getElementById('sidebar');
+        const openSidebarBtn = document.getElementById('open-sidebar-btn');
+        const closeSidebarBtn = document.getElementById('close-sidebar-btn');
+        
+        openSidebarBtn.addEventListener('click', () => {
+            sidebar.classList.remove('-translate-x-full');
+        });
+
+        closeSidebarBtn.addEventListener('click', () => {
+            sidebar.classList.add('-translate-x-full');
+        });
+        
+        document.addEventListener('click', function(event) {
+            const isClickInside = sidebar.contains(event.target) || openSidebarBtn.contains(event.target);
+            if (!isClickInside && window.innerWidth < 1024) {
+                 sidebar.classList.add('-translate-x-full');
+            }
+        });
+
+        // Modal toggle
+        const modal = document.getElementById('maintenance-modal');
+        const viewDetailsBtns = document.querySelectorAll('.view-details-btn');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+
+        viewDetailsBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                modal.classList.remove('hidden');
+            });
+        });
+
+        closeModalBtn.addEventListener('click', () => {
+            modal.classList.add('hidden');
+        });
+
+        // Close modal on backdrop click
+        modal.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                 modal.classList.add('hidden');
+            }
+        });
+
+    </script>
+
+</body>
+</html>
