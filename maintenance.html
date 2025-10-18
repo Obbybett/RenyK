@@ -4,247 +4,199 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RenyK - Maintenance</title>
-    
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Alpine.js for interactivity -->
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     <style>
         body {
             font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
-        /* Custom scrollbar for webkit browsers */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #d1d5db;
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #9ca3af;
-        }
-        .modal-backdrop {
-            background-color: rgba(0, 0, 0, 0.5);
+        [x-cloak] { display: none !important; }
+        .sidebar-link-active {
+            background-color: #f0fdfa;
+            color: #0d9488;
+            border-right: 3px solid #0d9488;
         }
     </style>
 </head>
 <body class="bg-gray-100">
 
-    <div class="flex h-screen bg-gray-100">
+    <div x-data="{ isModalOpen: false }" class="flex h-screen bg-gray-100">
         <!-- Sidebar -->
-        <div id="sidebar" class="w-64 bg-white shadow-lg flex flex-col transition-all duration-300 fixed lg:static inset-y-0 left-0 transform -translate-x-full lg:translate-x-0 z-30">
-            <div class="p-6 flex items-center justify-between">
-                 <a href="index.html" class="text-2xl font-bold text-teal-600">RenyK</a>
-                 <button id="close-sidebar-btn" class="lg:hidden text-gray-600 hover:text-gray-900">
-                    <i data-lucide="x" class="w-6 h-6"></i>
-                 </button>
+        <aside class="w-64 flex-shrink-0 bg-white shadow-md hidden lg:block">
+            <div class="flex items-center justify-center h-20 border-b">
+                <a href="index.html" class="text-2xl font-bold text-teal-600">RenyK</a>
             </div>
-            <nav class="flex-1 px-4 space-y-2">
-                <a href="dashboard.html" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-200 rounded-lg">
-                    <i data-lucide="layout-dashboard" class="w-5 h-5 mr-3"></i>
-                    Dashboard
+            <nav class="mt-6">
+                <a href="dashboard.html" class="flex items-center px-6 py-3 text-gray-700 hover:bg-gray-100 transition-colors">
+                    <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+                    <span class="mx-4 font-medium">Dashboard</span>
                 </a>
-                <a href="payments.html" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-200 rounded-lg">
-                    <i data-lucide="landmark" class="w-5 h-5 mr-3"></i>
-                    Payments
+                <a href="payments.html" class="flex items-center px-6 py-3 text-gray-700 hover:bg-gray-100 transition-colors">
+                    <i data-lucide="credit-card" class="w-5 h-5"></i>
+                    <span class="mx-4 font-medium">Payments</span>
                 </a>
-                 <a href="#" class="flex items-center px-4 py-3 text-white bg-teal-600 rounded-lg font-semibold">
-                    <i data-lucide="wrench" class="w-5 h-5 mr-3"></i>
-                    Maintenance
+                <a href="maintenance.html" class="sidebar-link-active flex items-center px-6 py-3 text-gray-700 font-bold">
+                    <i data-lucide="wrench" class="w-5 h-5"></i>
+                    <span class="mx-4 font-medium">Maintenance</span>
                 </a>
-                 <a href="#" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-200 rounded-lg">
-                    <i data-lucide="message-square" class="w-5 h-5 mr-3"></i>
-                    Messages
+                 <a href="documents.html" class="flex items-center px-6 py-3 text-gray-700 hover:bg-gray-100 transition-colors">
+                    <i data-lucide="file-text" class="w-5 h-5"></i>
+                    <span class="mx-4 font-medium">Documents</span>
                 </a>
-                 <a href="#" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-200 rounded-lg">
-                    <i data-lucide="file-text" class="w-5 h-5 mr-3"></i>
-                    Documents
+                <a href="messages.html" class="flex items-center px-6 py-3 text-gray-700 hover:bg-gray-100 transition-colors">
+                    <i data-lucide="message-square" class="w-5 h-5"></i>
+                    <span class="mx-4 font-medium">Messages</span>
+                </a>
+                 <a href="profile-settings.html" class="flex items-center px-6 py-3 text-gray-700 hover:bg-gray-100 transition-colors">
+                    <i data-lucide="user" class="w-5 h-5"></i>
+                    <span class="mx-4 font-medium">Profile</span>
                 </a>
             </nav>
-            <div class="p-4 border-t">
-                 <a href="#" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-200 rounded-lg">
-                    <i data-lucide="user-circle" class="w-5 h-5 mr-3"></i>
-                    Profile
-                </a>
-                 <a href="login.html" class="flex items-center px-4 py-3 text-red-500 hover:bg-red-100 rounded-lg">
-                    <i data-lucide="log-out" class="w-5 h-5 mr-3"></i>
-                    Logout
-                </a>
-            </div>
-        </div>
+        </aside>
 
-        <!-- Main content -->
+        <!-- Main Content -->
         <div class="flex-1 flex flex-col overflow-hidden">
             <!-- Header -->
-            <header class="bg-white shadow-sm flex justify-between items-center p-4">
-                 <button id="open-sidebar-btn" class="lg:hidden text-gray-600 hover:text-gray-900">
-                    <i data-lucide="menu" class="w-6 h-6"></i>
-                </button>
-                <h1 class="text-xl font-semibold text-gray-800">Maintenance</h1>
-                <div class="flex items-center space-x-4">
-                    <button class="text-gray-600 hover:text-gray-900">
-                        <i data-lucide="bell" class="w-6 h-6"></i>
+            <header class="flex justify-between items-center p-6 bg-white border-b">
+                <div class="flex items-center">
+                    <button class="text-gray-600 focus:outline-none lg:hidden">
+                        <i data-lucide="menu" class="h-6 w-6"></i>
                     </button>
-                    <div class="flex items-center">
-                        <img src="https://placehold.co/40x40/E2E8F0/4A5568?text=GW" alt="User" class="w-10 h-10 rounded-full">
+                    <h1 class="text-2xl font-semibold text-gray-800 ml-4">Maintenance</h1>
+                </div>
+
+                <div class="flex items-center space-x-4">
+                    <button class="relative text-gray-600 hover:text-gray-800">
+                        <i data-lucide="bell" class="h-6 w-6"></i>
+                        <span class="absolute -top-1 -right-1 h-2 w-2 rounded-full bg-red-500"></span>
+                    </button>
+                    <div x-data="{ dropdownOpen: false }" class="relative">
+                        <button @click="dropdownOpen = !dropdownOpen" class="flex items-center space-x-2">
+                            <img src="https://placehold.co/40x40/313131/FFFFFF?text=MW" alt="User Avatar" class="h-10 w-10 rounded-full object-cover">
+                            <span class="hidden md:block font-medium">Mary W.</span>
+                            <i data-lucide="chevron-down" class="h-4 w-4"></i>
+                        </button>
+                        <div x-show="dropdownOpen" @click.away="dropdownOpen = false" x-cloak class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-20">
+                            <a href="profile-settings.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
+                            <a href="index.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
+                        </div>
                     </div>
                 </div>
             </header>
 
-            <!-- Content Area -->
+            <!-- Page Content -->
             <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 p-6">
                 <div class="container mx-auto">
-                    <div class="flex justify-end mb-6">
-                        <button id="new-request-btn" class="bg-teal-600 text-white font-semibold px-5 py-3 rounded-lg hover:bg-teal-700 transition duration-300 flex items-center space-x-2">
-                            <i data-lucide="plus" class="w-5 h-5"></i>
-                            <span>New Request</span>
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-xl font-semibold text-gray-800">Maintenance Request History</h2>
+                        <button @click="isModalOpen = true" class="rounded-md bg-teal-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-teal-500 transition-transform hover:scale-105">
+                            Report a New Issue
                         </button>
                     </div>
-                    
-                    <!-- Maintenance Requests List -->
-                    <div class="bg-white p-6 rounded-2xl shadow-lg">
-                         <h3 class="text-xl font-bold text-gray-800 mb-4">My Requests</h3>
-                         <div class="space-y-4">
-                            <!-- Request Item -->
-                            <div class="p-4 border rounded-lg flex flex-col md:flex-row justify-between items-center">
-                                <div>
-                                    <p class="font-bold text-gray-800">Leaking Kitchen Sink</p>
-                                    <p class="text-sm text-gray-500">Submitted on Oct 15, 2025</p>
-                                </div>
-                                <div class="mt-2 md:mt-0">
-                                    <span class="px-3 py-1 text-sm font-semibold text-yellow-800 bg-yellow-100 rounded-full">In Progress</span>
-                                </div>
-                            </div>
-                            <!-- Request Item -->
-                            <div class="p-4 border rounded-lg flex flex-col md:flex-row justify-between items-center">
-                                <div>
-                                    <p class="font-bold text-gray-800">Broken Window Latch</p>
-                                    <p class="text-sm text-gray-500">Submitted on Sep 28, 2025</p>
-                                </div>
-                                <div class="mt-2 md:mt-0">
-                                     <span class="px-3 py-1 text-sm font-semibold text-green-800 bg-green-100 rounded-full">Completed</span>
-                                </div>
-                            </div>
-                            <!-- Request Item -->
-                            <div class="p-4 border rounded-lg flex flex-col md:flex-row justify-between items-center">
-                                <div>
-                                    <p class="font-bold text-gray-800">No Hot Water</p>
-                                    <p class="text-sm text-gray-500">Submitted on Aug 12, 2025</p>
-                                </div>
-                                <div class="mt-2 md:mt-0">
-                                     <span class="px-3 py-1 text-sm font-semibold text-green-800 bg-green-100 rounded-full">Completed</span>
-                                </div>
-                            </div>
-                         </div>
+
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <div class="overflow-x-auto">
+                             <table class="w-full text-left">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Date Reported</th>
+                                        <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Issue</th>
+                                        <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                        <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Last Updated</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Oct 12, 2025</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Leaking Kitchen Sink</td>
+                                        <td class="px-6 py-4 whitespace-nowrap"><span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Completed</span></td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Oct 14, 2025</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Sep 20, 2025</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Broken Window Lock</td>
+                                        <td class="px-6 py-4 whitespace-nowrap"><span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Completed</span></td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Sep 22, 2025</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </main>
         </div>
-    </div>
-    
-    <!-- New Request Modal -->
-    <div id="request-modal" class="fixed inset-0 z-40 flex items-center justify-center p-4 modal-backdrop hidden">
-        <div class="bg-white w-full max-w-lg p-8 rounded-2xl shadow-2xl transform transition-all">
-             <div class="flex justify-between items-center mb-6">
-                <h2 class="text-2xl font-bold text-gray-800">New Maintenance Request</h2>
-                <button id="close-modal-btn" class="text-gray-500 hover:text-gray-800">
-                    <i data-lucide="x" class="w-6 h-6"></i>
-                </button>
-            </div>
-            <form class="space-y-4">
-                <div>
-                    <label for="category" class="block text-sm font-medium text-gray-700">Category</label>
-                    <select id="category" name="category" class="mt-1 block w-full px-4 py-3 border border-gray-300 bg-white rounded-lg shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500">
-                        <option>Plumbing</option>
-                        <option>Electrical</option>
-                        <option>Appliance</option>
-                        <option>General Repair</option>
-                        <option>Other</option>
-                    </select>
-                </div>
-                <div>
-                     <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
-                     <textarea id="description" name="description" rows="4" class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500" placeholder="Please describe the issue in detail..."></textarea>
-                </div>
-                 <div>
-                    <label for="photo" class="block text-sm font-medium text-gray-700">Upload Photo (optional)</label>
-                    <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg">
-                        <div class="space-y-1 text-center">
-                            <i data-lucide="image" class="mx-auto h-12 w-12 text-gray-400"></i>
-                            <div class="flex text-sm text-gray-600">
-                                <label for="file-upload" class="relative cursor-pointer bg-white rounded-md font-medium text-teal-600 hover:text-teal-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-teal-500">
-                                    <span>Upload a file</span>
-                                    <input id="file-upload" name="file-upload" type="file" class="sr-only">
-                                </label>
-                                <p class="pl-1">or drag and drop</p>
+
+        <!-- Report Issue Modal -->
+        <div x-show="isModalOpen" x-cloak class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+            <div class="flex items-end justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+                <div x-show="isModalOpen" @click="isModalOpen = false" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="ease-in duration-200" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+                <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+                <div x-show="isModalOpen" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" x-transition:leave="ease-in duration-200" x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                    <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                        <div class="sm:flex sm:items-start">
+                            <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-teal-100 sm:mx-0 sm:h-10 sm:w-10">
+                                <i data-lucide="alert-triangle" class="h-6 w-6 text-teal-600"></i>
                             </div>
-                            <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
+                            <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
+                                <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">Report a New Maintenance Issue</h3>
+                                <div class="mt-4 space-y-4">
+                                    <div>
+                                        <label for="issue-title" class="block text-sm font-medium text-gray-700">Issue Title</label>
+                                        <input type="text" id="issue-title" placeholder="e.g., Leaking Kitchen Sink" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm">
+                                    </div>
+                                    <div>
+                                        <label for="issue-description" class="block text-sm font-medium text-gray-700">Description</
+                                        <textarea id="issue-description" rows="3" placeholder="Please provide as much detail as possible..." class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm"></textarea>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700">Add a photo (optional)</label>
+                                        <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                                            <div class="space-y-1 text-center">
+                                                <i data-lucide="image" class="mx-auto h-12 w-12 text-gray-400"></i>
+                                                <div class="flex text-sm text-gray-600">
+                                                    <label for="file-upload" class="relative cursor-pointer bg-white rounded-md font-medium text-teal-600 hover:text-teal-500 focus-within:outline-none">
+                                                        <span>Upload a file</span>
+                                                        <input id="file-upload" name="file-upload" type="file" class="sr-only">
+                                                    </label>
+                                                    <p class="pl-1">or drag and drop</p>
+                                                </div>
+                                                <p class="text-xs text-gray-500">PNG, JPG up to 10MB</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                        <button type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-teal-600 text-base font-medium text-white hover:bg-teal-700 sm:ml-3 sm:w-auto sm:text-sm">Submit Request</button>
+                        <button @click="isModalOpen = false" type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 sm:mt-0 sm:w-auto sm:text-sm">Cancel</button>
+                    </div>
                 </div>
-                <div>
-                    <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 font-medium">Submit Request</button>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
 
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
     <script>
-        // Initialize Lucide icons
-        lucide.createIcons();
-
-        // Sidebar toggle
-        const sidebar = document.getElementById('sidebar');
-        const openSidebarBtn = document.getElementById('open-sidebar-btn');
-        const closeSidebarBtn = document.getElementById('close-sidebar-btn');
-        
-        openSidebarBtn.addEventListener('click', () => {
-            sidebar.classList.remove('-translate-x-full');
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
         });
-
-        closeSidebarBtn.addEventListener('click', () => {
-            sidebar.classList.add('-translate-x-full');
-        });
-        
-        document.addEventListener('click', function(event) {
-            const isClickInside = sidebar.contains(event.target) || openSidebarBtn.contains(event.target);
-            if (!isClickInside && window.innerWidth < 1024) {
-                 sidebar.classList.add('-translate-x-full');
-            }
-        });
-
-        // Modal toggle
-        const modal = document.getElementById('request-modal');
-        const newRequestBtn = document.getElementById('new-request-btn');
-        const closeModalBtn = document.getElementById('close-modal-btn');
-
-        newRequestBtn.addEventListener('click', () => {
-            modal.classList.remove('hidden');
-        });
-
-        closeModalBtn.addEventListener('click', () => {
-            modal.classList.add('hidden');
-        });
-
-        // Close modal on backdrop click
-        modal.addEventListener('click', function(event) {
-            if (event.target === modal) {
-                 modal.classList.add('hidden');
-            }
-        });
-
     </script>
 
 </body>
 </html>
+
