@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RenyK - Find Your Next Home</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Alpine.js for interactivity -->
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        [x-cloak] { display: none !important; }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <div x-data="{ mobileMenuOpen: false }">
+        <!-- Header -->
+        <header @scroll.window="document.querySelector('header').classList.toggle('bg-white/80', window.scrollY > 50); document.querySelector('header').classList.toggle('shadow-md', window.scrollY > 50); document.querySelector('header').classList.toggle('backdrop-blur-lg', window.scrollY > 50);" class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
+            <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
+                <div class="flex lg:flex-1">
+                    <a href="index.html" class="text-2xl font-bold text-teal-600">RenyK</a>
+                </div>
+                <div class="flex lg:hidden">
+                    <button type="button" @click="mobileMenuOpen = true" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
+                        <span class="sr-only">Open main menu</span>
+                        <i data-lucide="menu" class="h-6 w-6"></i>
+                    </button>
+                </div>
+                <div class="hidden lg:flex lg:gap-x-12">
+                    <a href="features.html" class="text-sm font-semibold leading-6 text-gray-900 transition-colors hover:text-teal-600">Features</a>
+                    <a href="tenants.html" class="text-sm font-semibold leading-6 text-gray-900 transition-colors hover:text-teal-600">For Tenants</a>
+                    <a href="landlords.html" class="text-sm font-semibold leading-6 text-gray-900 transition-colors hover:text-teal-600">For Landlords</a>
+                    <a href="pricing.html" class="text-sm font-semibold leading-6 text-gray-900 transition-colors hover:text-teal-600">Pricing</a>
+                    <a href="about.html" class="text-sm font-semibold leading-6 text-gray-900 transition-colors hover:text-teal-600">About</a>
+                    <a href="contact.html" class="text-sm font-semibold leading-6 text-gray-900 transition-colors hover:text-teal-600">Contact</a>
+                </div>
+                <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+                    <a href="login.html" class="rounded-md bg-teal-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-teal-500 transition-transform hover:scale-105">Log In / Sign Up</a>
+                </div>
+            </nav>
+            <!-- Mobile menu -->
+            <div x-show="mobileMenuOpen" x-cloak class="lg:hidden" role="dialog" aria-modal="true">
+                <!-- ... mobile menu code from other pages ... -->
+            </div>
+        </header>
+
+        <main class="isolate pt-24 sm:pt-32">
+            <div class="bg-gray-900 py-24 sm:py-32">
+                <div class="mx-auto max-w-7xl px-6 text-center lg:px-8">
+                    <h1 class="text-4xl font-bold tracking-tight text-white sm:text-6xl">Find Your Next Home</h1>
+                    <p class="mt-6 text-lg leading-8 text-gray-300">Browse available rental properties listed by trusted landlords on the RenyK platform.</p>
+                </div>
+            </div>
+
+            <!-- Search and Filter Section -->
+            <div class="bg-white py-12">
+                <div class="mx-auto max-w-7xl px-6 lg:px-8">
+                    <div class="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
+                        <div>
+                            <label for="location" class="block text-sm font-medium leading-6 text-gray-900">Location</label>
+                            <div class="mt-2">
+                                <input type="text" name="location" id="location" class="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-teal-600 sm:text-sm sm:leading-6" placeholder="e.g., Kilimani, Nairobi">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="bedrooms" class="block text-sm font-medium leading-6 text-gray-900">Bedrooms</label>
+                            <div class="mt-2">
+                                <select id="bedrooms" name="bedrooms" class="block w-full rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-teal-600 sm:text-sm sm:leading-6">
+                                    <option>Any</option>
+                                    <option>1 Bedroom</option>
+                                    <option>2 Bedrooms</option>
+                                    <option>3 Bedrooms</option>
+                                    <option>4+ Bedrooms</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="price-range" class="block text-sm font-medium leading-6 text-gray-900">Price Range (Ksh)</label>
+                            <div class="mt-2">
+                                <select id="price-range" name="price-range" class="block w-full rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-teal-600 sm:text-sm sm:leading-6">
+                                    <option>Any</option>
+                                    <option>0 - 30,000</option>
+                                    <option>30,001 - 60,000</option>
+                                    <option>60,001 - 100,000</option>
+                                    <option>100,000+</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="flex items-end">
+                            <button type="button" class="w-full rounded-md bg-teal-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-teal-500 transition-transform hover:scale-105">Search</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Listings Section -->
+            <div class="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
+                <h2 class="text-2xl font-bold tracking-tight text-gray-900">Available Properties (12)</h2>
+                
+                <div class="mt-12 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
+                    <!-- Sample Property Card 1 -->
+                    <div class="group relative">
+                        <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+                            <img src="https://placehold.co/800x600/0d9488/ffffff?text=Modern+Apartment" alt="Modern apartment building exterior" class="h-full w-full object-cover object-center lg:h-full lg:w-full">
+                        </div>
+                        <div class="mt-4 flex justify-between">
+                            <div>
+                                <h3 class="text-sm text-gray-700">
+                                    <a href="#">
+                                        <span aria-hidden="true" class="absolute inset-0"></span>
+                                        Spacious 2-Bedroom in Lavington
+                                    </a>
+                                </h3>
+                                <p class="mt-1 text-sm text-gray-500">Lavington, Nairobi</p>
+                            </div>
+                            <p class="text-sm font-medium text-gray-900">Ksh 75,000/mo</p>
+                        </div>
+                    </div>
+                    <!-- Sample Property Card 2 -->
+                    <div class="group relative">
+                        <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+                            <img src="https://placehold.co/800x600/f59e0b/ffffff?text=Cozy+Studio" alt="Cozy studio apartment interior" class="h-full w-full object-cover object-center lg:h-full lg:w-full">
+                        </div>
+                        <div class="mt-4 flex justify-between">
+                            <div>
+                                <h3 class="text-sm text-gray-700">
+                                    <a href="#">
+                                        <span aria-hidden="true" class="absolute inset-0"></span>
+                                        Cozy Studio near Yaya Centre
+                                    </a>
+                                </h3>
+                                <p class="mt-1 text-sm text-gray-500">Kilimani, Nairobi</p>
+                            </div>
+                            <p class="text-sm font-medium text-gray-900">Ksh 40,000/mo</p>
+                        </div>
+                    </div>
+                     <!-- Sample Property Card 3 -->
+                    <div class="group relative">
+                        <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+                            <img src="https://placehold.co/800x600/3b82f6/ffffff?text=Family+Home" alt="Suburban family home with a small garden" class="h-full w-full object-cover object-center lg:h-full lg:w-full">
+                        </div>
+                        <div class="mt-4 flex justify-between">
+                            <div>
+                                <h3 class="text-sm text-gray-700">
+                                    <a href="#">
+                                        <span aria-hidden="true" class="absolute inset-0"></span>
+                                        3-Bedroom Townhouse in Karen
+                                    </a>
+                                </h3>
+                                <p class="mt-1 text-sm text-gray-500">Karen, Nairobi</p>
+                            </div>
+                            <p class="text-sm font-medium text-gray-900">Ksh 120,000/mo</p>
+                        </div>
+                    </div>
+                    <!-- More properties... -->
+
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-gray-900">
+            <!-- ... footer code from other pages ... -->
+        </footer>
+    </div>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
