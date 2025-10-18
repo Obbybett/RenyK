@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RenyK - Pricing</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Alpine.js for interactivity -->
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .gradient-bg {
+            background: linear-gradient(120deg, #f0fdfa, #e0f2f1, #ffffff);
+        }
+        [x-cloak] { display: none !important; }
+        .pricing-card-popular {
+            border-color: #0d9488;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="bg-white">
+
+    <div x-data="{ mobileMenuOpen: false }">
+        <!-- Header -->
+        <header @scroll.window="document.querySelector('header').classList.toggle('bg-white/80', window.scrollY > 50); document.querySelector('header').classList.toggle('shadow-md', window.scrollY > 50); document.querySelector('header').classList.toggle('backdrop-blur-lg', window.scrollY > 50);" class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
+            <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
+                <div class="flex lg:flex-1">
+                    <a href="index.html" class="text-2xl font-bold text-teal-600">RenyK</a>
+                </div>
+                <div class="flex lg:hidden">
+                    <button type="button" @click="mobileMenuOpen = true" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
+                        <span class="sr-only">Open main menu</span>
+                        <i data-lucide="menu" class="h-6 w-6"></i>
+                    </button>
+                </div>
+                <div class="hidden lg:flex lg:gap-x-12">
+                    <a href="features.html" class="text-sm font-semibold leading-6 text-gray-900">Features</a>
+                    <a href="tenants.html" class="text-sm font-semibold leading-6 text-gray-900">For Tenants</a>
+                    <a href="landlords.html" class="text-sm font-semibold leading-6 text-gray-900">For Landlords</a>
+                    <a href="pricing.html" class="text-sm font-semibold leading-6 text-teal-600">Pricing</a>
+                </div>
+                <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+                    <a href="login.html" class="rounded-md bg-teal-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-teal-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-600">Get Started</a>
+                </div>
+            </nav>
+            <!-- Mobile menu -->
+            <div x-show="mobileMenuOpen" x-cloak class="lg:hidden" role="dialog" aria-modal="true">
+                <div class="fixed inset-0 z-50"></div>
+                <div @click.away="mobileMenuOpen = false" class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+                    <div class="flex items-center justify-between">
+                         <a href="index.html" class="text-2xl font-bold text-teal-600">RenyK</a>
+                        <button type="button" @click="mobileMenuOpen = false" class="-m-2.5 rounded-md p-2.5 text-gray-700">
+                            <span class="sr-only">Close menu</span>
+                            <i data-lucide="x" class="h-6 w-6"></i>
+                        </button>
+                    </div>
+                    <div class="mt-6 flow-root">
+                        <div class="-my-6 divide-y divide-gray-500/10">
+                            <div class="space-y-2 py-6">
+                                <a href="features.html" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Features</a>
+                                <a href="tenants.html" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">For Tenants</a>
+                                <a href="landlords.html" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">For Landlords</a>
+                                <a href="pricing.html" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-teal-600 hover:bg-gray-50">Pricing</a>
+                            </div>
+                            <div class="py-6">
+                                <a href="login.html" class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Log in</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <!-- Pricing Section -->
+            <div class="isolate overflow-hidden gradient-bg" x-data="{ billing: 'monthly' }">
+                <div class="mx-auto max-w-7xl px-6 pb-96 pt-24 text-center sm:pt-32 lg:px-8">
+                    <div class="mx-auto max-w-4xl">
+                        <h2 class="text-base font-semibold leading-7 text-teal-600">Pricing</h2>
+                        <p class="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">Simple, transparent pricing for every landlord</p>
+                    </div>
+                    <div class="relative mt-6">
+                        <p class="mx-auto max-w-2xl text-lg leading-8 text-gray-600">RenyK is free for tenants. Landlords can choose a plan that scales with their business.</p>
+                        <div class="mt-16 flex justify-center">
+                            <div class="flex items-center gap-x-4 rounded-full p-1 text-sm font-semibold leading-6 bg-white/20 ring-1 ring-inset ring-gray-200" @click.stop="">
+                                <button @click="billing = 'monthly'" :class="billing === 'monthly' ? 'bg-teal-600 text-white' : 'text-gray-900'" class="rounded-full px-4 py-1 transition">Monthly</button>
+                                <button @click="billing = 'annually'" :class="billing === 'annually' ? 'bg-teal-600 text-white' : 'text-gray-900'" class="rounded-full px-4 py-1 transition">Annually <span class="text-teal-200">(Save 20%)</span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flow-root bg-white pb-24 sm:pb-32">
+                    <div class="-mt-80">
+                        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+                            <div class="mx-auto grid max-w-md grid-cols-1 gap-8 lg:max-w-4xl lg:grid-cols-2">
+                                
+                                <!-- Starter Plan -->
+                                <div class="flex flex-col justify-between rounded-3xl bg-white p-8 shadow-xl ring-1 ring-gray-900/10">
+                                    <div>
+                                        <h3 class="text-base font-semibold leading-7 text-teal-600">Starter</h3>
+                                        <div class="mt-4 flex items-baseline gap-x-2">
+                                            <span class="text-5xl font-bold tracking-tight text-gray-900">Free</span>
+                                        </div>
+                                        <p class="mt-6 text-base leading-7 text-gray-600">Perfect for new landlords managing their first property.</p>
+                                        <ul role="list" class="mt-10 space-y-4 text-sm leading-6 text-gray-600">
+                                            <li class="flex gap-x-3"><i data-lucide="check" class="h-6 w-5 flex-none text-teal-600"></i>Manage 1 Property</li>
+                                            <li class="flex gap-x-3"><i data-lucide="check" class="h-6 w-5 flex-none text-teal-600"></i>Up to 5 tenants</li>
+                                            <li class="flex gap-x-3"><i data-lucide="check" class="h-6 w-5 flex-none text-teal-600"></i>Rent collection & tracking</li>
+                                            <li class="flex gap-x-3"><i data-lucide="check" class="h-6 w-5 flex-none text-teal-600"></i>Maintenance requests</li>
+                                        </ul>
+                                    </div>
+                                    <a href="login.html" class="mt-10 block rounded-md bg-teal-600 px-3 py-2 text-center text-sm font-semibold leading-6 text-white shadow-sm hover:bg-teal-500">Get started for free</a>
+                                </div>
+
+                                <!-- Pro Plan -->
+                                <div class="relative flex flex-col justify-between rounded-3xl bg-white p-8 shadow-xl ring-2 ring-teal-600">
+                                    <div class="absolute -top-4 left-1/2 -translate-x-1/2">
+                                        <span class="inline-flex items-center rounded-full bg-teal-600 px-4 py-1 text-sm font-semibold text-white">Most Popular</span>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-base font-semibold leading-7 text-teal-600">Pro</h3>
+                                        <div class="mt-4 flex items-baseline gap-x-2">
+                                            <span x-show="billing === 'monthly'" class="text-5xl font-bold tracking-tight text-gray-900">Ksh 999</span>
+                                            <span x-show="billing === 'annually'" class="text-5xl font-bold tracking-tight text-gray-900">Ksh 9,590</span>
+                                            <span x-show="billing === 'monthly'" class="text-base font-semibold leading-7 text-gray-600">/month</span>
+                                            <span x-show="billing === 'annually'" class="text-base font-semibold leading-7 text-gray-600">/year</span>
+                                        </div>
+                                        <p class="mt-6 text-base leading-7 text-gray-600">For landlords and property managers who want to grow their business.</p>
+                                        <ul role="list" class="mt-10 space-y-4 text-sm leading-6 text-gray-600">
+                                            <li class="flex gap-x-3"><i data-lucide="check" class="h-6 w-5 flex-none text-teal-600"></i>Unlimited Properties & Tenants</li>
+                                            <li class="flex gap-x-3"><i data-lucide="check" class="h-6 w-5 flex-none text-teal-600"></i>Automated rent reminders</li>
+                                            <li class="flex gap-x-3"><i data-lucide="check" class="h-6 w-5 flex-none text-teal-600"></i>Financial reporting</li>
+                                            <li class="flex gap-x-3"><i data-lucide="check" class="h-6 w-5 flex-none text-teal-600"></i>Document storage</li>
+                                        </ul>
+                                    </div>
+                                    <a href="login.html" class="mt-10 block rounded-md bg-teal-600 px-3 py-2 text-center text-sm font-semibold leading-6 text-white shadow-sm hover:bg-teal-500">Choose Pro</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Section -->
+            <div class="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
+                <div class="mx-auto max-w-4xl divide-y divide-gray-900/10">
+                    <h2 class="text-2xl font-bold leading-10 tracking-tight text-gray-900 text-center">Frequently asked questions</h2>
+                    <dl class="mt-10 space-y-8 divide-y divide-gray-900/10">
+                        <div x-data="{ open: false }" class="pt-8">
+                            <dt>
+                                <button @click="open = !open" class="flex w-full items-start justify-between text-left text-gray-900">
+                                    <span class="text-base font-semibold leading-7">Is RenyK really free for tenants?</span>
+                                    <span class="ml-6 flex h-7 items-center">
+                                        <i data-lucide="chevron-down" x-show="!open" class="h-6 w-6"></i>
+                                        <i data-lucide="chevron-up" x-show="open" class="h-6 w-6"></i>
+                                    </span>
+                                </button>
+                            </dt>
+                            <dd x-show="open" x-cloak class="mt-2 pr-12">
+                                <p class="text-base leading-7 text-gray-600">Yes, absolutely. Tenants can sign up, pay rent, and use all tenant features completely free of charge. Our pricing plans are only for landlords.</p>
+                            </dd>
+                        </div>
+                        <div x-data="{ open: false }" class="pt-8">
+                            <dt>
+                                <button @click="open = !open" class="flex w-full items-start justify-between text-left text-gray-900">
+                                    <span class="text-base font-semibold leading-7">How does the payment processing work?</span>
+                                    <span class="ml-6 flex h-7 items-center">
+                                        <i data-lucide="chevron-down" x-show="!open" class="h-6 w-6"></i>
+                                        <i data-lucide="chevron-up" x-show="open" class="h-6 w-6"></i>
+                                    </span>
+                                </button>
+                            </dt>
+                            <dd x-show="open" x-cloak class="mt-2 pr-12">
+                                <p class="text-base leading-7 text-gray-600">We partner with secure, trusted payment gateways in Kenya to process M-Pesa and card payments. Standard transaction fees from the payment provider apply.</p>
+                            </dd>
+                        </div>
+                         <div x-data="{ open: false }" class="pt-8">
+                            <dt>
+                                <button @click="open = !open" class="flex w-full items-start justify-between text-left text-gray-900">
+                                    <span class="text-base font-semibold leading-7">Can I cancel my subscription at any time?</span>
+                                    <span class="ml-6 flex h-7 items-center">
+                                        <i data-lucide="chevron-down" x-show="!open" class="h-6 w-6"></i>
+                                        <i data-lucide="chevron-up" x-show="open" class="h-6 w-6"></i>
+                                    </span>
+                                </button>
+                            </dt>
+                            <dd x-show="open" x-cloak class="mt-2 pr-12">
+                                <p class="text-base leading-7 text-gray-600">Yes, you can cancel your Pro subscription at any time. You will retain access to the Pro features until the end of your current billing period.</p>
+                            </dd>
+                        </div>
+                    </dl>
+                </div>
+            </div>
+        </main>
+    
+        <!-- Footer -->
+        <footer class="bg-gray-900">
+            <div class="mx-auto max-w-7xl overflow-hidden px-6 py-20 sm:py-24 lg:px-8">
+                <nav class="-mb-6 columns-2 sm:flex sm:justify-center sm:space-x-12" aria-label="Footer">
+                    <div class="pb-6"><a href="features.html" class="text-sm leading-6 text-gray-300 hover:text-white">Features</a></div>
+                    <div class="pb-6"><a href="pricing.html" class="text-sm leading-6 text-gray-300 hover:text-white">Pricing</a></div>
+                    <div class="pb-6"><a href="#" class="text-sm leading-6 text-gray-300 hover:text-white">About</a></div>
+                    <div class="pb-6"><a href="#" class="text-sm leading-6 text-gray-300 hover:text-white">Contact</a></div>
+                </nav>
+                 <div class="mt-10 flex justify-center space-x-10">
+                    <a href="#" class="text-gray-400 hover:text-gray-300"><span class="sr-only">Facebook</span><i data-lucide="facebook"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-gray-300"><span class="sr-only">Twitter</span><i data-lucide="twitter"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-gray-300"><span class="sr-only">Instagram</span><i data-lucide="instagram"></i></a>
+                </div>
+                <p class="mt-10 text-center text-xs leading-5 text-gray-400">&copy; 2024 RenyK. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>
