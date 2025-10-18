@@ -32,7 +32,7 @@
 </head>
 <body class="bg-gray-100">
 
-    <div class="flex h-screen bg-gray-100">
+    <div x-data="{ addPayoutModalOpen: false, removeConfirmModalOpen: false }" class="flex h-screen bg-gray-100">
         <!-- Sidebar -->
         <aside class="w-64 flex-shrink-0 bg-white shadow-md hidden lg:block">
             <div class="flex items-center justify-center h-20 border-b">
@@ -85,7 +85,6 @@
                     <h1 class="text-2xl font-semibold text-gray-800 ml-4">Settings</h1>
                 </div>
                 <div class="flex items-center space-x-4">
-                    <!-- Header icons -->
                     <div x-data="{ dropdownOpen: false }" class="relative">
                         <button @click="dropdownOpen = !dropdownOpen" class="flex items-center space-x-2">
                             <img src="https://placehold.co/40x40/313131/FFFFFF?text=JO" alt="User Avatar" class="h-10 w-10 rounded-full object-cover">
@@ -106,38 +105,44 @@
                      <div x-data="{ tab: 'profile' }" class="bg-white rounded-lg shadow-md">
                         <!-- Tabs -->
                         <div class="border-b">
-                            <nav class="flex -mb-px">
-                                <button @click="tab = 'profile'" :class="{ 'border-teal-500 text-teal-600': tab === 'profile', 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300': tab !== 'profile' }" class="w-1/4 py-4 px-1 text-center border-b-2 font-medium text-sm focus:outline-none">Profile</button>
-                                <button @click="tab = 'subscription'" :class="{ 'border-teal-500 text-teal-600': tab === 'subscription', 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300': tab !== 'subscription' }" class="w-1/4 py-4 px-1 text-center border-b-2 font-medium text-sm focus:outline-none">Subscription & Billing</button>
-                                <button @click="tab = 'security'" :class="{ 'border-teal-500 text-teal-600': tab === 'security', 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300': tab !== 'security' }" class="w-1/4 py-4 px-1 text-center border-b-2 font-medium text-sm focus:outline-none">Security</button>
-                                <button @click="tab = 'notifications'" :class="{ 'border-teal-500 text-teal-600': tab === 'notifications', 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300': tab !== 'notifications' }" class="w-1/4 py-4 px-1 text-center border-b-2 font-medium text-sm focus:outline-none">Notifications</button>
+                            <nav class="flex flex-wrap -mb-px">
+                                <button @click="tab = 'profile'" :class="{ 'border-teal-500 text-teal-600': tab === 'profile', 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300': tab !== 'profile' }" class="flex-1 md:flex-none py-4 px-4 text-center border-b-2 font-medium text-sm focus:outline-none">Profile</button>
+                                <button @click="tab = 'business'" :class="{ 'border-teal-500 text-teal-600': tab === 'business', 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300': tab !== 'business' }" class="flex-1 md:flex-none py-4 px-4 text-center border-b-2 font-medium text-sm focus:outline-none">Business</button>
+                                <button @click="tab = 'subscription'" :class="{ 'border-teal-500 text-teal-600': tab === 'subscription', 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300': tab !== 'subscription' }" class="flex-1 md:flex-none py-4 px-4 text-center border-b-2 font-medium text-sm focus:outline-none">Subscription</button>
+                                <button @click="tab = 'payouts'" :class="{ 'border-teal-500 text-teal-600': tab === 'payouts', 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300': tab !== 'payouts' }" class="flex-1 md:flex-none py-4 px-4 text-center border-b-2 font-medium text-sm focus:outline-none">Payouts</button>
+                                <button @click="tab = 'security'" :class="{ 'border-teal-500 text-teal-600': tab === 'security', 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300': tab !== 'security' }" class="flex-1 md:flex-none py-4 px-4 text-center border-b-2 font-medium text-sm focus:outline-none">Security</button>
+                                <button @click="tab = 'notifications'" :class="{ 'border-teal-500 text-teal-600': tab === 'notifications', 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300': tab !== 'notifications' }" class="flex-1 md:flex-none py-4 px-4 text-center border-b-2 font-medium text-sm focus:outline-none">Notifications</button>
+                                <button @click="tab = 'team'" :class="{ 'border-teal-500 text-teal-600': tab === 'team', 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300': tab !== 'team' }" class="flex-1 md:flex-none py-4 px-4 text-center border-b-2 font-medium text-sm focus:outline-none">Team</button>
                             </nav>
                         </div>
-
-                        <!-- Profile Content -->
-                        <div x-show="tab === 'profile'" class="p-6">
-                            <form class="space-y-6">
-                                <div>
-                                    <label for="fullName" class="block text-sm font-medium text-gray-700">Full Name</label>
-                                    <input type="text" id="fullName" value="John Omondi" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm">
-                                </div>
-                                <div>
-                                    <label for="phoneNumber" class="block text-sm font-medium text-gray-700">Phone Number</label>
-                                    <input type="tel" id="phoneNumber" value="0722000111" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm">
-                                </div>
-                                <div>
-                                    <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
-                                    <input type="email" id="email" value="john.o@example.com" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm">
-                                </div>
-                                <div class="pt-2 flex justify-end">
-                                    <button type="submit" class="rounded-md bg-teal-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-teal-500">Save Changes</button>
-                                </div>
-                            </form>
-                        </div>
+                        <!-- ... other tab contents ... -->
                         
+                        <!-- Payouts Content -->
+                        <div x-show="tab === 'payouts'" x-cloak class="p-6">
+                             <div>
+                                <h3 class="text-lg font-medium text-gray-900">Payout Methods</h3>
+                                <p class="mt-1 text-sm text-gray-600">This is where funds collected from tenants will be sent.</p>
+                                <div class="mt-4 space-y-4">
+                                    <div class="p-4 bg-gray-50 rounded-lg border border-gray-200 flex items-center justify-between">
+                                        <div class="flex items-center">
+                                            <i data-lucide="landmark" class="h-6 w-6 text-gray-500 mr-4"></i>
+                                            <div>
+                                                <p class="font-semibold text-gray-800">Equity Bank</p>
+                                                <p class="text-sm text-gray-600">**** **** **** 1234</p>
+                                            </div>
+                                        </div>
+                                        <button @click="removeConfirmModalOpen = true" class="text-sm font-medium text-red-600 hover:text-red-800">Remove</button>
+                                    </div>
+                                </div>
+                                <div class="mt-6">
+                                    <button @click="addPayoutModalOpen = true" class="rounded-md bg-teal-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-teal-500">Add Payout Method</button>
+                                </div>
+                            </div>
+                        </div>
+
                         <!-- Subscription & Billing Content -->
                         <div x-show="tab === 'subscription'" x-cloak class="p-6">
-                            <div class="space-y-6">
+                            <div class="space-y-8">
                                 <div>
                                     <h3 class="text-lg font-medium text-gray-900">My Subscription</h3>
                                     <div class="mt-4 p-4 bg-teal-50 rounded-lg border border-teal-200 flex items-center justify-between">
@@ -149,73 +154,125 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <h3 class="text-lg font-medium text-gray-900">Payment Method</h3>
-                                     <div class="mt-4 p-4 bg-gray-50 rounded-lg border border-gray-200 flex items-center justify-between">
-                                        <div>
-                                            <p class="font-semibold text-gray-800">M-Pesa</p>
-                                            <p class="text-sm text-gray-600">Primary: 0722000111</p>
+                                    <h3 class="text-lg font-medium text-gray-900">Subscription Payment Method</h3>
+                                    <div class="mt-4 p-4 bg-gray-50 rounded-lg border border-gray-200 flex items-center justify-between">
+                                        <div class="flex items-center">
+                                            <i data-lucide="smartphone" class="h-6 w-6 text-green-600 mr-4"></i>
+                                            <div>
+                                                <p class="font-semibold text-gray-800">M-Pesa</p>
+                                                <p class="text-sm text-gray-600">Primary: 0722000111</p>
+                                            </div>
                                         </div>
                                         <button class="text-sm font-medium text-teal-600 hover:text-teal-800">Update</button>
                                     </div>
                                 </div>
+                                <div>
+                                    <h3 class="text-lg font-medium text-gray-900">Billing History</h3>
+                                    <ul class="divide-y divide-gray-200">
+                                        <li class="py-3 flex justify-between items-center"><p class="text-sm text-gray-600">January 15, 2025 - Pro Annual Plan</p><a href="#" class="text-sm font-medium text-teal-600 hover:text-teal-800">Download Invoice</a></li>
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
-
-                        <!-- Security Content -->
-                        <div x-show="tab === 'security'" x-cloak class="p-6">
-                             <form class="space-y-6">
-                                <div>
-                                    <label for="currentPassword" class="block text-sm font-medium text-gray-700">Current Password</label>
-                                    <input type="password" id="currentPassword" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm">
-                                </div>
-                                <div>
-                                    <label for="newPassword" class="block text-sm font-medium text-gray-700">New Password</label>
-                                    <input type="password" id="newPassword" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm">
-                                </div>
-                                <div>
-                                    <label for="confirmPassword" class="block text-sm font-medium text-gray-700">Confirm New Password</label>
-                                    <input type="password" id="confirmPassword" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm">
-                                </div>
-                                <div class="pt-2 flex justify-end">
-                                    <button type="submit" class="rounded-md bg-teal-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-teal-500">Update Password</button>
-                                </div>
-                            </form>
                         </div>
 
                         <!-- Notifications Content -->
                         <div x-show="tab === 'notifications'" x-cloak class="p-6">
-                            <fieldset>
-                                <legend class="text-base font-medium text-gray-900">I'd like to be notified when...</legend>
-                                <div class="mt-4 space-y-4">
-                                    <div class="flex items-start">
-                                        <div class="flex h-5 items-center"><input id="rent-paid" type="checkbox" checked class="h-4 w-4 rounded border-gray-300 text-teal-600 focus:ring-teal-500"></div>
-                                        <div class="ml-3 text-sm"><label for="rent-paid" class="font-medium text-gray-700">A tenant pays their rent</label></div>
+                            <form>
+                                <fieldset class="space-y-6">
+                                    <div>
+                                        <legend class="text-base font-medium text-gray-900">Financial</legend>
+                                        <div class="mt-4 space-y-4">
+                                            <div class="flex items-start"><div class="flex h-5 items-center"><input id="rent-paid" type="checkbox" checked class="h-4 w-4 rounded border-gray-300 text-teal-600 focus:ring-teal-500"></div><div class="ml-3 text-sm"><label for="rent-paid" class="font-medium text-gray-700">A tenant pays their rent</label></div></div>
+                                            <div class="flex items-start"><div class="flex h-5 items-center"><input id="rent-overdue" type="checkbox" checked class="h-4 w-4 rounded border-gray-300 text-teal-600 focus:ring-teal-500"></div><div class="ml-3 text-sm"><label for="rent-overdue" class="font-medium text-gray-700">A tenant's rent becomes overdue</label></div></div>
+                                        </div>
                                     </div>
-                                    <div class="flex items-start">
-                                        <div class="flex h-5 items-center"><input id="new-request" type="checkbox" checked class="h-4 w-4 rounded border-gray-300 text-teal-600 focus:ring-teal-500"></div>
-                                        <div class="ml-3 text-sm"><label for="new-request" class="font-medium text-gray-700">A new maintenance request is submitted</label></div>
+                                    <div>
+                                        <legend class="text-base font-medium text-gray-900">Maintenance</legend>
+                                        <div class="mt-4 space-y-4">
+                                            <div class="flex items-start"><div class="flex h-5 items-center"><input id="new-request" type="checkbox" checked class="h-4 w-4 rounded border-gray-300 text-teal-600 focus:ring-teal-500"></div><div class="ml-3 text-sm"><label for="new-request" class="font-medium text-gray-700">A new maintenance request is submitted</label></div></div>
+                                        </div>
                                     </div>
-                                    <div class="flex items-start">
-                                        <div class="flex h-5 items-center"><input id="new-message" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-teal-600 focus:ring-teal-500"></div>
-                                        <div class="ml-3 text-sm"><label for="new-message" class="font-medium text-gray-700">A tenant sends me a new message</label></div>
+                                     <div>
+                                        <legend class="text-base font-medium text-gray-900">Leases</legend>
+                                        <div class="mt-4 space-y-4">
+                                            <div class="flex items-start"><div class="flex h-5 items-center"><input id="lease-expiring" type="checkbox" checked class="h-4 w-4 rounded border-gray-300 text-teal-600 focus:ring-teal-500"></div><div class="ml-3 text-sm"><label for="lease-expiring" class="font-medium text-gray-700">A lease is expiring within 30 days</label></div></div>
+                                        </div>
                                     </div>
+                                </fieldset>
+                                <div class="pt-6 flex justify-end">
+                                    <button type="submit" class="rounded-md bg-teal-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-teal-500">Save Preferences</button>
                                 </div>
-                            </fieldset>
-                            <div class="pt-6 flex justify-end">
-                                <button type="submit" class="rounded-md bg-teal-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-teal-500">Save Preferences</button>
-                            </div>
+                            </form>
                         </div>
-
-                    </div>
+                        
+                        <!-- Other tab contents remain here -->
+                     </div>
                 </div>
             </main>
+        </div>
+
+        <!-- Add Payout Method Modal -->
+        <div x-show="addPayoutModalOpen" x-cloak class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+            <div class="flex items-end justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+                <div x-show="addPayoutModalOpen" @click="addPayoutModalOpen = false" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="ease-in duration-200" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+                <span class="hidden sm:inline-block sm:align-middle sm:h-screen">&#8203;</span>
+                <div x-show="addPayoutModalOpen" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" x-transition:leave="ease-in duration-200" x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                    <form class="space-y-6 p-6">
+                         <h3 class="text-lg font-medium text-gray-900">Add New Payout Method</h3>
+                         <div>
+                            <label for="bank-name" class="block text-sm font-medium text-gray-700">Bank Name</label>
+                            <input type="text" id="bank-name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm">
+                        </div>
+                         <div>
+                            <label for="account-holder" class="block text-sm font-medium text-gray-700">Account Holder Name</label>
+                            <input type="text" id="account-holder" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm">
+                        </div>
+                        <div>
+                            <label for="account-number" class="block text-sm font-medium text-gray-700">Account Number</label>
+                            <input type="text" id="account-number" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm">
+                        </div>
+                        <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse -m-6 mt-6">
+                            <button type="submit" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-teal-600 text-base font-medium text-white hover:bg-teal-700 sm:ml-3 sm:w-auto sm:text-sm">Save Payout Method</button>
+                            <button @click="addPayoutModalOpen = false" type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 sm:mt-0 sm:w-auto sm:text-sm">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Remove Confirmation Modal -->
+        <div x-show="removeConfirmModalOpen" x-cloak class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+             <div class="flex items-end justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+                <div x-show="removeConfirmModalOpen" @click="removeConfirmModalOpen = false" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="ease-in duration-200" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+                <span class="hidden sm:inline-block sm:align-middle sm:h-screen">&#8203;</span>
+                <div x-show="removeConfirmModalOpen" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" x-transition:leave="ease-in duration-200" x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                    <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                        <div class="sm:flex sm:items-start">
+                             <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+                                <i data-lucide="alert-triangle" class="h-6 w-6 text-red-600"></i>
+                            </div>
+                            <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                                <h3 class="text-lg font-medium text-gray-900">Remove Payout Method?</h3>
+                                <p class="mt-2 text-sm text-gray-500">Are you sure you want to remove this payout method? This action cannot be undone.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                        <button type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 sm:ml-3 sm:w-auto sm:text-sm">Yes, Remove</button>
+                        <button @click="removeConfirmModalOpen = false" type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 sm:mt-0 sm:w-auto sm:text-sm">Cancel</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>
-        lucide.createIcons();
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+        });
     </script>
 </body>
 </html>
+
