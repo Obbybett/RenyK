@@ -11,269 +11,218 @@
     <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Alpine.js for interactivity -->
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     <style>
         body {
             font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
-        .hero-bg {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1594755397433-821f19ab8a87?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
-            background-size: cover;
-            background-position: center;
+        .gradient-text {
+            background: -webkit-linear-gradient(45deg, #14b8a6, #0d9488);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
+        [x-cloak] { display: none !important; }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body class="bg-white">
 
-    <!-- Header & Navigation -->
-    <header class="bg-white sticky top-0 z-50 shadow-md">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-teal-600">RenyK</a>
-            <div class="hidden md:flex space-x-6 items-center">
-                <a href="#features" class="text-gray-600 hover:text-teal-600 transition duration-300">Features</a>
-                <a href="#" class="text-gray-600 hover:text-teal-600 transition duration-300">For Landlords</a>
-                <a href="#" class="text-gray-600 hover:text-teal-600 transition duration-300">For Tenants</a>
-                <a href="#" class="text-gray-600 hover:text-teal-600 transition duration-300">Pricing</a>
-            </div>
-            <div class="hidden md:flex items-center space-x-4">
-                <a href="#" class="text-gray-600 hover:text-teal-600 font-medium">Log In</a>
-                <a href="#" class="bg-teal-600 text-white px-5 py-2 rounded-full hover:bg-teal-700 transition duration-300 shadow">Sign Up</a>
-            </div>
-            <button id="mobile-menu-button" class="md:hidden">
-                <i data-lucide="menu" class="text-gray-700"></i>
-            </button>
-        </nav>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
-             <a href="#features" class="block py-2 text-gray-600 hover:text-teal-600">Features</a>
-             <a href="#" class="block py-2 text-gray-600 hover:text-teal-600">For Landlords</a>
-             <a href="#" class="block py-2 text-gray-600 hover:text-teal-600">For Tenants</a>
-             <a href="#" class="block py-2 text-gray-600 hover:text-teal-600">Pricing</a>
-             <div class="mt-4 border-t pt-4 space-y-2">
-                <a href="#" class="block text-center w-full bg-gray-100 text-gray-700 px-5 py-2 rounded-full font-medium">Log In</a>
-                <a href="#" class="block text-center w-full bg-teal-600 text-white px-5 py-2 rounded-full hover:bg-teal-700">Sign Up</a>
-             </div>
-        </div>
-    </header>
-
-    <!-- Main Content -->
-    <main>
-        <!-- Hero Section -->
-        <section class="hero-bg text-white">
-            <div class="container mx-auto px-6 py-24 md:py-32 text-center">
-                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4">Effortless Renting for Modern Kenya</h1>
-                <p class="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto mb-8">Simplify rent payments, communication, and property management with a single, easy-to-use platform. Built for Kenyan landlords and tenants.</p>
-                <a href="#" class="bg-teal-500 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-teal-600 transition duration-300 shadow-lg">Get Started for Free</a>
-            </div>
-        </section>
-
-        <!-- Features Section -->
-        <section id="features" class="py-20 bg-white">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">The Future of Property Management</h2>
-                    <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Everything you need to manage your properties and tenancies seamlessly.</p>
+    <div x-data="{ mobileMenuOpen: false }">
+        <!-- Header -->
+        <header @scroll.window="document.querySelector('header').classList.toggle('bg-white/80', window.scrollY > 50); document.querySelector('header').classList.toggle('shadow-md', window.scrollY > 50); document.querySelector('header').classList.toggle('backdrop-blur-lg', window.scrollY > 50);" class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
+            <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
+                <div class="flex lg:flex-1">
+                    <a href="index.html" class="text-2xl font-bold text-teal-600">RenyK</a>
                 </div>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
-                    <!-- Feature 1: Seamless Payments -->
-                    <div class="bg-gray-50 p-8 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300">
-                        <div class="flex items-center justify-center h-16 w-16 rounded-full bg-teal-100 text-teal-600 mb-6">
-                            <i data-lucide="smartphone" class="w-8 h-8"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3">Seamless Payments</h3>
-                        <p class="text-gray-600">Pay and receive rent instantly via M-Pesa or Card. Get digital receipts automatically and track your payment history with ease.</p>
-                    </div>
-
-                    <!-- Feature 2: Direct Communication -->
-                    <div class="bg-gray-50 p-8 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300">
-                        <div class="flex items-center justify-center h-16 w-16 rounded-full bg-teal-100 text-teal-600 mb-6">
-                            <i data-lucide="message-square" class="w-8 h-8"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3">Direct Communication</h3>
-                        <p class="text-gray-600">No more missed calls or lost messages. A dedicated, secure chat for tenants and landlords to resolve issues quickly.</p>
-                    </div>
-
-                    <!-- Feature 3: Maintenance Hub -->
-                    <div class="bg-gray-50 p-8 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300">
-                        <div class="flex items-center justify-center h-16 w-16 rounded-full bg-teal-100 text-teal-600 mb-6">
-                            <i data-lucide="wrench" class="w-8 h-8"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3">Maintenance Hub</h3>
-                        <p class="text-gray-600">Log and track maintenance requests with ease. Tenants can upload photos, and landlords can update the status in real-time.</p>
-                    </div>
-                    
-                    <!-- Feature 4: Automated Reminders -->
-                    <div class="bg-gray-50 p-8 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300">
-                        <div class="flex items-center justify-center h-16 w-16 rounded-full bg-teal-100 text-teal-600 mb-6">
-                            <i data-lucide="bell" class="w-8 h-8"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3">Automated Reminders</h3>
-                        <p class="text-gray-600">Never miss a due date. Get automatic SMS and in-app reminders for rent payments and lease renewals.</p>
-                    </div>
-
-                    <!-- Feature 5: Digital Documents -->
-                    <div class="bg-gray-50 p-8 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300">
-                        <div class="flex items-center justify-center h-16 w-16 rounded-full bg-teal-100 text-teal-600 mb-6">
-                            <i data-lucide="file-text" class="w-8 h-8"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3">Digital Documents</h3>
-                        <p class="text-gray-600">Securely store and access important documents like lease agreements, inspection reports, and notices anytime, anywhere.</p>
-                    </div>
-
-                    <!-- Feature 6: Financial Overview -->
-                    <div class="bg-gray-50 p-8 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300">
-                        <div class="flex items-center justify-center h-16 w-16 rounded-full bg-teal-100 text-teal-600 mb-6">
-                            <i data-lucide="bar-chart-2" class="w-8 h-8"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3">Financial Overview</h3>
-                        <p class="text-gray-600">For landlords, a powerful dashboard to track income, expenses, and occupancy rates across all properties.</p>
-                    </div>
+                <div class="flex lg:hidden">
+                    <button type="button" @click="mobileMenuOpen = true" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
+                        <span class="sr-only">Open main menu</span>
+                        <i data-lucide="menu" class="h-6 w-6"></i>
+                    </button>
                 </div>
-            </div>
-        </section>
-        
-        <!-- How It Works Section -->
-        <section class="py-20">
-             <div class="container mx-auto px-6">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Get Started in 3 Easy Steps</h2>
+                <div class="hidden lg:flex lg:gap-x-12">
+                    <a href="features.html" class="text-sm font-semibold leading-6 text-gray-900">Features</a>
+                    <a href="tenants.html" class="text-sm font-semibold leading-6 text-gray-900">For Tenants</a>
+                    <a href="landlords.html" class="text-sm font-semibold leading-6 text-gray-900">For Landlords</a>
+                    <a href="pricing.html" class="text-sm font-semibold leading-6 text-gray-900">Pricing</a>
                 </div>
-                <div class="relative">
-                    <!-- Dotted line for desktop -->
-                    <div class="hidden md:block absolute top-1/2 left-0 w-full h-0.5 border-t-2 border-dashed border-gray-300" style="transform: translateY(-50%);"></div>
-                    <div class="grid md:grid-cols-3 gap-12 relative">
-                        <!-- Step 1 -->
-                        <div class="text-center">
-                            <div class="relative inline-block">
-                                <div class="flex items-center justify-center h-20 w-20 rounded-full bg-white border-2 border-teal-500 text-teal-500 mb-4 text-2xl font-bold shadow-lg">1</div>
+                <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+                    <a href="login.html" class="rounded-md bg-teal-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-teal-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-600">Get Started</a>
+                </div>
+            </nav>
+            <!-- Mobile menu -->
+            <div x-show="mobileMenuOpen" x-cloak class="lg:hidden" role="dialog" aria-modal="true">
+                <div class="fixed inset-0 z-50"></div>
+                <div @click.away="mobileMenuOpen = false" class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+                    <div class="flex items-center justify-between">
+                         <a href="index.html" class="text-2xl font-bold text-teal-600">RenyK</a>
+                        <button type="button" @click="mobileMenuOpen = false" class="-m-2.5 rounded-md p-2.5 text-gray-700">
+                            <span class="sr-only">Close menu</span>
+                            <i data-lucide="x" class="h-6 w-6"></i>
+                        </button>
+                    </div>
+                    <div class="mt-6 flow-root">
+                        <div class="-my-6 divide-y divide-gray-500/10">
+                            <div class="space-y-2 py-6">
+                                <a href="features.html" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Features</a>
+                                <a href="tenants.html" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">For Tenants</a>
+                                <a href="landlords.html" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">For Landlords</a>
+                                <a href="pricing.html" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Pricing</a>
+                                <a href="about.html" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">About</a>
+                                <a href="contact.html" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Contact</a>
                             </div>
-                            <h3 class="text-xl font-bold mb-2">Create Your Account</h3>
-                            <p class="text-gray-600">Sign up in minutes as a landlord or a tenant. It's completely free to get started.</p>
-                        </div>
-                        <!-- Step 2 -->
-                         <div class="text-center">
-                            <div class="relative inline-block">
-                                <div class="flex items-center justify-center h-20 w-20 rounded-full bg-white border-2 border-teal-500 text-teal-500 mb-4 text-2xl font-bold shadow-lg">2</div>
-                            </div>
-                            <h3 class="text-xl font-bold mb-2">Connect & Onboard</h3>
-                            <p class="text-gray-600">Landlords add properties and invite tenants. Tenants accept the invitation and complete their profile.</p>
-                        </div>
-                        <!-- Step 3 -->
-                         <div class="text-center">
-                            <div class="relative inline-block">
-                                <div class="flex items-center justify-center h-20 w-20 rounded-full bg-white border-2 border-teal-500 text-teal-500 mb-4 text-2xl font-bold shadow-lg">3</div>
-                            </div>
-                            <h3 class="text-xl font-bold mb-2">Manage with Ease</h3>
-                            <p class="text-gray-600">Start transacting! Pay rent, send messages, and manage maintenance all in one place.</p>
-                        </div>
-                    </div>
-                </div>
-             </div>
-        </section>
-
-
-        <!-- Testimonials Section -->
-        <section class="py-20 bg-teal-700 text-white">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold">Loved by Landlords & Tenants Across Kenya</h2>
-                </div>
-                <div class="grid md:grid-cols-1 lg:grid-cols-2 gap-10 max-w-5xl mx-auto">
-                    <!-- Testimonial 1 -->
-                    <div class="bg-teal-600 p-8 rounded-xl shadow-lg">
-                        <p class="mb-6 italic">"RenyK has saved me hours of administrative work. Chasing rent is a thing of the past and my tenants are happier. It's a game-changer for property management in Nairobi!"</p>
-                        <div class="flex items-center">
-                            <img src="https://placehold.co/50x50/ffffff/333333?text=JD" alt="User" class="w-12 h-12 rounded-full mr-4 border-2 border-teal-400">
-                            <div>
-                                <p class="font-bold">John Mwangi</p>
-                                <p class="text-sm text-teal-200">Landlord, Westlands</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Testimonial 2 -->
-                    <div class="bg-teal-600 p-8 rounded-xl shadow-lg">
-                        <p class="mb-6 italic">"Paying rent has never been easier. I get a reminder, pay with M-Pesa in seconds, and get my receipt instantly. I love having all my communication and history in one app."</p>
-                        <div class="flex items-center">
-                            <img src="https://placehold.co/50x50/ffffff/333333?text=GW" alt="User" class="w-12 h-12 rounded-full mr-4 border-2 border-teal-400">
-                            <div>
-                                <p class="font-bold">Grace Wanjiru</p>
-                                <p class="text-sm text-teal-200">Tenant, Kilimani</p>
+                            <div class="py-6">
+                                <a href="login.html" class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Log in</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </header>
 
-        <!-- CTA Section -->
-        <section class="py-20 bg-white">
-            <div class="container mx-auto px-6 text-center">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Ready to Revolutionize Your Renting Experience?</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto mb-8">Join hundreds of landlords and tenants who are embracing a smarter way to manage rent in Kenya.</p>
-                <a href="#" class="bg-teal-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-teal-700 transition duration-300 shadow-lg">Sign Up for Free</a>
+        <main class="isolate">
+            <!-- Hero Section -->
+            <div class="relative bg-gray-50">
+                <div class="mx-auto max-w-7xl lg:grid lg:grid-cols-12 lg:gap-x-8 lg:px-8">
+                    <div class="px-6 pb-24 pt-32 sm:pb-32 lg:col-span-7 lg:px-0 lg:pb-56 lg:pt-48 xl:col-span-6">
+                        <div class="mx-auto max-w-2xl lg:mx-0">
+                            <h1 class="text-4xl font-black tracking-tight text-gray-900 sm:text-6xl">Rent management, simplified for <span class="gradient-text">Kenya</span>.</h1>
+                            <p class="mt-6 text-lg leading-8 text-gray-600">The all-in-one platform for landlords and tenants to manage payments, communication, and maintenance with ease and transparency.</p>
+                            <div class="mt-10 flex items-center gap-x-6">
+                                <a href="login.html" class="rounded-md bg-teal-600 px-5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-teal-500">Get Started Now</a>
+                                <a href="features.html" class="text-sm font-semibold leading-6 text-gray-900">Learn more <span aria-hidden="true">→</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative lg:col-span-5 lg:-mr-8 xl:absolute xl:inset-0 xl:left-1/2 xl:mr-0">
+                        <img class="aspect-[3/2] w-full bg-gray-50 object-cover lg:absolute lg:inset-0 lg:aspect-auto lg:h-full" src="https://images.unsplash.com/photo-1582407947304-fd86f028f716?q=80&w=2796&auto=format&fit=crop" onerror="this.onerror=null;this.src='https://placehold.co/800x600/e2e8f0/4a5568?text=Modern+Apartment';" alt="Modern apartment building in Nairobi">
+                    </div>
+                </div>
             </div>
-        </section>
-    </main>
 
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white">
-        <div class="container mx-auto px-6 py-12">
-            <div class="grid md:grid-cols-4 gap-8">
-                <div>
-                    <h3 class="text-xl font-bold mb-4">RenyK</h3>
-                    <p class="text-gray-400">The simplest way to manage rent in Kenya.</p>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4">Product</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#features" class="text-gray-400 hover:text-white">Features</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Pricing</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">For Landlords</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">For Tenants</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4">Company</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white">About Us</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Contact</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Careers</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4">Legal</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Terms of Service</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="mt-10 pt-8 border-t border-gray-700 flex flex-col sm:flex-row justify-between items-center">
-                <p class="text-gray-400">&copy; 2025 RenyK Kenya. All rights reserved.</p>
-                <div class="flex space-x-4 mt-4 sm:mt-0">
-                    <a href="#" class="text-gray-400 hover:text-white"><i data-lucide="twitter"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-white"><i data-lucide="facebook"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-white"><i data-lucide="linkedin"></i></a>
+            <!-- "Why RenyK" Section -->
+            <div class="bg-white py-24 sm:py-32">
+                <div class="mx-auto max-w-7xl px-6 lg:px-8">
+                    <div class="mx-auto max-w-2xl lg:text-center">
+                        <h2 class="text-base font-semibold leading-7 text-teal-600">Everything you need</h2>
+                        <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">A better rental experience for everyone</p>
+                        <p class="mt-6 text-lg leading-8 text-gray-600">Whether you're a landlord managing multiple properties or a tenant paying rent, RenyK brings simplicity and clarity to the process.</p>
+                    </div>
+                    <div class="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
+                        <dl class="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
+                            <div class="relative pl-16">
+                                <dt class="text-base font-semibold leading-7 text-gray-900">
+                                    <div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-teal-600">
+                                        <i data-lucide="smartphone" class="h-6 w-6 text-white"></i>
+                                    </div>
+                                    For Tenants
+                                </dt>
+                                <dd class="mt-2 text-base leading-7 text-gray-600">Pay your rent effortlessly via M-Pesa or card. Chat directly with your landlord, report issues instantly, and access your payment history anytime, anywhere.</dd>
+                            </div>
+                            <div class="relative pl-16">
+                                <dt class="text-base font-semibold leading-7 text-gray-900">
+                                    <div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-teal-600">
+                                        <i data-lucide="building-2" class="h-6 w-6 text-white"></i>
+                                    </div>
+                                    For Landlords
+                                </dt>
+                                <dd class="mt-2 text-base leading-7 text-gray-600">Automate rent collection, track payments, manage maintenance requests, and communicate with all your tenants from one central dashboard.</dd>
+                            </div>
+                        </dl>
+                    </div>
                 </div>
             </div>
-        </div>
-    </footer>
+
+            <!-- Testimonial Section -->
+            <section class="bg-gray-50 py-24 sm:py-32">
+                <div class="mx-auto max-w-7xl px-6 lg:px-8">
+                    <div class="mx-auto max-w-xl text-center">
+                        <h2 class="text-lg font-semibold leading-8 tracking-tight text-teal-600">Testimonials</h2>
+                        <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Trusted by landlords and tenants across Kenya</p>
+                    </div>
+                    <div class="mx-auto mt-16 flow-root max-w-2xl sm:mt-20 lg:mx-0 lg:max-w-none">
+                        <div class="-mt-8 sm:-mx-4 sm:columns-2 sm:text-[0] lg:columns-3">
+                            <div class="pt-8 sm:inline-block sm:w-full sm:px-4">
+                                <figure class="rounded-2xl bg-white p-8 text-sm leading-6 shadow-lg ring-1 ring-gray-900/5">
+                                    <blockquote class="text-gray-900"><p>"RenyK has saved me so much time. I no longer have to chase rent payments, and all my records are perfectly organized. It's a game-changer for landlords."</p></blockquote>
+                                    <figcaption class="mt-6 flex items-center gap-x-4">
+                                        <div>
+                                            <div class="font-semibold text-gray-900">Samuel K.</div>
+                                            <div class="text-gray-600">Landlord in Kilimani</div>
+                                        </div>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                            <div class="pt-8 sm:inline-block sm:w-full sm:px-4">
+                                <figure class="rounded-2xl bg-white p-8 text-sm leading-6 shadow-lg ring-1 ring-gray-900/5">
+                                    <blockquote class="text-gray-900"><p>"Paying rent is so easy now. I get a reminder, pay with M-Pesa in seconds, and get my receipt instantly. No more hassle!"</p></blockquote>
+                                    <figcaption class="mt-6 flex items-center gap-x-4">
+                                        <div>
+                                            <div class="font-semibold text-gray-900">Mary W.</div>
+                                            <div class="text-gray-600">Tenant in Westlands</div>
+                                        </div>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                            <div class="pt-8 sm:inline-block sm:w-full sm:px-4">
+                                <figure class="rounded-2xl bg-white p-8 text-sm leading-6 shadow-lg ring-1 ring-gray-900/5">
+                                    <blockquote class="text-gray-900"><p>"The best part is communication. If there's a leak, I can just send a message and a photo through the app. It gets sorted out so much faster."</p></blockquote>
+                                    <figcaption class="mt-6 flex items-center gap-x-4">
+                                        <div>
+                                            <div class="font-semibold text-gray-900">James P.</div>
+                                            <div class="text-gray-600">Tenant in Parklands</div>
+                                        </div>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- CTA Section -->
+            <div class="bg-white">
+                <div class="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8 text-center">
+                    <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Ready to get started?</h2>
+                    <p class="mt-4 text-lg leading-8 text-gray-600">Create your account today and transform your rental experience.</p>
+                    <div class="mt-10 flex items-center justify-center gap-x-6">
+                        <a href="login.html" class="rounded-md bg-teal-600 px-5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-teal-500">Sign Up for Free</a>
+                    </div>
+                </div>
+            </div>
+        </main>
     
+        <!-- Footer -->
+        <footer class="bg-gray-900">
+            <div class="mx-auto max-w-7xl overflow-hidden px-6 py-20 sm:py-24 lg:px-8">
+                <nav class="-mb-6 columns-2 sm:flex sm:justify-center sm:space-x-12" aria-label="Footer">
+                    <div class="pb-6"><a href="features.html" class="text-sm leading-6 text-gray-300 hover:text-white">Features</a></div>
+                    <div class="pb-6"><a href="pricing.html" class="text-sm leading-6 text-gray-300 hover:text-white">Pricing</a></div>
+                    <div class="pb-6"><a href="about.html" class="text-sm leading-6 text-gray-300 hover:text-white">About</a></div>
+                    <div class="pb-6"><a href="contact.html" class="text-sm leading-6 text-gray-300 hover:text-white">Contact</a></div>
+                </nav>
+                 <div class="mt-10 flex justify-center space-x-10">
+                    <a href="#" class="text-gray-400 hover:text-gray-300"><span class="sr-only">Facebook</span><i data-lucide="facebook"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-gray-300"><span class="sr-only">Twitter</span><i data-lucide="twitter"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-gray-300"><span class="sr-only">Instagram</span><i data-lucide="instagram"></i></a>
+                </div>
+                <p class="mt-10 text-center text-xs leading-5 text-gray-400">&copy; 2024 RenyK. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
     <script>
         // Initialize Lucide icons
         lucide.createIcons();
-
-        // Mobile menu toggle
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
     </script>
-
 </body>
 </html>
+
