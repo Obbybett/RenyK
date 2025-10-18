@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RenyK - Settings</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Alpine.js for interactivity -->
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        [x-cloak] { display: none !important; }
+        .sidebar-link-active {
+            background-color: #f0fdfa;
+            color: #0d9488;
+            border-right: 3px solid #0d9488;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <div class="flex h-screen bg-gray-100">
+        <!-- Sidebar -->
+        <aside class="w-64 flex-shrink-0 bg-white shadow-md hidden lg:block">
+            <div class="flex items-center justify-center h-20 border-b">
+                <a href="index.html" class="text-2xl font-bold text-teal-600">RenyK</a>
+            </div>
+            <nav class="mt-6">
+                <a href="landlord-dashboard.html" class="flex items-center px-6 py-3 text-gray-700 hover:bg-gray-100 transition-colors">
+                    <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+                    <span class="mx-4 font-medium">Dashboard</span>
+                </a>
+                <a href="landlord-properties.html" class="flex items-center px-6 py-3 text-gray-700 hover:bg-gray-100 transition-colors">
+                    <i data-lucide="building-2" class="w-5 h-5"></i>
+                    <span class="mx-4 font-medium">Properties</span>
+                </a>
+                <a href="landlord-tenants.html" class="flex items-center px-6 py-3 text-gray-700 hover:bg-gray-100 transition-colors">
+                    <i data-lucide="users" class="w-5 h-5"></i>
+                    <span class="mx-4 font-medium">Tenants</span>
+                </a>
+                <a href="landlord-finances.html" class="flex items-center px-6 py-3 text-gray-700 hover:bg-gray-100 transition-colors">
+                    <i data-lucide="trending-up" class="w-5 h-5"></i>
+                    <span class="mx-4 font-medium">Finances</span>
+                </a>
+                <a href="landlord-maintenance.html" class="flex items-center px-6 py-3 text-gray-700 hover:bg-gray-100 transition-colors">
+                    <i data-lucide="wrench" class="w-5 h-5"></i>
+                    <span class="mx-4 font-medium">Maintenance</span>
+                </a>
+                <a href="landlord-documents.html" class="flex items-center px-6 py-3 text-gray-700 hover:bg-gray-100 transition-colors">
+                    <i data-lucide="file-text" class="w-5 h-5"></i>
+                    <span class="mx-4 font-medium">Documents</span>
+                </a>
+                 <a href="landlord-reports.html" class="flex items-center px-6 py-3 text-gray-700 hover:bg-gray-100 transition-colors">
+                    <i data-lucide="bar-chart-3" class="w-5 h-5"></i>
+                    <span class="mx-4 font-medium">Reports</span>
+                </a>
+                <a href="landlord-settings.html" class="sidebar-link-active flex items-center px-6 py-3 text-gray-700 font-bold">
+                    <i data-lucide="settings" class="w-5 h-5"></i>
+                    <span class="mx-4 font-medium">Settings</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col overflow-hidden">
+            <!-- Header -->
+            <header class="flex justify-between items-center p-6 bg-white border-b">
+                <div class="flex items-center">
+                    <button class="text-gray-600 focus:outline-none lg:hidden">
+                        <i data-lucide="menu" class="h-6 w-6"></i>
+                    </button>
+                    <h1 class="text-2xl font-semibold text-gray-800 ml-4">Settings</h1>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <!-- Header icons -->
+                    <div x-data="{ dropdownOpen: false }" class="relative">
+                        <button @click="dropdownOpen = !dropdownOpen" class="flex items-center space-x-2">
+                            <img src="https://placehold.co/40x40/313131/FFFFFF?text=JO" alt="User Avatar" class="h-10 w-10 rounded-full object-cover">
+                            <span class="hidden md:block font-medium">John O.</span>
+                            <i data-lucide="chevron-down" class="h-4 w-4"></i>
+                        </button>
+                        <div x-show="dropdownOpen" @click.away="dropdownOpen = false" x-cloak class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-20">
+                            <a href="landlord-settings.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
+                            <a href="index.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 p-6">
+                <div class="container mx-auto">
+                     <div x-data="{ tab: 'profile' }" class="bg-white rounded-lg shadow-md">
+                        <!-- Tabs -->
+                        <div class="border-b">
+                            <nav class="flex -mb-px">
+                                <button @click="tab = 'profile'" :class="{ 'border-teal-500 text-teal-600': tab === 'profile', 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300': tab !== 'profile' }" class="w-1/4 py-4 px-1 text-center border-b-2 font-medium text-sm focus:outline-none">Profile</button>
+                                <button @click="tab = 'subscription'" :class="{ 'border-teal-500 text-teal-600': tab === 'subscription', 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300': tab !== 'subscription' }" class="w-1/4 py-4 px-1 text-center border-b-2 font-medium text-sm focus:outline-none">Subscription & Billing</button>
+                                <button @click="tab = 'security'" :class="{ 'border-teal-500 text-teal-600': tab === 'security', 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300': tab !== 'security' }" class="w-1/4 py-4 px-1 text-center border-b-2 font-medium text-sm focus:outline-none">Security</button>
+                                <button @click="tab = 'notifications'" :class="{ 'border-teal-500 text-teal-600': tab === 'notifications', 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300': tab !== 'notifications' }" class="w-1/4 py-4 px-1 text-center border-b-2 font-medium text-sm focus:outline-none">Notifications</button>
+                            </nav>
+                        </div>
+
+                        <!-- Profile Content -->
+                        <div x-show="tab === 'profile'" class="p-6">
+                            <form class="space-y-6">
+                                <div>
+                                    <label for="fullName" class="block text-sm font-medium text-gray-700">Full Name</label>
+                                    <input type="text" id="fullName" value="John Omondi" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm">
+                                </div>
+                                <div>
+                                    <label for="phoneNumber" class="block text-sm font-medium text-gray-700">Phone Number</label>
+                                    <input type="tel" id="phoneNumber" value="0722000111" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm">
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
+                                    <input type="email" id="email" value="john.o@example.com" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm">
+                                </div>
+                                <div class="pt-2 flex justify-end">
+                                    <button type="submit" class="rounded-md bg-teal-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-teal-500">Save Changes</button>
+                                </div>
+                            </form>
+                        </div>
+                        
+                        <!-- Subscription & Billing Content -->
+                        <div x-show="tab === 'subscription'" x-cloak class="p-6">
+                            <div class="space-y-6">
+                                <div>
+                                    <h3 class="text-lg font-medium text-gray-900">My Subscription</h3>
+                                    <div class="mt-4 p-4 bg-teal-50 rounded-lg border border-teal-200 flex items-center justify-between">
+                                        <div>
+                                            <p class="font-semibold text-teal-800">Pro Plan</p>
+                                            <p class="text-sm text-teal-700">Billed Annually. Renews on Jan 15, 2026.</p>
+                                        </div>
+                                        <a href="pricing.html" class="text-sm font-medium text-teal-600 hover:text-teal-800">Change Plan</a>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-medium text-gray-900">Payment Method</h3>
+                                     <div class="mt-4 p-4 bg-gray-50 rounded-lg border border-gray-200 flex items-center justify-between">
+                                        <div>
+                                            <p class="font-semibold text-gray-800">M-Pesa</p>
+                                            <p class="text-sm text-gray-600">Primary: 0722000111</p>
+                                        </div>
+                                        <button class="text-sm font-medium text-teal-600 hover:text-teal-800">Update</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Security Content -->
+                        <div x-show="tab === 'security'" x-cloak class="p-6">
+                             <form class="space-y-6">
+                                <div>
+                                    <label for="currentPassword" class="block text-sm font-medium text-gray-700">Current Password</label>
+                                    <input type="password" id="currentPassword" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm">
+                                </div>
+                                <div>
+                                    <label for="newPassword" class="block text-sm font-medium text-gray-700">New Password</label>
+                                    <input type="password" id="newPassword" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm">
+                                </div>
+                                <div>
+                                    <label for="confirmPassword" class="block text-sm font-medium text-gray-700">Confirm New Password</label>
+                                    <input type="password" id="confirmPassword" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm">
+                                </div>
+                                <div class="pt-2 flex justify-end">
+                                    <button type="submit" class="rounded-md bg-teal-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-teal-500">Update Password</button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Notifications Content -->
+                        <div x-show="tab === 'notifications'" x-cloak class="p-6">
+                            <fieldset>
+                                <legend class="text-base font-medium text-gray-900">I'd like to be notified when...</legend>
+                                <div class="mt-4 space-y-4">
+                                    <div class="flex items-start">
+                                        <div class="flex h-5 items-center"><input id="rent-paid" type="checkbox" checked class="h-4 w-4 rounded border-gray-300 text-teal-600 focus:ring-teal-500"></div>
+                                        <div class="ml-3 text-sm"><label for="rent-paid" class="font-medium text-gray-700">A tenant pays their rent</label></div>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <div class="flex h-5 items-center"><input id="new-request" type="checkbox" checked class="h-4 w-4 rounded border-gray-300 text-teal-600 focus:ring-teal-500"></div>
+                                        <div class="ml-3 text-sm"><label for="new-request" class="font-medium text-gray-700">A new maintenance request is submitted</label></div>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <div class="flex h-5 items-center"><input id="new-message" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-teal-600 focus:ring-teal-500"></div>
+                                        <div class="ml-3 text-sm"><label for="new-message" class="font-medium text-gray-700">A tenant sends me a new message</label></div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <div class="pt-6 flex justify-end">
+                                <button type="submit" class="rounded-md bg-teal-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-teal-500">Save Preferences</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
