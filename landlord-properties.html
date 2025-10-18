@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RenyK - Landlord Properties</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom scrollbar for webkit browsers */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d1d5db;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #9ca3af;
+        }
+        .modal-backdrop {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <div class="flex h-screen bg-gray-100">
+        <!-- Sidebar -->
+        <div id="sidebar" class="w-64 bg-white shadow-lg flex flex-col transition-all duration-300 fixed lg:static inset-y-0 left-0 transform -translate-x-full lg:translate-x-0 z-30">
+            <div class="p-6 flex items-center justify-between">
+                 <a href="index.html" class="text-2xl font-bold text-teal-600">RenyK</a>
+                 <button id="close-sidebar-btn" class="lg:hidden text-gray-600 hover:text-gray-900">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                 </button>
+            </div>
+            <nav class="flex-1 px-4 space-y-2">
+                <a href="landlord-dashboard.html" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-200 rounded-lg">
+                    <i data-lucide="layout-dashboard" class="w-5 h-5 mr-3"></i>
+                    Dashboard
+                </a>
+                <a href="#" class="flex items-center px-4 py-3 text-white bg-teal-600 rounded-lg font-semibold">
+                    <i data-lucide="building-2" class="w-5 h-5 mr-3"></i>
+                    Properties
+                </a>
+                 <a href="#" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-200 rounded-lg">
+                    <i data-lucide="users" class="w-5 h-5 mr-3"></i>
+                    Tenants
+                </a>
+                 <a href="#" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-200 rounded-lg">
+                    <i data-lucide="landmark" class="w-5 h-5 mr-3"></i>
+                    Finances
+                </a>
+                 <a href="#" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-200 rounded-lg">
+                    <i data-lucide="wrench" class="w-5 h-5 mr-3"></i>
+                    Maintenance
+                </a>
+                 <a href="messages.html" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-200 rounded-lg">
+                    <i data-lucide="message-square" class="w-5 h-5 mr-3"></i>
+                    Messages
+                </a>
+            </nav>
+            <div class="p-4 border-t">
+                 <a href="#" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-200 rounded-lg">
+                    <i data-lucide="user-circle" class="w-5 h-5 mr-3"></i>
+                    Profile
+                </a>
+                 <a href="login.html" class="flex items-center px-4 py-3 text-red-500 hover:bg-red-100 rounded-lg">
+                    <i data-lucide="log-out" class="w-5 h-5 mr-3"></i>
+                    Logout
+                </a>
+            </div>
+        </div>
+
+        <!-- Main content -->
+        <div class="flex-1 flex flex-col overflow-hidden">
+            <!-- Header -->
+            <header class="bg-white shadow-sm flex justify-between items-center p-4">
+                 <button id="open-sidebar-btn" class="lg:hidden text-gray-600 hover:text-gray-900">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+                <h1 class="text-xl font-semibold text-gray-800">My Properties</h1>
+                <div class="flex items-center">
+                    <img src="https://placehold.co/40x40/E2E8F0/4A5568?text=JM" alt="User" class="w-10 h-10 rounded-full">
+                </div>
+            </header>
+
+            <!-- Content Area -->
+            <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 p-6">
+                <div class="container mx-auto">
+                    <div class="flex justify-end mb-6">
+                        <button id="add-property-btn" class="bg-teal-600 text-white font-semibold px-5 py-3 rounded-lg hover:bg-teal-700 transition duration-300 flex items-center space-x-2">
+                            <i data-lucide="plus" class="w-5 h-5"></i>
+                            <span>Add Property</span>
+                        </button>
+                    </div>
+                    
+                    <!-- Properties Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Property Card -->
+                        <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=2574&auto=format&fit=crop" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/4A5568?text=Property';" alt="Property Image" class="w-full h-48 object-cover">
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold text-gray-800">Kilimani Heights, Apt 3B</h3>
+                                <p class="text-gray-600 mt-1">Nairobi, Kenya</p>
+                                <div class="mt-4 flex justify-between items-center">
+                                    <div>
+                                        <p class="text-sm text-gray-500">Current Tenant</p>
+                                        <p class="font-semibold text-gray-800">Grace Wanjiru</p>
+                                    </div>
+                                    <div>
+                                        <span class="px-3 py-1 text-sm font-semibold text-green-800 bg-green-100 rounded-full">Occupied</span>
+                                    </div>
+                                </div>
+                                <div class="mt-4 border-t pt-4">
+                                    <button class="w-full text-center font-semibold text-teal-600 hover:text-teal-800">Manage Property</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Property Card -->
+                        <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?q=80&w=2670&auto=format&fit=crop" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/4A5568?text=Property';" alt="Property Image" class="w-full h-48 object-cover">
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold text-gray-800">Riverside Drive, Unit 5</h3>
+                                <p class="text-gray-600 mt-1">Nairobi, Kenya</p>
+                                <div class="mt-4 flex justify-between items-center">
+                                    <div>
+                                        <p class="text-sm text-gray-500">Current Tenant</p>
+                                        <p class="font-semibold text-gray-800">David Kimani</p>
+                                    </div>
+                                    <div>
+                                        <span class="px-3 py-1 text-sm font-semibold text-green-800 bg-green-100 rounded-full">Occupied</span>
+                                    </div>
+                                </div>
+                                <div class="mt-4 border-t pt-4">
+                                    <button class="w-full text-center font-semibold text-teal-600 hover:text-teal-800">Manage Property</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Property Card (Vacant) -->
+                        <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1598228723793-52759bba239c?q=80&w=2574&auto=format&fit=crop" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/4A5568?text=Property';" alt="Property Image" class="w-full h-48 object-cover">
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold text-gray-800">Westlands Towers, Unit 8</h3>
+                                <p class="text-gray-600 mt-1">Nairobi, Kenya</p>
+                                <div class="mt-4 flex justify-between items-center">
+                                    <div>
+                                        <p class="text-sm text-gray-500">Current Tenant</p>
+                                        <p class="font-semibold text-gray-500 italic">None</p>
+                                    </div>
+                                    <div>
+                                        <span class="px-3 py-1 text-sm font-semibold text-blue-800 bg-blue-100 rounded-full">Vacant</span>
+                                    </div>
+                                </div>
+                                <div class="mt-4 border-t pt-4">
+                                    <button class="w-full text-center font-semibold text-teal-600 hover:text-teal-800">Manage Property</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    
+    <!-- Add Property Modal -->
+    <div id="property-modal" class="fixed inset-0 z-40 flex items-center justify-center p-4 modal-backdrop hidden">
+        <div class="bg-white w-full max-w-lg p-8 rounded-2xl shadow-2xl transform transition-all">
+             <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-800">Add New Property</h2>
+                <button id="close-modal-btn" class="text-gray-500 hover:text-gray-800">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+            <form class="space-y-4">
+                <div>
+                    <label for="address" class="block text-sm font-medium text-gray-700">Property Address</label>
+                    <input type="text" id="address" name="address" class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500" placeholder="e.g., Kilimani Heights, Apt 3B">
+                </div>
+                <div>
+                    <label for="rent" class="block text-sm font-medium text-gray-700">Monthly Rent (KES)</label>
+                    <input type="number" id="rent" name="rent" class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500" placeholder="e.g., 50000">
+                </div>
+                 <div>
+                    <label for="photo" class="block text-sm font-medium text-gray-700">Property Photo</label>
+                    <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg">
+                        <div class="space-y-1 text-center">
+                            <i data-lucide="image" class="mx-auto h-12 w-12 text-gray-400"></i>
+                            <div class="flex text-sm text-gray-600">
+                                <label for="file-upload" class="relative cursor-pointer bg-white rounded-md font-medium text-teal-600 hover:text-teal-500 focus-within:outline-none">
+                                    <span>Upload a file</span>
+                                    <input id="file-upload" name="file-upload" type="file" class="sr-only">
+                                </label>
+                            </div>
+                            <p class="text-xs text-gray-500">PNG, JPG up to 10MB</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-white bg-teal-600 hover:bg-teal-700 font-medium">Add Property</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Sidebar toggle
+        const sidebar = document.getElementById('sidebar');
+        const openSidebarBtn = document.getElementById('open-sidebar-btn');
+        const closeSidebarBtn = document.getElementById('close-sidebar-btn');
+        
+        openSidebarBtn.addEventListener('click', () => {
+            sidebar.classList.remove('-translate-x-full');
+        });
+
+        closeSidebarBtn.addEventListener('click', () => {
+            sidebar.classList.add('-translate-x-full');
+        });
+        
+        document.addEventListener('click', function(event) {
+            const isClickInside = sidebar.contains(event.target) || openSidebarBtn.contains(event.target);
+            if (!isClickInside && window.innerWidth < 1024) {
+                 sidebar.classList.add('-translate-x-full');
+            }
+        });
+
+        // Modal toggle
+        const modal = document.getElementById('property-modal');
+        const addPropertyBtn = document.getElementById('add-property-btn');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+
+        addPropertyBtn.addEventListener('click', () => {
+            modal.classList.remove('hidden');
+        });
+
+        closeModalBtn.addEventListener('click', () => {
+            modal.classList.add('hidden');
+        });
+
+        // Close modal on backdrop click
+        modal.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                 modal.classList.add('hidden');
+            }
+        });
+
+    </script>
+
+</body>
+</html>
