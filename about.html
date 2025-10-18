@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RenyK - About Us</title>
-    
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -12,9 +12,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
     
     <!-- Alpine.js for interactivity -->
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
@@ -25,35 +22,53 @@
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
-        .gradient-bg {
-            background: linear-gradient(120deg, #f0fdfa, #e0f2f1, #ffffff);
-        }
         [x-cloak] { display: none !important; }
     </style>
 </head>
-<body class="bg-white">
+<body class="bg-gray-50">
 
     <div x-data="{ mobileMenuOpen: false }">
         <!-- Header -->
         <header @scroll.window="document.querySelector('header').classList.toggle('bg-white/80', window.scrollY > 50); document.querySelector('header').classList.toggle('shadow-md', window.scrollY > 50); document.querySelector('header').classList.toggle('backdrop-blur-lg', window.scrollY > 50);" class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
-            <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
+            <nav class="flex items-center justify-between p-6 lg:px-8 max-w-7xl mx-auto" aria-label="Global">
                 <div class="flex lg:flex-1">
                     <a href="index.html" class="text-2xl font-bold text-teal-600">RenyK</a>
                 </div>
                 <div class="flex lg:hidden">
                     <button type="button" @click="mobileMenuOpen = true" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
                         <span class="sr-only">Open main menu</span>
-                        <i data-lucide="menu" class="h-6 w-6"></i>
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /></svg>
                     </button>
                 </div>
                 <div class="hidden lg:flex lg:gap-x-12">
-                    <a href="features.html" class="text-sm font-semibold leading-6 text-gray-900">Features</a>
-                    <a href="tenants.html" class="text-sm font-semibold leading-6 text-gray-900">For Tenants</a>
-                    <a href="landlords.html" class="text-sm font-semibold leading-6 text-gray-900">For Landlords</a>
-                    <a href="pricing.html" class="text-sm font-semibold leading-6 text-gray-900">Pricing</a>
+                    <a href="vacancies.html" class="text-sm font-semibold leading-6 text-gray-900 transition-colors hover:text-teal-600">Find a Rental</a>
+                    <div x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false" class="relative">
+                        <button class="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900 focus:outline-none transition-colors hover:text-teal-600">
+                            Solutions
+                            <svg class="h-5 w-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" /></svg>
+                        </button>
+                        <div x-show="open" x-transition x-cloak class="absolute -left-8 top-full z-10 mt-3 w-56 rounded-xl bg-white p-2 shadow-lg ring-1 ring-gray-900/5">
+                            <a href="tenants.html" class="block rounded-lg px-3 py-2 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-50">For Tenants</a>
+                            <a href="landlords.html" class="block rounded-lg px-3 py-2 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-50">For Landlords</a>
+                        </div>
+                    </div>
+                    <a href="pricing.html" class="text-sm font-semibold leading-6 text-gray-900 transition-colors hover:text-teal-600">Pricing</a>
+                     <div x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false" class="relative">
+                        <button class="flex items-center gap-x-1 text-sm font-semibold leading-6 text-teal-600 focus:outline-none">
+                            Resources
+                            <svg class="h-5 w-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" /></svg>
+                        </button>
+                        <div x-show="open" x-transition x-cloak class="absolute -left-8 top-full z-10 mt-3 w-56 rounded-xl bg-white p-2 shadow-lg ring-1 ring-gray-900/5">
+                            <a href="blog.html" class="block rounded-lg px-3 py-2 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-50">Blog</a>
+                            <a href="about.html" class="block rounded-lg px-3 py-2 text-sm font-semibold leading-6 bg-gray-50 text-teal-600">About Us</a>
+                            <a href="contact.html" class="block rounded-lg px-3 py-2 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-50">Contact Us</a>
+                             <a href="security.html" class="block rounded-lg px-3 py-2 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-50">Security</a>
+                        </div>
+                    </div>
                 </div>
                 <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-                    <a href="login.html" class="rounded-md bg-teal-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-teal-500">Get Started</a>
+                    <a href="login.html" class="text-sm font-semibold leading-6 text-gray-900 mr-6 transition-colors hover:text-teal-600">Log in</a>
+                    <a href="login.html" class="rounded-md bg-teal-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-teal-500 transition-transform hover:scale-105">Get Started</a>
                 </div>
             </nav>
             <!-- Mobile menu -->
@@ -70,10 +85,14 @@
                     <div class="mt-6 flow-root">
                         <div class="-my-6 divide-y divide-gray-500/10">
                             <div class="space-y-2 py-6">
-                                <a href="features.html" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Features</a>
+                                <a href="vacancies.html" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Find a Rental</a>
                                 <a href="tenants.html" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">For Tenants</a>
                                 <a href="landlords.html" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">For Landlords</a>
                                 <a href="pricing.html" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Pricing</a>
+                                <a href="blog.html" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Blog</a>
+                                <a href="about.html" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">About Us</a>
+                                <a href="contact.html" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Contact Us</a>
+                                <a href="security.html" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Security</a>
                             </div>
                             <div class="py-6">
                                 <a href="login.html" class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Log in</a>
@@ -84,94 +103,74 @@
             </div>
         </header>
 
-        <main class="isolate">
+        <main class="isolate pt-24 sm:pt-32">
             <!-- Hero Section -->
-            <div class="relative pt-32 pb-24 sm:pt-48 sm:pb-32 gradient-bg">
-                <div class="mx-auto max-w-7xl px-6 lg:px-8">
-                    <div class="mx-auto max-w-2xl text-center">
-                        <h1 class="text-4xl font-black tracking-tight text-gray-900 sm:text-6xl">We're simplifying renting in Kenya.</h1>
-                        <p class="mt-6 text-lg leading-8 text-gray-700">Our mission is to build trust and transparency between landlords and tenants through easy-to-use technology.</p>
+            <div class="bg-gray-900">
+                <div class="relative isolate overflow-hidden pt-14">
+                    <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=2968&auto=format&fit=crop" alt="Team working in a modern office" class="absolute inset-0 -z-10 h-full w-full object-cover">
+                    <div class="absolute inset-0 bg-gray-900/60 mix-blend-multiply"></div>
+                    <div class="mx-auto max-w-7xl px-6 py-24 text-center lg:px-8">
+                        <h1 class="text-4xl font-bold tracking-tight text-white sm:text-6xl">Our Mission: To Simplify Renting in Kenya</h1>
+                        <p class="mt-6 text-lg leading-8 text-gray-300">We're a passionate team dedicated to building technology that makes life easier for landlords and tenants.</p>
                     </div>
                 </div>
             </div>
-
+            
             <!-- Our Story Section -->
-            <div class="overflow-hidden bg-white py-24 sm:py-32">
-                <div class="mx-auto max-w-7xl px-6 lg:px-8">
-                    <div class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2 lg:items-center">
-                        <div class="lg:pr-8 lg:pt-4">
-                            <div class="lg:max-w-lg">
-                                <h2 class="text-base font-semibold leading-7 text-teal-600">Our Story</h2>
-                                <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Born from Experience</p>
-                                <p class="mt-6 text-lg leading-8 text-gray-600">RenyK was founded by a team of tenants and landlords who were tired of the endless paperwork, late-night calls, and payment-tracking headaches. We knew there had to be a better way. We set out to create a simple, powerful platform that makes the rental process smoother and more transparent for everyone involved.</p>
-                            </div>
-                        </div>
-                        <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2832&auto=format&fit=crop" onerror="this.onerror=null;this.src='https://placehold.co/800x600/e2e8f0/4a5568?text=Our+Team';" alt="A diverse team collaborating around a table" class="w-[48rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem] md:-ml-4 lg:-ml-0" width="2432" height="1442">
+            <div class="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
+                <div class="mx-auto max-w-2xl lg:max-w-none lg:grid lg:grid-cols-2 lg:gap-x-16 lg:gap-y-8">
+                    <div class="lg:pr-8">
+                        <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Our Story</h2>
+                        <p class="mt-6 text-lg leading-8 text-gray-600">RenyK was born from a simple idea: renting should be simpler. Our founders, having experienced the challenges of the Kenyan rental market firsthand—from chasing payments to dealing with delayed repairs—knew there had to be a better way. They envisioned a single platform that could bridge the gap between landlords and tenants, fostering transparency, communication, and efficiency.</p>
+                        <p class="mt-6 text-lg leading-8 text-gray-600">We started in a small office in Nairobi with a big goal: to leverage technology to solve real-world problems. Today, RenyK is proud to serve a growing community of property owners and renters across the country, helping them save time, reduce stress, and build better rental relationships.</p>
+                    </div>
+                     <div class="mt-12 lg:mt-0">
+                        <img src="https://images.unsplash.com/photo-1552581234-26160f608093?q=80&w=2970&auto=format&fit=crop" alt="Founders discussing plans" class="w-full rounded-2xl shadow-xl">
                     </div>
                 </div>
             </div>
 
             <!-- Team Section -->
-            <div class="bg-gray-50 py-24 sm:py-32">
+            <div class="bg-gray-100 py-24 sm:py-32">
                 <div class="mx-auto max-w-7xl px-6 lg:px-8">
-                    <div class="mx-auto max-w-2xl lg:mx-0 text-center">
+                    <div class="mx-auto max-w-2xl text-center">
                         <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Meet the Team</h2>
-                        <p class="mt-6 text-lg leading-8 text-gray-600">We're a passionate team dedicated to improving the rental market in Kenya.</p>
+                        <p class="mt-4 text-lg text-gray-600">The passionate individuals behind RenyK.</p>
                     </div>
                     <ul role="list" class="mx-auto mt-20 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3">
                         <li>
-                            <img class="aspect-[3/2] w-full rounded-2xl object-cover" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=250&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" onerror="this.onerror=null;this.src='https://placehold.co/250x250/e2e8f0/4a5568?text=Person';" alt="Team member photo">
-                            <h3 class="mt-6 text-lg font-semibold leading-8 tracking-tight text-gray-900">John Omondi</h3>
-                            <p class="text-base leading-7 text-gray-600">Founder & CEO</p>
+                            <img class="mx-auto h-56 w-56 rounded-full object-cover" src="https://placehold.co/400x400/313131/FFFFFF?text=JO" alt="John Omondi">
+                            <h3 class="mt-6 text-base font-semibold leading-7 tracking-tight text-gray-900">John Omondi</h3>
+                            <p class="text-sm leading-6 text-gray-600">Co-Founder & CEO</p>
                         </li>
                         <li>
-                             <img class="aspect-[3/2] w-full rounded-2xl object-cover" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=250&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" onerror="this.onerror=null;this.src='https://placehold.co/250x250/e2e8f0/4a5568?text=Person';" alt="Team member photo">
-                            <h3 class="mt-6 text-lg font-semibold leading-8 tracking-tight text-gray-900">Asha Wanjiru</h3>
-                            <p class="text-base leading-7 text-gray-600">Head of Product</p>
+                            <img class="mx-auto h-56 w-56 rounded-full object-cover" src="https://placehold.co/400x400/313131/FFFFFF?text=JW" alt="Jane Wanjiru">
+                            <h3 class="mt-6 text-base font-semibold leading-7 tracking-tight text-gray-900">Jane Wanjiru</h3>
+                            <p class="text-sm leading-6 text-gray-600">Co-Founder & CTO</p>
                         </li>
                         <li>
-                            <img class="aspect-[3/2] w-full rounded-2xl object-cover" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=250&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" onerror="this.onerror=null;this.src='https://placehold.co/250x250/e2e8f0/4a5568?text=Person';" alt="Team member photo">
-                            <h3 class="mt-6 text-lg font-semibold leading-8 tracking-tight text-gray-900">David Kimani</h3>
-                            <p class="text-base leading-7 text-gray-600">Lead Engineer</p>
+                            <img class="mx-auto h-56 w-56 rounded-full object-cover" src="https://placehold.co/400x400/313131/FFFFFF?text=DK" alt="David Kimani">
+                            <h3 class="mt-6 text-base font-semibold leading-7 tracking-tight text-gray-900">David Kimani</h3>
+                            <p class="text-sm leading-6 text-gray-600">Head of Product</p>
                         </li>
                     </ul>
                 </div>
             </div>
-
-            <!-- CTA Section -->
-            <div class="bg-gray-900">
-                <div class="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8 text-center">
-                    <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Join us on our mission.</h2>
-                    <p class="mt-4 text-lg leading-8 text-gray-300">Whether you're a tenant or a landlord, help us build a better rental future in Kenya.</p>
-                    <div class="mt-10 flex items-center justify-center gap-x-6">
-                        <a href="login.html" class="rounded-md bg-teal-500 px-5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-teal-400">Get Started</a>
-                    </div>
-                </div>
-            </div>
         </main>
-    
+
         <!-- Footer -->
         <footer class="bg-gray-900">
-            <div class="mx-auto max-w-7xl overflow-hidden px-6 py-20 sm:py-24 lg:px-8">
-                <nav class="-mb-6 columns-2 sm:flex sm:justify-center sm:space-x-12" aria-label="Footer">
-                    <div class="pb-6"><a href="features.html" class="text-sm leading-6 text-gray-300 hover:text-white">Features</a></div>
-                    <div class="pb-6"><a href="pricing.html" class="text-sm leading-6 text-gray-300 hover:text-white">Pricing</a></div>
-                    <div class="pb-6"><a href="about.html" class="text-sm leading-6 text-gray-300 hover:text-white">About</a></div>
-                    <div class="pb-6"><a href="#" class="text-sm leading-6 text-gray-300 hover:text-white">Contact</a></div>
-                </nav>
-                 <div class="mt-10 flex justify-center space-x-10">
-                    <a href="#" class="text-gray-400 hover:text-gray-300"><span class="sr-only">Facebook</span><i data-lucide="facebook"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-gray-300"><span class="sr-only">Twitter</span><i data-lucide="twitter"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-gray-300"><span class="sr-only">Instagram</span><i data-lucide="instagram"></i></a>
-                </div>
-                <p class="mt-10 text-center text-xs leading-5 text-gray-400">&copy; 2024 RenyK. All rights reserved.</p>
-            </div>
+            <!-- Footer content from index.html -->
         </footer>
     </div>
 
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
     <script>
-        // Initialize Lucide icons
-        lucide.createIcons();
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+        });
     </script>
 </body>
 </html>
+
