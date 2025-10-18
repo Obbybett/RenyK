@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RenyK - Blog</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Alpine.js for interactivity -->
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        [x-cloak] { display: none !important; }
+    </style>
+</head>
+<body class="bg-white">
+
+    <div x-data="{ mobileMenuOpen: false }">
+        <!-- Header -->
+        <header @scroll.window="document.querySelector('header').classList.toggle('bg-white/80', window.scrollY > 50); document.querySelector('header').classList.toggle('shadow-md', window.scrollY > 50); document.querySelector('header').classList.toggle('backdrop-blur-lg', window.scrollY > 50);" class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
+            <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
+                <div class="flex lg:flex-1">
+                    <a href="index.html" class="text-2xl font-bold text-teal-600">RenyK</a>
+                </div>
+                <div class="flex lg:hidden">
+                    <button type="button" @click="mobileMenuOpen = true" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
+                        <span class="sr-only">Open main menu</span>
+                        <i data-lucide="menu" class="h-6 w-6"></i>
+                    </button>
+                </div>
+                 <div class="hidden lg:flex lg:gap-x-12">
+                    <a href="features.html" class="text-sm font-semibold leading-6 text-gray-900 transition-colors hover:text-teal-600">Features</a>
+                    <a href="tenants.html" class="text-sm font-semibold leading-6 text-gray-900 transition-colors hover:text-teal-600">For Tenants</a>
+                    <a href="landlords.html" class="text-sm font-semibold leading-6 text-gray-900 transition-colors hover:text-teal-600">For Landlords</a>
+                    <a href="pricing.html" class="text-sm font-semibold leading-6 text-gray-900 transition-colors hover:text-teal-600">Pricing</a>
+                    <a href="about.html" class="text-sm font-semibold leading-6 text-gray-900 transition-colors hover:text-teal-600">About</a>
+                    <a href="contact.html" class="text-sm font-semibold leading-6 text-gray-900 transition-colors hover:text-teal-600">Contact</a>
+                </div>
+                <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+                    <a href="login.html" class="rounded-md bg-teal-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-teal-500 transition-transform hover:scale-105">Get Started</a>
+                </div>
+            </nav>
+            <!-- Mobile menu -->
+            <div x-show="mobileMenuOpen" x-cloak class="lg:hidden" role="dialog" aria-modal="true">
+                <!-- Mobile menu content -->
+            </div>
+        </header>
+
+        <main class="isolate pt-24 sm:pt-32">
+            <!-- Hero Section -->
+            <div class="bg-gray-100">
+                <div class="mx-auto max-w-7xl px-6 py-24 text-center lg:px-8">
+                    <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">RenyK Insights</h1>
+                    <p class="mt-6 text-lg leading-8 text-gray-600">Your expert source for renting tips, property management advice, and the latest trends in the Kenyan real estate market.</p>
+                </div>
+            </div>
+
+            <!-- Blog Posts Section -->
+            <div class="bg-white py-24 sm:py-32">
+                <div class="mx-auto max-w-7xl px-6 lg:px-8">
+                    <div class="mx-auto max-w-2xl text-center">
+                        <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">From the Blog</h2>
+                        <p class="mt-2 text-lg leading-8 text-gray-600">Stay informed with our latest articles.</p>
+                    </div>
+                    <div class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+                        
+                        <!-- Blog Post 1 -->
+                        <article class="flex flex-col items-start justify-between">
+                            <div class="relative w-full">
+                                <img src="https://placehold.co/600x400/0d9488/FFFFFF?text=Tenant+Guide" alt="A person happily receiving keys to a new apartment" class="aspect-[16/9] w-full rounded-2xl bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]">
+                                <div class="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10"></div>
+                            </div>
+                            <div class="max-w-xl">
+                                <div class="mt-8 flex items-center gap-x-4 text-xs">
+                                    <time datetime="2024-10-15" class="text-gray-500">Oct 15, 2024</time>
+                                    <a href="#" class="relative z-10 rounded-full bg-teal-50 px-3 py-1.5 font-medium text-teal-600 hover:bg-teal-100">For Tenants</a>
+                                </div>
+                                <div class="group relative">
+                                    <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+                                        <a href="#"><span class="absolute inset-0"></span>5 Things to Check Before Signing a Lease in Nairobi</a>
+                                    </h3>
+                                    <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">Moving into a new place is exciting! But before you sign on the dotted line, it's crucial to do your due diligence. Here are five essential things every prospective tenant in Nairobi should check.</p>
+                                </div>
+                                <div class="relative mt-8 flex items-center gap-x-4">
+                                    <img src="https://placehold.co/40x40/313131/FFFFFF?text=JW" alt="" class="h-10 w-10 rounded-full bg-gray-100">
+                                    <div class="text-sm leading-6">
+                                        <p class="font-semibold text-gray-900"><a href="#">Jane Wanjiru</a></p>
+                                        <p class="text-gray-600">Content Writer</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Blog Post 2 -->
+                        <article class="flex flex-col items-start justify-between">
+                            <div class="relative w-full">
+                                <img src="https://placehold.co/600x400/f59e0b/FFFFFF?text=Landlord+Tips" alt="A landlord shaking hands with a tenant" class="aspect-[16/9] w-full rounded-2xl bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]">
+                                <div class="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10"></div>
+                            </div>
+                            <div class="max-w-xl">
+                                <div class="mt-8 flex items-center gap-x-4 text-xs">
+                                    <time datetime="2024-10-10" class="text-gray-500">Oct 10, 2024</time>
+                                    <a href="#" class="relative z-10 rounded-full bg-amber-50 px-3 py-1.5 font-medium text-amber-600 hover:bg-amber-100">For Landlords</a>
+                                </div>
+                                <div class="group relative">
+                                    <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+                                        <a href="#"><span class="absolute inset-0"></span>How to Effectively Screen Tenants and Reduce Vacancy Risk</a>
+                                    </h3>
+                                    <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">Finding the right tenant is the key to successful property management. A thorough screening process can save you from future headaches, financial loss, and stress. Here's our guide.</p>
+                                </div>
+                                <div class="relative mt-8 flex items-center gap-x-4">
+                                    <img src="https://placehold.co/40x40/313131/FFFFFF?text=JO" alt="" class="h-10 w-10 rounded-full bg-gray-100">
+                                    <div class="text-sm leading-6">
+                                        <p class="font-semibold text-gray-900"><a href="#">John Omondi</a></p>
+                                        <p class="text-gray-600">CEO, RenyK</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Blog Post 3 -->
+                        <article class="flex flex-col items-start justify-between">
+                            <div class="relative w-full">
+                                <img src="https://placehold.co/600x400/3b82f6/FFFFFF?text=Market+News" alt="Skyline of Nairobi" class="aspect-[16/9] w-full rounded-2xl bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]">
+                                <div class="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10"></div>
+                            </div>
+                            <div class="max-w-xl">
+                                <div class="mt-8 flex items-center gap-x-4 text-xs">
+                                    <time datetime="2024-10-05" class="text-gray-500">Oct 05, 2024</time>
+                                    <a href="#" class="relative z-10 rounded-full bg-blue-50 px-3 py-1.5 font-medium text-blue-600 hover:bg-blue-100">Market News</a>
+                                </div>
+                                <div class="group relative">
+                                    <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+                                        <a href="#"><span class="absolute inset-0"></span>Nairobi Rental Market Trends: What to Expect in 2025</a>
+                                    </h3>
+                                    <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">The real estate landscape is always evolving. We dive into recent data and expert analyses to predict the key trends that will shape Nairobi's rental market in the coming year.</p>
+                                </div>
+                                <div class="relative mt-8 flex items-center gap-x-4">
+                                    <img src="https://placehold.co/40x40/313131/FFFFFF?text=DK" alt="" class="h-10 w-10 rounded-full bg-gray-100">
+                                    <div class="text-sm leading-6">
+                                        <p class="font-semibold text-gray-900"><a href="#">David Kimani</a></p>
+                                        <p class="text-gray-600">Product Head</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-gray-900">
+             <!-- Footer content from other pages -->
+        </footer>
+    </div>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
